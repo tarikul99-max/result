@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glorious Education Care - Pro Result Sheet</title>
+    <style>
+        :root { --primary: #1f7244; --bg: #f3f2f1; --accent: #0078d4; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; }
+        .container { max-width: 1350px; margin: auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        
+        .excel-header { 
+            background: var(--primary); color: white; padding: 20px; text-align: center; 
+            border-radius: 5px 5px 0 0; position: relative; display: flex; align-items: center; justify-content: center;
+        }
+        
+        .header-logo {
+            position: absolute; left: 20px; height: 80px; width: 80px;
+            background: white; padding: 5px; border-radius: 50%; object-fit: contain;
+        }
+
+        .header-text h1 { margin: 0; letter-spacing: 2px; }
+        .info-badge { margin-top: 10px; display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-weight: bold; border: 1px solid white; margin-right: 5px; }
+
+        .controls { display: flex; gap: 15px; margin: 20px 0; align-items: center; background: #e9ecef; padding: 15px; border-radius: 5px; flex-wrap: wrap; }
+        
+        table { width: 100%; border-collapse: collapse; background: white; font-size: 11px; margin-top: 10px; }
+        th, td { border: 1px solid #c0c0c0; padding: 6px; text-align: center; }
+        th { background: #f8f9fa; color: #333; }
+        
+        .input-mark { width: 40px; padding: 4px; border: 1px solid #ddd; text-align: center; border-radius: 3px; }
+        .fm-input { background: #fffde7; font-weight: bold; border: 1px solid #fbc02d; color: #b71c1c; margin-top: 5px; width: 45px; }
+        .stu-name { width: 140px; font-weight: bold; padding: 4px; border: 1px solid #ccc; }
+        
+        .pass { color: green; font-weight: bold; }
+        .fail { color: red; font-weight: bold; }
+        .position-badge { background: #eee; padding: 2px 6px; border-radius: 4px; font-weight: bold; color: #333; }
+
+        .signature-section { display: none; margin-top: 80px; justify-content: flex-end; padding: 0 50px; }
+        .sig-box { border-top: 2px solid #333; width: 180px; text-align: center; font-weight: bold; padding-top: 5px; }
+
+        /* PRINT LOGIC: Hidden empty rows */
+        @media print { 
+            .controls, .fm-input { display: none !important; } 
+            .fm-label { display: block !important; font-size: 9px; color: #555; }
+            .signature-section { display: flex !important; }
+            .container { box-shadow: none; padding: 0; width: 100%; }
+            input { border: none !important; background: transparent !important; }
+            body { background: white; padding: 0; }
+            
+            /* Hide rows where Name is empty */
+            tr.empty-row { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="excel-header">
+        <img src="C:\Users\tarik\OneDrive\Documents\Pictures\WhatsApp Image 2026-03-14 at 7.46.07 PM.jpeg" alt="Logo" class="header-logo" onerror="this.style.display='none'">
+        <div class="header-text">
+            <h1>GLORIOUS EDUCATION CARE</h1>
+            <div class="info-badge" id="displayReportType">Monthly Model Test</div>
+            <div class="info-badge" id="displayClassInfo">Class: 6</div>
+            <p style="margin: 5px 0 0 0; opacity: 0.9;">Academic Progress Report</p>
+        </div>
+    </div>
+
+    <div class="controls">
+        <strong>Report Type: </strong>
+        <select id="reportTypeSelector" onchange="updateReportType()" style="padding: 8px;">
+            <option value="Monthly Model Test">Monthly Final Model Test</option>
+            <option value="Final Model Test">Final Model Test</option>
+            <option value="Special Batch Test">Special Batch</option>
+        </select>
+
+        <strong>Select Class: </strong>
+        <select id="classSelector" onchange="loadClassLayout()" style="padding: 8px;">
+            <optgroup label="General">
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+            </optgroup>
+            <optgroup label="Class 9/10">
+                <option value="9_sci">Class 9 (Science)</option>
+                <option value="9_com">Class 9 (Commerce)</option>
+                <option value="9_art">Class 9 (Arts)</option>
+                
+                <option value="10_sci">Class 10 (Science)</option>
+                <option value="10_com">Class 10 (Commerce)</option>
+                <option value="10_art">Class 10 (Arts)</option>
+            </optgroup>
+        </select>
+        <button class="btn-print" onclick="window.print()">Print Report Card</button>
+        <small style="color: #6995be;">(Note: Only rows with names will be printed)</small>
+    </div>
+
+    <div id="tableContainer"></div>
+
+    <div class="signature-section">
+        <div class="sig-box">Director</div>
+    </div>
+</div>
+
+<script>
+    const subjectData = {
+        "6": ["Bangla-1st","Bangla-2nd", "Eng 1st", "Eng 2nd", "Math", "Science", "BGS", "Religion"],
+        "7": ["Bangla-1st","Bangla-2nd","Eng-1st", "Eng 1st", "Eng 2nd", "Math", "Science", "BGS", "Religion"],
+        "8": ["Bangla-1st","Bangla-2nd","Eng-1st", "Eng 2nd", "Math", "Science", "BGS", "Religion"],
+        "9_sci": ["Bangla-1st","Bangla-2nd","Eng-1st", "Eng 2nd", "Math","Religion", "Physics", "Chemistry", "Biology"],
+        "9_com": ["Bangla-1st","Bangla-2nd","Eng-1st" ,"Eng 2nd", "Math","Religion", "Acc.", "Finance", "B. Ent."],
+        "9_art": ["Bangla-1st","Bangla-2nd", "Eng 1st", "Eng 2nd", "Math","Religion", "History", "Civics", "Geography"],
+        "10_sci": ["Bangla-1st","Bangla-2nd", "Eng 1st", "Eng 2nd", "Math","Religion", "Physics", "Chemistry", "Biology"],
+        "10_com": ["Bangla-1st","Bangla-2nd", "Eng 1st", "Eng 2nd", "Math","Religion", "Acc.", "Finance", "B. Ent."],
+        "10_art": ["Bangla-1st","Bangla-2nd", "Eng 1st", "Eng 2nd", "Math","Religion","History", "Civics", "Geography"]
+    };
+
+    function updateReportType() {
+        document.getElementById('displayReportType').innerText = document.getElementById('reportTypeSelector').value;
+    }
+
+    function loadClassLayout() {
+        const selector = document.getElementById('classSelector');
+        const clsValue = selector.value;
+        document.getElementById('displayClassInfo').innerText = selector.options[selector.selectedIndex].text;
+
+        const subjects = subjectData[clsValue];
+        let tableHtml = `<table><thead><tr><th>SL</th><th>Student Name</th>`;
+        subjects.forEach((sub, index) => {
+            tableHtml += `<th>${sub}<br><input type="number" value="100" class="fm-input" id="fm_${index}" oninput="updateAllCalculations()"><div class="fm-label" style="display:none">FM: 100</div></th>`;
+        });
+        tableHtml += `<th>Total</th><th>%</th><th>Status</th><th>Pos.</th></tr></thead><tbody id="resultBody">`;
+        
+        // Generates 100 rows
+        for(let i=1; i<=100; i++){
+            tableHtml += generateRow(i, subjects);
+        }
+        tableHtml += `</tbody></table>`;
+        document.getElementById('tableContainer').innerHTML = tableHtml;
+    }
+
+    function generateRow(sl, subjects) {
+        let row = `<tr class="empty-row" id="row_${sl}">
+            <td>${sl}</td>
+            <td><input type="text" placeholder="Name" class="stu-name" oninput="checkRowStatus(this)"></td>`;
+        subjects.forEach(() => {
+            row += `<td><input type="number" class="mark-input input-mark" oninput="updateAllCalculations()" value="0"></td>`;
+        });
+        row += `<td class="total-val">0</td><td class="pct-val">0%</td><td class="status-val">-</td><td class="pos-val"><span class="position-badge">-</span></td></tr>`;
+        return row;
+    }
+
+    function checkRowStatus(input) {
+        const row = input.closest('tr');
+        if(input.value.trim() !== "") {
+            row.classList.remove('empty-row');
+        } else {
+            row.classList.add('empty-row');
+        }
+        updateAllCalculations();
+    }
+
+    function updateAllCalculations() {
+        const rows = document.querySelectorAll('#resultBody tr');
+        let studentsData = [];
+
+        rows.forEach((row, rowIndex) => {
+            const name = row.querySelector('.stu-name').value.trim();
+            const marks = row.querySelectorAll('.mark-input');
+            let totalObtained = 0;
+            let totalFullMarks = 0;
+            let isFail = false;
+
+            marks.forEach((m, index) => {
+                let obtained = parseFloat(m.value) || 0;
+                let fm = parseFloat(document.getElementById(`fm_${index}`).value) || 100;
+                totalObtained += obtained;
+                totalFullMarks += fm;
+                if (name !== "" && obtained < (fm * 0.33)) isFail = true;
+            });
+
+            let percentage = totalFullMarks > 0 ? (totalObtained / totalFullMarks) * 100 : 0;
+            row.querySelector('.total-val').innerText = totalObtained;
+            row.querySelector('.pct-val').innerText = percentage.toFixed(1) + "%";
+            
+            const statusCell = row.querySelector('.status-val');
+            if(name === "") {
+                statusCell.innerText = "-";
+            } else {
+                statusCell.innerText = isFail ? "FAIL" : "PASS";
+                statusCell.className = "status-val " + (isFail ? "fail" : "pass");
+                studentsData.push({ index: rowIndex, total: totalObtained });
+            }
+        });
+
+        // Sorting for Position
+        let ranked = [...studentsData].sort((a, b) => b.total - a.total);
+        studentsData.forEach(student => {
+            let rank = ranked.findIndex(r => r.total === student.total) + 1;
+            rows[student.index].querySelector('.pos-val').innerHTML = `<span class="position-badge">${rank}</span>`;
+        });
+
+        document.querySelectorAll('.fm-input').forEach(input => {
+            input.nextElementSibling.innerText = "FM: " + input.value;
+        });
+    }
+
+    window.onload = loadClassLayout;
+</script>
+</body>
+</html>
