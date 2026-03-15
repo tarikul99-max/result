@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glorious Education Care - Safe Result Sheet</title>
+    <title>Glorious Education Care - Clean Result Sheet</title>
     <style>
         :root { 
             --primary-green: #1b5e20; 
@@ -28,7 +28,9 @@
         .header-text h1 { margin: 0; font-size: 30px; letter-spacing: 2px; text-transform: uppercase; }
         .header-info-line { font-size: 18px; margin-top: 10px; font-weight: bold; color: #ffeb3b; }
         .header-sub-line { font-size: 15px; margin-top: 5px; opacity: 0.9; font-weight: 500; }
-        #displaySubjects { font-size: 13px; margin-top: 5px; font-style: italic; color: #e8f5e9; }
+
+        /* Subject list in header hidden */
+        #displaySubjects { display: none; }
 
         .subject-manager, .controls, .Name-add, .backup-manager { 
             background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 15px; 
@@ -77,8 +79,7 @@
             <h1>GLORIOUS EDUCATION CARE</h1>
             <div class="header-info-line">Exam: <span id="headerExam">Monthly Model Test</span></div>
             <div class="header-sub-line">Class: <span id="headerClass">9</span> | Group: <span id="headerGroup">General</span></div>
-            <div id="displaySubjects">Subjects: (None)</div>
-        </div>
+            <div id="displaySubjects"></div> </div>
     </div>
 
     <div class="backup-manager">
@@ -86,7 +87,6 @@
         <button class="btn-backup" onclick="exportData()">💾 Save Data to Computer</button>
         <input type="file" id="importFile" style="display:none" onchange="importData(event)">
         <button class="btn-add" onclick="document.getElementById('importFile').click()">📂 Load Data from Computer</button>
-        <small style="color: #666;">(Download and keep a file to never lose your work)</small>
     </div>
 
     <div class="controls">
@@ -100,7 +100,7 @@
     <div class="subject-manager">
         <strong>Add Subject:</strong> <input type="text" id="newSubName" placeholder="e.g. Math">
         <button class="btn-add" onclick="addSubject()">+ Add</button>
-        <span style="margin-left: auto;">Subjects: <span id="subCount">0</span></span>
+        <span style="margin-left: auto;">Subjects Added: <span id="subCount">0</span></span>
     </div>
 
     <div class="Name-add">
@@ -146,7 +146,6 @@
         }
     }
 
-    // --- Export Feature ---
     function exportData() {
         saveData();
         const data = localStorage.getItem('glorious_v2');
@@ -158,7 +157,6 @@
         a.click();
     }
 
-    // --- Import Feature ---
     function importData(event) {
         const file = event.target.files[0];
         if (!file) return;
@@ -174,7 +172,7 @@
         document.getElementById('headerClass').innerText = document.getElementById('classSelect').value;
         document.getElementById('headerGroup').innerText = document.getElementById('groupSelect').value;
         document.getElementById('headerExam').innerText = document.getElementById('examSelect').value;
-        document.getElementById('displaySubjects').innerText = subjects.length > 0 ? "Subjects: " + subjects.join(", ") : "Subjects: (None)";
+        // The displaySubjects text update is now effectively hidden via CSS
     }
 
     function addSubject() {
@@ -230,7 +228,7 @@
             let total = 0, full = 0, fail = false;
             marks.forEach((m, i) => {
                 let v = parseFloat(m.value) || 0;
-                let fm = parseFloat(document.getElementById(`fm_${i}`).value) || 100;
+                let fm = parseFloat(document.getElementById(`fm_${i}`)?.value || 100);
                 total += v; full += fm;
                 if (name && v < (fm * 0.33)) fail = true;
             });
