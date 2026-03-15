@@ -3,53 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glorious Education Care - Pro Result Sheet</title>
+    <title>Glorious Education Care - Safe Result Sheet</title>
     <style>
-        :root { --primary: #1f7244; --bg: #f3f2f1; --accent: #0078d4; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; }
-        .container { max-width: 1350px; margin: auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        :root { 
+            --primary-green: #1b5e20; 
+            --light-green: #4caf50;
+            --bg: #f0f4f1; 
+            --accent: #0078d4; 
+            --danger: #d32f2f;
+            --warning: #f57c00;
+        }
+        
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; }
+        .container { max-width: 1400px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #ddd; }
         
         .excel-header { 
-            background: var(--primary); color: white; padding: 20px; text-align: center; 
-            border-radius: 5px 5px 0 0; position: relative; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #43a047 100%); 
+            color: white; padding: 30px; text-align: center; 
+            border-radius: 10px; position: relative; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin-bottom: 20px;
         }
         
-        .header-logo {
-            position: absolute; left: 20px; height: 80px; width: 80px;
-            background: white; padding: 5px; border-radius: 50%; object-fit: contain;
+        .header-logo { position: absolute; left: 30px; height: 100px; width: 100px; background: white; padding: 5px; border-radius: 50%; object-fit: contain; }
+        .header-text h1 { margin: 0; font-size: 30px; letter-spacing: 2px; text-transform: uppercase; }
+        .header-info-line { font-size: 18px; margin-top: 10px; font-weight: bold; color: #ffeb3b; }
+        .header-sub-line { font-size: 15px; margin-top: 5px; opacity: 0.9; font-weight: 500; }
+        #displaySubjects { font-size: 13px; margin-top: 5px; font-style: italic; color: #e8f5e9; }
+
+        .subject-manager, .controls, .Name-add, .backup-manager { 
+            background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 15px; 
+            border: 1px solid #e0e0e0; display: flex; gap: 15px; align-items: center; flex-wrap: wrap;
         }
+        .backup-manager { border-left: 5px solid var(--warning); background: #fff3e0; }
 
-        .header-text h1 { margin: 0; letter-spacing: 2px; }
-        .info-badge { margin-top: 10px; display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-weight: bold; border: 1px solid white; margin-right: 5px; }
+        select, input { padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 14px; }
+        button { padding: 10px 20px; cursor: pointer; border-radius: 6px; border: none; font-weight: bold; transition: 0.2s; }
+        .btn-add { background: var(--accent); color: white; }
+        .btn-print { background: var(--primary-green); color: white; }
+        .btn-reset { background: var(--danger); color: white; }
+        .btn-backup { background: var(--warning); color: white; }
 
-        .controls { display: flex; gap: 15px; margin: 20px 0; align-items: center; background: #e9ecef; padding: 15px; border-radius: 5px; flex-wrap: wrap; }
+        table { width: 100%; border-collapse: collapse; background: white; font-size: 12px; border-radius: 8px; overflow: hidden; }
+        th { background-color: #f1f8e9; color: #2e7d32; font-weight: bold; border: 1px solid #c8e6c9; padding: 12px 5px; }
+        td { border: 1px solid #e0e0e0; padding: 8px; text-align: center; }
+        tr:nth-child(even) { background-color: #fafafa; }
         
-        table { width: 100%; border-collapse: collapse; background: white; font-size: 11px; margin-top: 10px; }
-        th, td { border: 1px solid #c0c0c0; padding: 6px; text-align: center; }
-        th { background: #f8f9fa; color: #333; }
-        
-        .input-mark { width: 40px; padding: 4px; border: 1px solid #ddd; text-align: center; border-radius: 3px; }
-        .fm-input { background: #fffde7; font-weight: bold; border: 1px solid #fbc02d; color: #b71c1c; margin-top: 5px; width: 45px; }
-        .stu-name { width: 140px; font-weight: bold; padding: 4px; border: 1px solid #ccc; }
-        
-        .pass { color: green; font-weight: bold; }
-        .fail { color: red; font-weight: bold; }
-        .position-badge { background: #eee; padding: 2px 6px; border-radius: 4px; font-weight: bold; color: #333; }
+        .fm-input { background: #fff9c4; font-weight: bold; border: 1px solid #fbc02d; width: 45px; text-align: center; margin-top: 5px; }
+        .input-mark { width: 45px; text-align: center; font-weight: bold; }
+        .stu-name { width: 160px; font-weight: bold; }
+
+        .pass { color: #2e7d32; font-weight: bold; background: #e8f5e9; padding: 3px 8px; border-radius: 4px; }
+        .fail { color: #c62828; font-weight: bold; background: #ffebee; padding: 3px 8px; border-radius: 4px; }
+        .position-badge { background: #388e3c; color: white; padding: 2px 8px; border-radius: 50px; }
+        .btn-remove-sub { color: #d32f2f; cursor: pointer; font-size: 10px; display: block; margin-top: 5px; text-decoration: underline; }
 
         .signature-section { display: none; margin-top: 80px; justify-content: flex-end; padding: 0 50px; }
-        .sig-box { border-top: 2px solid #333; width: 180px; text-align: center; font-weight: bold; padding-top: 5px; }
+        .sig-box { border-top: 2px solid #333; width: 200px; text-align: center; font-weight: bold; padding-top: 8px; }
 
-        /* PRINT LOGIC: Hidden empty rows */
         @media print { 
-            .controls, .fm-input { display: none !important; } 
-            .fm-label { display: block !important; font-size: 9px; color: #555; }
+            .controls, .fm-input, .subject-manager, .btn-remove-sub, .Name-add, .backup-manager { display: none !important; } 
             .signature-section { display: flex !important; }
-            .container { box-shadow: none; padding: 0; width: 100%; }
-            input { border: none !important; background: transparent !important; }
-            body { background: white; padding: 0; }
-            
-            /* Hide rows where Name is empty */
             tr.empty-row { display: none !important; }
+            input { border: none !important; }
         }
     </style>
 </head>
@@ -60,154 +75,183 @@
         <img src="logo.jpeg" alt="Logo" class="header-logo" onerror="this.style.display='none'">
         <div class="header-text">
             <h1>GLORIOUS EDUCATION CARE</h1>
-            <div class="info-badge" id="displayReportType">Monthly Model Test</div>
-            <div class="info-badge" id="displayClassInfo">Class: 6</div>
-            <p style="margin: 5px 0 0 0; opacity: 0.9;">Academic Progress Report</p>
+            <div class="header-info-line">Exam: <span id="headerExam">Monthly Model Test</span></div>
+            <div class="header-sub-line">Class: <span id="headerClass">9</span> | Group: <span id="headerGroup">General</span></div>
+            <div id="displaySubjects">Subjects: (None)</div>
         </div>
     </div>
 
-    <div class="controls">
-        <strong>Report Type: </strong>
-        <select id="reportTypeSelector" onchange="updateReportType()" style="padding: 8px;">
-            <option value="Monthly Model Test">Monthly Final Model Test</option>
-            <option value="Final Model Test">Final Model Test</option>
-            <option value="Special Batch Test">Special Batch</option>
-        </select>
+    <div class="backup-manager">
+        <strong>Data Safety:</strong>
+        <button class="btn-backup" onclick="exportData()">💾 Save Data to Computer</button>
+        <input type="file" id="importFile" style="display:none" onchange="importData(event)">
+        <button class="btn-add" onclick="document.getElementById('importFile').click()">📂 Load Data from Computer</button>
+        <small style="color: #666;">(Download and keep a file to never lose your work)</small>
+    </div>
 
-        <strong>Select Class: </strong>
-        <select id="classSelector" onchange="loadClassLayout()" style="padding: 8px;">
-            <optgroup label="General">
-                <option value="6">Class 6</option>
-                <option value="7">Class 7</option>
-                <option value="8">Class 8</option>
-            </optgroup>
-            <optgroup label="Class 9/10">
-                <option value="9_sci">Class 9 (Science)</option>
-                <option value="9_com">Class 9 (Commerce)</option>
-                <option value="9_art">Class 9 (Arts)</option>
-                <option value="9">Class 9 </option>
-                
-                <option value="10_sci">Class 10 (Science)</option>
-                <option value="10_com">Class 10 (Commerce)</option>
-                <option value="10_art">Class 10 (Arts)</option>
-            </optgroup>
-        </select>
-        <button class="btn-print" onclick="window.print()">Print Report Card</button>
-        <small style="color: #6995be;">(Note: Only rows with names will be printed)</small>
+    <div class="controls">
+        <div><strong>Class:</strong> <select id="classSelect" onchange="saveAndUI()"><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9" selected>9</option><option value="10">10</option></select></div>
+        <div><strong>Group:</strong> <select id="groupSelect" onchange="saveAndUI()"><option value="General">General</option><option value="Science">Science</option><option value="Commerce">Commerce</option><option value="Arts">Arts</option></select></div>
+        <div><strong>Exam:</strong> <select id="examSelect" onchange="saveAndUI()"><option value="Monthly Model Test">Monthly Test</option><option value="Final Model Test">Final Test</option><option value="Weekly Test">Weekly Test</option></select></div>
+        <button class="btn-print" onclick="window.print()">🖨️ Print</button>
+        <button class="btn-reset" onclick="confirmReset()">🗑️ Clear All</button>
+    </div>
+
+    <div class="subject-manager">
+        <strong>Add Subject:</strong> <input type="text" id="newSubName" placeholder="e.g. Math">
+        <button class="btn-add" onclick="addSubject()">+ Add</button>
+        <span style="margin-left: auto;">Subjects: <span id="subCount">0</span></span>
+    </div>
+
+    <div class="Name-add">
+        <strong>Add Student:</strong> <input type="text" id="newSName" placeholder="Name">
+        <button class="btn-add" onclick="addSName()">+ Add Name</button>
     </div>
 
     <div id="tableContainer"></div>
 
-    <div class="signature-section">
-        <div class="sig-box">Director</div>
-    </div>
+    <div class="signature-section"><div class="sig-box">Director Signature</div></div>
 </div>
 
 <script>
-    const subjectData = {
-        "6": ["Bangla-1st","Bangla-2nd", "Eng 1st", "Eng 2nd", "Math", "Science", "BGS", "Religion"],
-        "7": ["Bangla-1st","Bangla-2nd","Eng-1st", "Eng 1st", "Eng 2nd", "Math", "Science", "BGS", "Religion"],
-        "8": ["Bangla-1st","Bangla-2nd","Eng-1st", "Eng 2nd", "Math", "Science", "BGS", "Religion"],
-        "9": ["Eng-1st", "Eng 2nd", "Math"],
-        "9_sci": ["Bangla-1st","Bangla-2nd","Eng-1st", "Eng 2nd", "Math","Religion", "Physics", "Chemistry", "Biology"],
-        "9_com": ["Bangla-1st","Bangla-2nd","Eng-1st" ,"Eng 2nd", "Math","Religion", "Acc.", "Finance", "B. Ent."],
-        "9_art": ["Bangla-1st","Bangla-2nd", "Eng 1st", "Eng 2nd", "Math","Religion", "History", "Civics", "Geography"],
-        "10_sci": ["Bangla-1st","Bangla-2nd", "Eng 1st", "Eng 2nd", "Math","Religion", "Physics", "Chemistry", "Biology"],
-        "10_com": ["Bangla-1st","Bangla-2nd", "Eng 1st", "Eng 2nd", "Math","Religion", "Acc.", "Finance", "B. Ent."],
-        "10_art": ["Bangla-1st","Bangla-2nd", "Eng 1st", "Eng 2nd", "Math","Religion","History", "Civics", "Geography"]
-    };
+    let subjects = []; 
+    let studentNames = [];
 
-    function updateReportType() {
-        document.getElementById('displayReportType').innerText = document.getElementById('reportTypeSelector').value;
+    function saveAndUI() { saveData(); updateUI(); }
+
+    function saveData() {
+        const marks = {};
+        document.querySelectorAll('.mark-input').forEach((el, i) => marks[i] = el.value);
+        const fmarks = {};
+        subjects.forEach((_, i) => fmarks[i] = document.getElementById(`fm_${i}`).value);
+
+        const data = {
+            subjects, studentNames, marks, fmarks,
+            class: document.getElementById('classSelect').value,
+            group: document.getElementById('groupSelect').value,
+            exam: document.getElementById('examSelect').value
+        };
+        localStorage.setItem('glorious_v2', JSON.stringify(data));
     }
 
-    function loadClassLayout() {
-        const selector = document.getElementById('classSelector');
-        const clsValue = selector.value;
-        document.getElementById('displayClassInfo').innerText = selector.options[selector.selectedIndex].text;
+    function loadData() {
+        const data = JSON.parse(localStorage.getItem('glorious_v2'));
+        if (data) {
+            subjects = data.subjects || [];
+            studentNames = data.studentNames || [];
+            document.getElementById('classSelect').value = data.class;
+            document.getElementById('groupSelect').value = data.group;
+            document.getElementById('examSelect').value = data.exam;
+            renderTable();
+        }
+    }
 
-        const subjects = subjectData[clsValue];
-        let tableHtml = `<table><thead><tr><th>SL</th><th>Student Name</th>`;
-        subjects.forEach((sub, index) => {
-            tableHtml += `<th>${sub}<br><input type="number" value="100" class="fm-input" id="fm_${index}" oninput="updateAllCalculations()"><div class="fm-label" style="display:none">FM: 100</div></th>`;
+    // --- Export Feature ---
+    function exportData() {
+        saveData();
+        const data = localStorage.getItem('glorious_v2');
+        const blob = new Blob([data], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Result_Sheet_${new Date().toLocaleDateString()}.json`;
+        a.click();
+    }
+
+    // --- Import Feature ---
+    function importData(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            localStorage.setItem('glorious_v2', e.target.result);
+            location.reload();
+        };
+        reader.readAsText(file);
+    }
+
+    function updateUI() {
+        document.getElementById('headerClass').innerText = document.getElementById('classSelect').value;
+        document.getElementById('headerGroup').innerText = document.getElementById('groupSelect').value;
+        document.getElementById('headerExam').innerText = document.getElementById('examSelect').value;
+        document.getElementById('displaySubjects').innerText = subjects.length > 0 ? "Subjects: " + subjects.join(", ") : "Subjects: (None)";
+    }
+
+    function addSubject() {
+        const n = document.getElementById('newSubName').value.trim();
+        if(n) { subjects.push(n); document.getElementById('newSubName').value = ""; renderTable(); saveAndUI(); }
+    }
+
+    function addSName() {
+        const n = document.getElementById('newSName').value.trim();
+        if(n) { studentNames.push(n); document.getElementById('newSName').value = ""; renderTable(); saveAndUI(); }
+    }
+
+    function removeSubject(i) {
+        if(confirm("Remove?")) { subjects.splice(i, 1); renderTable(); saveAndUI(); }
+    }
+
+    function renderTable() {
+        const data = JSON.parse(localStorage.getItem('glorious_v2')) || {};
+        document.getElementById('subCount').innerText = subjects.length;
+        let html = `<table><thead><tr><th>SL</th><th>Student Name</th>`;
+        subjects.forEach((s, i) => {
+            let fm = (data.fmarks && data.fmarks[i]) ? data.fmarks[i] : 100;
+            html += `<th>${s}<br><input type="number" value="${fm}" class="fm-input" id="fm_${i}" oninput="saveAndCalc()"> <span class="btn-remove-sub" onclick="removeSubject(${i})">X</span></th>`;
         });
-        tableHtml += `<th>Total</th><th>%</th><th>Status</th><th>Pos.</th></tr></thead><tbody id="resultBody">`;
+        html += `<th>Total</th><th>%</th><th>Status</th><th>Rank</th></tr></thead><tbody id="resultBody">`;
         
-        // Generates 100 rows
-        for(let i=1; i<=100; i++){
-            tableHtml += generateRow(i, subjects);
+        let mCount = 0;
+        for(let i=1; i<=100; i++) {
+            let name = studentNames[i-1] || "";
+            html += `<tr class="${name ? '' : 'empty-row'}">
+                <td>${i}</td>
+                <td><input type="text" class="stu-name" value="${name}" oninput="saveAndCalc()"></td>
+                ${subjects.map(() => {
+                    let v = (data.marks && data.marks[mCount]) ? data.marks[mCount] : 0;
+                    mCount++;
+                    return `<td><input type="number" class="mark-input input-mark" oninput="saveAndCalc()" value="${v}"></td>`;
+                }).join('')}
+                <td class="total-val">0</td><td class="pct-val">0%</td><td class="status-val">-</td><td class="pos-val">-</td>
+            </tr>`;
         }
-        tableHtml += `</tbody></table>`;
-        document.getElementById('tableContainer').innerHTML = tableHtml;
+        document.getElementById('tableContainer').innerHTML = html + `</tbody></table>`;
+        updateCalculations();
     }
 
-    function generateRow(sl, subjects) {
-        let row = `<tr class="empty-row" id="row_${sl}">
-            <td>${sl}</td>
-            <td><input type="text" placeholder="Name" class="stu-name" oninput="checkRowStatus(this)"></td>`;
-        subjects.forEach(() => {
-            row += `<td><input type="number" class="mark-input input-mark" oninput="updateAllCalculations()" value="0"></td>`;
-        });
-        row += `<td class="total-val">0</td><td class="pct-val">0%</td><td class="status-val">-</td><td class="pos-val"><span class="position-badge">-</span></td></tr>`;
-        return row;
-    }
+    function saveAndCalc() { saveData(); updateCalculations(); }
 
-    function checkRowStatus(input) {
-        const row = input.closest('tr');
-        if(input.value.trim() !== "") {
-            row.classList.remove('empty-row');
-        } else {
-            row.classList.add('empty-row');
-        }
-        updateAllCalculations();
-    }
-
-    function updateAllCalculations() {
+    function updateCalculations() {
         const rows = document.querySelectorAll('#resultBody tr');
-        let studentsData = [];
-
-        rows.forEach((row, rowIndex) => {
+        let sData = [];
+        rows.forEach((row, rIdx) => {
             const name = row.querySelector('.stu-name').value.trim();
             const marks = row.querySelectorAll('.mark-input');
-            let totalObtained = 0;
-            let totalFullMarks = 0;
-            let isFail = false;
-
-            marks.forEach((m, index) => {
-                let obtained = parseFloat(m.value) || 0;
-                let fm = parseFloat(document.getElementById(`fm_${index}`).value) || 100;
-                totalObtained += obtained;
-                totalFullMarks += fm;
-                if (name !== "" && obtained < (fm * 0.33)) isFail = true;
+            let total = 0, full = 0, fail = false;
+            marks.forEach((m, i) => {
+                let v = parseFloat(m.value) || 0;
+                let fm = parseFloat(document.getElementById(`fm_${i}`).value) || 100;
+                total += v; full += fm;
+                if (name && v < (fm * 0.33)) fail = true;
             });
-
-            let percentage = totalFullMarks > 0 ? (totalObtained / totalFullMarks) * 100 : 0;
-            row.querySelector('.total-val').innerText = totalObtained;
-            row.querySelector('.pct-val').innerText = percentage.toFixed(1) + "%";
-            
-            const statusCell = row.querySelector('.status-val');
-            if(name === "") {
-                statusCell.innerText = "-";
-            } else {
-                statusCell.innerText = isFail ? "FAIL" : "PASS";
-                statusCell.className = "status-val " + (isFail ? "fail" : "pass");
-                studentsData.push({ index: rowIndex, total: totalObtained });
-            }
+            row.querySelector('.total-val').innerText = total;
+            row.querySelector('.pct-val').innerText = (full > 0 ? (total/full)*100 : 0).toFixed(1) + "%";
+            if(name) {
+                row.classList.remove('empty-row');
+                row.querySelector('.status-val').innerHTML = fail ? `<span class="fail">FAIL</span>` : `<span class="pass">PASS</span>`;
+                sData.push({ rIdx, total });
+            } else { row.classList.add('empty-row'); row.querySelector('.status-val').innerText = "-"; }
         });
-
-        // Sorting for Position
-        let ranked = [...studentsData].sort((a, b) => b.total - a.total);
-        studentsData.forEach(student => {
-            let rank = ranked.findIndex(r => r.total === student.total) + 1;
-            rows[student.index].querySelector('.pos-val').innerHTML = `<span class="position-badge">${rank}</span>`;
-        });
-
-        document.querySelectorAll('.fm-input').forEach(input => {
-            input.nextElementSibling.innerText = "FM: " + input.value;
+        let ranked = [...sData].sort((a,b) => b.total - a.total);
+        sData.forEach(s => {
+            let r = ranked.findIndex(x => x.total === s.total) + 1;
+            rows[s.rIdx].querySelector('.pos-val').innerHTML = `<span class="position-badge">${r}</span>`;
         });
     }
 
-    window.onload = loadClassLayout;
+    function confirmReset() { if(confirm("Delete everything?")) { localStorage.removeItem('glorious_v2'); location.reload(); } }
+
+    window.onload = () => { loadData(); updateUI(); };
 </script>
 </body>
 </html>
