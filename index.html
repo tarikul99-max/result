@@ -8,118 +8,137 @@
         :root { 
             --primary: #1b5e20; 
             --header-bg: #8dc26f;
-            --table-border: #bbbbbb;
+            --table-border: #888888;
             --row-alt: #f1f8e9;
             --accent: #0078d4;
             --danger: #d32f2f;
         }
         
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 15px; }
-        .container { max-width: 1200px; margin: auto; background: white; padding: 0; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #bee2a4cb; margin: 0; padding: 10px; }
         
-        /* Banner Style Header - Based on Uploaded Image */
+        .container { 
+            width: 100%;
+            max-width: 1100px; 
+            margin: auto; 
+            background: #fff; 
+            padding: 0; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+            overflow: hidden; 
+        }
+        
         .excel-header { 
             background: linear-gradient(to right, #76b852 0%, #8dc26f 60%, #e1f291 100%) !important; 
-            padding: 10px 25px; 
-            position: relative;
-            border-bottom: 4px solid #1b5e20;
+            padding: 10px 20px; 
+            border-bottom: 3px solid #1b5e20;
             -webkit-print-color-adjust: exact; print-color-adjust: exact;
         }
 
-        /* Top Bismillah - Centered at the very top */
-        .bismillah { 
-            text-align: center; 
-            font-size: 14px; 
-            font-weight: bold; 
-            color: #000; 
-            margin: 0 0 5px 0;
-            width: 100%;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .header-left { display: flex; align-items: center; gap: 15px; }
+        .bismillah { text-align: center; font-size: 13px; font-weight: bold; margin: 0 0 5px 0; }
+        .header-content { display: flex; align-items: center; justify-content: space-between; }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .header-logo { height: 80px; width: 80px; background: white; border-radius: 50%; border: 2px solid #1b5e20; object-fit: contain; }
+        .slogan { font-size: 14px; font-weight: bold; color: #1b5e20; margin: 0; }
         
-        .header-logo { 
-            height: 100px; width: 100px; background: white; 
-            border-radius: 50%; padding: 3px; border: 2px solid #1b5e20;
-            object-fit: contain;
-        }
+        .main-title-box { background: #002233; color: white !important; padding: 4px 20px; border-radius: 0 40px 40px 0; }
+        .main-title-box h1 { margin: 0; font-size: 26px; text-transform: uppercase; display: inline; }
+        .main-title-box span { font-size: 18px; margin-left: 8px; }
 
-        .header-mid { flex-grow: 1; text-align: left; }
-        
-        .slogan { 
-            font-size: 16px; 
-            font-weight: bold;
-            color: #1b5e20; 
-            margin: 0 0 5px 0; 
-        }
-        
-        .main-title-box { 
-            background: #002233; /* Darker Navy/Black like image */
-            color: white !important; 
-            display: inline-flex; 
-            align-items: baseline;
-            padding: 5px 25px; 
-            border-radius: 0px 50px 50px 0px; /* Rounded right side like banner */
-            margin-left: -15px;
-        }
-        .main-title-box h1 { margin: 0; font-size: 32px; letter-spacing: 2px; text-transform: uppercase; }
-        .main-title-box span { font-size: 24px; margin-left: 10px; text-transform: none; font-weight: normal; }
-
-        .header-right-address { 
-            text-align: right; 
-            font-size: 14px; 
-            color: #000; 
-            line-height: 1.4; 
-            font-weight: bold; 
-        }
+        .header-right-address { text-align: right; font-size: 12px; color: #000; font-weight: bold; line-height: 1.3; }
 
         .info-bar { 
-            background: #e8f5e9 !important; padding: 10px; border-bottom: 1px solid #c8e6c9; 
-            display: flex; justify-content: center; gap: 40px; font-weight: bold; font-size: 15px; color: #1b5e20 !important;
-            -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            background: #e8f5e9 !important; padding: 8px; border-bottom: 1px solid #c8e6c9; 
+            display: flex; justify-content: center; gap: 30px; font-weight: bold; font-size: 14px;
+            -webkit-print-color-adjust: exact;
         }
 
-        /* Controls Panel */
-        .controls-panel { background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 8px; margin: 15px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-        input, select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
-        button { padding: 8px 15px; cursor: pointer; border-radius: 4px; border: none; font-weight: bold; transition: 0.3s; }
-        .btn-add { background: var(--accent); color: white; }
-        .btn-print { background: var(--primary); color: white; }
-        .btn-reset { background: var(--danger); color: white; }
-
-        /* Table Design */
-        .table-wrap { padding: 0 15px 15px 15px; }
-        .table-scroll { overflow-x: auto; border: 1px solid var(--table-border); border-radius: 5px; }
-        table { width: 100%; border-collapse: collapse; background: white; font-size: 13px; }
-        th { background: #f1f8e9 !important; color: #1b5e20 !important; border: 1px solid var(--table-border); padding: 10px 5px; -webkit-print-color-adjust: exact; }
-        td { border: 1px solid var(--table-border); padding: 5px; text-align: center; height: 35px; }
-        tr:nth-child(even) { background-color: #fafafa; }
-
-        .fm-input { width: 45px; border: 1px solid #fbc02d; background: #fffde7 !important; text-align: center; font-weight: bold; }
-        .mark-input { width: 100%; border: none; text-align: center; font-weight: bold; font-size: 14px; background: transparent; outline: none; }
-        .stu-name-input { width: 220px; border: none; background: transparent; font-weight: bold; outline: none; text-align: left; }
+        /* --- Merit List Section (Updated for 3 Columns) --- */
+        #topHoldersBox {
+            display: none; 
+            margin: 10px 15px;
+            padding: 12px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            background: #f9fff9;
+        }
+        .top-title { font-weight: bold; color: var(--primary); border-bottom: 2px solid var(--primary); margin-bottom: 10px; text-transform: uppercase; font-size: 14px; padding-bottom: 5px; text-align: center; }
         
-        .status-badge { padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; }
-        .pass { color: #1b5e20 !important; background: #c8e6c9 !important; }
-        .fail { color: #b71c1c !important; background: #ffcdd2 !important; }
-        .pos-badge { background: #1b5e20 !important; color: white !important; padding: 2px 8px; border-radius: 50px; }
+        .top-list-container { 
+            display: flex; 
+            justify-content: space-between; 
+            gap: 15px; 
+        }
+        
+        .merit-column { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 5px; 
+        }
 
-        .btn-del { color: #d32f2f; cursor: pointer; font-weight: bold; margin-left: 5px; }
-        .signature { display: none; margin-top: 50px; text-align: right; padding-right: 50px; }
-        .sig-line { border-top: 2px solid #333; display: inline-block; width: 200px; text-align: center; font-weight: bold; padding-top: 5px; }
+        .rank-item { 
+            padding: 4px 8px; 
+            border-bottom: 1px dashed #ddd; 
+            font-weight: bold;
+            font-size: 13px;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .rank-1 { color: #a17400; font-size: 14px; }
+        .rank-2 { color: #555555b7; }
+        .rank-3 { color: #b8773ee8; }
+
+        .controls-panel { background: #fff; padding: 10px; border-bottom: 1px solid #ddd; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+        input, select { padding: 5px; border: 1px solid #999; border-radius: 4px; }
+        button { padding: 6px 12px; cursor: pointer; border-radius: 4px; border: none; font-weight: bold; color: white; transition: 0.2s; }
+        button:hover { opacity: 0.8; }
+        .btn-add { background: var(--accent); }
+        .btn-print { background: var(--primary); }
+        .btn-reset { background: var(--danger); }
+
+        .table-wrap { padding: 10px; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 800px; }
+        th, td { border: 1px solid var(--table-border); padding: 5px 2px; text-align: center; }
+        th { background: #f5f5f5 !important; color: #1b5e20; font-size: 11px; position: relative; }
+        
+        .fm-input { width: 35px; border: 1px solid #fbc02d; text-align: center; font-size: 10px; font-weight: bold; }
+        .mark-input { width: 90%; border: none; text-align: center; font-weight: bold; background: transparent; outline: none; }
+        .stu-name-input { width: 85%; border: none; background: transparent; font-weight: bold; text-align: left; outline: none; }
+        
+        .status-badge { padding: 2px 6px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+        .pass { background: #c8e6c9 !important; color: #1b5e20 !important; }
+        .fail { background: #ffcdd2 !important; color: #b71c1c !important; }
+        .pos-badge { background: #1b5e20 !important; color: white !important; padding: 2px 8px; border-radius: 50px; font-size: 11px; }
+
+        .btn-del { color: red; cursor: pointer; font-weight: bold; font-size: 16px; line-height: 1; vertical-align: middle; }
+        
+        .signature-wrapper {
+            margin-top: 50px;
+            padding: 20px 50px 40px 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .sig-box { text-align: center; }
+        .sig-line { border-top: 1.5px solid #000; width: 180px; font-weight: bold; font-size: 12px; padding-top: 5px; }
 
         @media print {
-            @page { size: landscape; margin: 5mm; }
+            @page { size: A4 landscape; margin: 10mm; }
+            body { background: white; padding: 0; }
+            .container { width: 100%; box-shadow: none; border: none; max-width: none; display: block !important; }
             .controls-panel, .btn-del, .fm-input { display: none !important; }
-            .container { box-shadow: none; width: 100% !important; }
-            .signature { display: block !important; }
-            .excel-header { border-bottom: 2px solid #000; }
+            #topHoldersBox { display: block !important; page-break-inside: avoid; }
+            
+            .rank-1 { color: #a17400 !important; }
+            .rank-2 { color: #555555b7 !important; }
+            .rank-3 { color: #b8773ee8 !important; }
+
+            .table-wrap { padding: 0; overflow: visible; }
+            table { font-size: 11px; width: 100%; page-break-inside: auto; }
+            tr { page-break-inside: avoid; }
+            th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .status-badge, .pos-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .signature-wrapper { page-break-inside: avoid; margin-top: 30px; }
         }
     </style>
 </head>
@@ -128,11 +147,9 @@
 <div class="container">
     <div class="excel-header">
         <p class="bismillah">বিসমিল্লাহির রাহমানির রাহিম</p>
-        
         <div class="header-content">
             <div class="header-left">
-                <img src="logo.jpeg" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/100'">
-                
+                <img src="logo.jpeg" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/80'">
                 <div class="header-mid">
                     <p class="slogan">সৃজনশীল প্রতিভার অন্বেষণে..........</p>
                     <div class="main-title-box">
@@ -141,58 +158,58 @@
                     </div>
                 </div>
             </div>
-            
             <div class="header-right-address">
                 ফরিদুল হক চৌধুরী মার্কেট (২য় তলা),<br>
-                পেকুয়া চৌমুহনীর পশ্চিম পার্শ্বে,<br>
-                পেকুয়া, কক্সবাজার।<br>
+                পেকুয়া চৌমুহনীর পশ্চিম পার্শ্বে, পেকুয়া।<br>
                 📞 ০১৮৬৮-৬৫৩৭২২, ০১৭৫৬৬১৭৯৯৬
             </div>
         </div>
     </div>
     
     <div class="info-bar">
-        <span>Exam: <span id="vExam">Monthly Model Test</span></span>
-        <span>Class: <span id="vClass">Nine</span></span>
-        <span>Group: <span id="vGroup">General</span></span>
+        <span>Exam: <span id="vExam">-</span></span>
+        <span>Class: <span id="vClass">-</span></span>
+        <span>Group: <span id="vGroup">-</span></span>
         <span>Students: <span id="vCount">0</span></span>
     </div>
 
+    <div id="topHoldersBox">
+        <div class="top-title">🏆 Merit List (Top 10)</div>
+        <div class="top-list-container" id="topList">
+            </div>
+    </div>
+
     <div class="controls-panel">
-        <select id="cSel" onchange="updateInfo()"><option>Six</option><option>Seven</option><option>Eight</option><option selected>Nine</option><option>Ten</option></select>
+        <select id="cSel" onchange="updateInfo()"><option>Six</option><option>Seven</option><option>Eight</option><option selected>Nine</option><option>Ten</option><option>SSC Candidate</option></select>
         <select id="gSel" onchange="updateInfo()"><option>General</option><option>Science</option><option>Commerce</option><option>Arts</option></select>
         <select id="eSel" onchange="updateInfo()"><option>Monthly Model Test</option><option>Final Model Test</option><option>Weekly Model Test</option></select>
-        <input type="text" id="subInp" placeholder="Subject Name">
-        <button class="btn-add" onclick="addSub()">+ Add Sub</button>
-        <input type="text" id="nameInp" placeholder="Student Name">
+        <input type="text" id="subInp" placeholder="Subject Name" style="width:100px">
+        <button class="btn-add" onclick="addSub()">+ Add Subject</button>
+        <input type="text" id="nameInp" placeholder="Student Name" style="width:120px">
         <button class="btn-add" onclick="addStu()">+ Add Student</button>
         <button class="btn-print" onclick="window.print()">🖨️ Print Sheet</button>
         <button class="btn-reset" onclick="resetAll()">🗑️ Reset</button>
     </div>
 
     <div class="table-wrap">
-        <div class="table-scroll">
-            <table id="resTable">
-                <thead>
-                    <tr id="hRow">
-                        <th style="width:50px">SL</th>
-                        <th style="width:250px">Student Name</th>
-                        <th style="width:70px">Total</th>
-                        <th style="width:60px">%</th>
-                        <th style="width:70px">Res</th>
-                        <th style="width:60px">Pos</th>
-                    </tr>
-                </thead>
-                <tbody id="tBody"></tbody>
-            </table>
-        </div>
+        <table id="resTable">
+            <thead><tr id="hRow"></tr></thead>
+            <tbody id="tBody"></tbody>
+        </table>
     </div>
 
-    <div class="signature"><div class="sig-line">Director Signature</div></div>
+    <div class="signature-wrapper">
+        <div class="sig-box">
+            <div class="sig-line">Director Signature</div>
+        </div>
+    </div>
 </div>
 
 <script>
+    const DB_KEY = 'glorious_final_db'; 
+
     let subjects = []; let students = []; let marks = {}; let fms = {};
+    let visibility = { total: true, pct: true, res: true, pos: true };
 
     function updateInfo() {
         document.getElementById('vClass').innerText = document.getElementById('cSel').value;
@@ -211,35 +228,42 @@
         if(v) { students.push(v); document.getElementById('nameInp').value=''; render(); }
     }
 
+    function toggleCol(col) { visibility[col] = false; render(); }
+
     function render() {
         const head = document.getElementById('hRow');
         const body = document.getElementById('tBody');
         document.getElementById('vCount').innerText = students.length;
 
-        let hHtml = `<th>SL</th><th>Student Name</th>`;
+        let hHtml = `<th style="width:40px">SL</th><th style="width:200px">Student Name</th>`;
         subjects.forEach((s, i) => {
-            let fmValue = fms[i] || 100;
             hHtml += `<th>${s}<br>
-                <input type="number" class="fm-input" value="${fmValue}" oninput="fms[${i}]=this.value;calc()">
-                <span class="btn-del" onclick="subjects.splice(${i},1);render()">×</span></th>`;
+                <input type="number" class="fm-input" value="${fms[i]||100}" oninput="fms[${i}]=this.value;calc()">
+                <span class="btn-del" onclick="if(confirm('Delete Subject?')){subjects.splice(${i},1);render();}">×</span></th>`;
         });
-        hHtml += `<th>Total</th><th>%</th><th>Res</th><th>Pos</th>`;
+
+        if(visibility.total) hHtml += `<th style="width:60px">Total <span class="btn-del" onclick="toggleCol('total')">×</span></th>`;
+        if(visibility.pct)   hHtml += `<th style="width:50px">% <span class="btn-del" onclick="toggleCol('pct')">×</span></th>`;
+        if(visibility.res)   hHtml += `<th style="width:60px">Res <span class="btn-del" onclick="toggleCol('res')">×</span></th>`;
+        if(visibility.pos)   hHtml += `<th style="width:55px">Position <span class="btn-del" onclick="toggleCol('pos')">×</span></th>`;
         head.innerHTML = hHtml;
 
         let bHtml = '';
         students.forEach((name, sIdx) => {
-            bHtml += `<tr>
-                <td>${sIdx+1}</td>
-                <td style="text-align:left; padding-left:10px;">
-                    <input type="text" class="stu-name-input" value="${name}" oninput="students[${sIdx}]=this.value;save()">
-                    <span class="btn-del" onclick="students.splice(${sIdx},1);render()">×</span>
-                </td>`;
+            bHtml += `<tr><td>${sIdx+1}</td><td style="text-align:left;padding-left:8px">
+                <input type="text" class="stu-name-input" value="${name}" oninput="students[${sIdx}]=this.value;save()">
+                <span class="btn-del" onclick="if(confirm('Delete Student?')){students.splice(${sIdx},1);render();}">×</span></td>`;
+            
             subjects.forEach((_, subIdx) => {
                 let key = `${sIdx}_${subIdx}`;
-                let mVal = marks[key] || 0;
-                bHtml += `<td><input type="number" class="mark-input" data-key="${key}" value="${mVal}" oninput="marks[this.dataset.key]=this.value;calc()"></td>`;
+                bHtml += `<td><input type="number" class="mark-input" value="${marks[key]||0}" oninput="marks['${key}']=this.value;calc()"></td>`;
             });
-            bHtml += `<td class="r-total">0</td><td class="r-pct">0%</td><td class="r-stat">-</td><td class="r-pos">-</td></tr>`;
+
+            if(visibility.total) bHtml += `<td class="r-total">0</td>`;
+            if(visibility.pct)   bHtml += `<td class="r-pct">0%</td>`;
+            if(visibility.res)   bHtml += `<td class="r-stat">-</td>`;
+            if(visibility.pos)   bHtml += `<td class="r-pos">-</td>`;
+            bHtml += `</tr>`;
         });
         body.innerHTML = bHtml;
         calc();
@@ -256,35 +280,76 @@
                 total += v; full += fm;
                 if(v < (fm * 0.33)) fail = true;
             });
-            row.querySelector('.r-total').innerText = total;
-            row.querySelector('.r-pct').innerText = (full > 0 ? Math.round((total/full)*100) : 0) + '%';
-            row.querySelector('.r-stat').innerHTML = fail ? '<span class="status-badge fail">FAIL</span>' : '<span class="status-badge pass">PASS</span>';
-            data.push({ sIdx, total });
+            if(visibility.total) row.querySelector('.r-total').innerText = total;
+            if(visibility.pct)   row.querySelector('.r-pct').innerText = (full > 0 ? Math.round((total/full)*100) : 0) + '%';
+            if(visibility.res)   row.querySelector('.r-stat').innerHTML = fail ? '<span class="status-badge fail">Fail</span>' : '<span class="status-badge pass">Pass</span>';
+            data.push({ sIdx, total, name: students[sIdx] });
         });
-
-        let ranked = [...data].sort((a,b) => b.total - a.total);
-        data.forEach(s => {
-            let rank = ranked.findIndex(x => x.total === s.total) + 1;
-            rows[s.sIdx].querySelector('.r-pos').innerHTML = `<span class="pos-badge">${rank}</span>`;
-        });
+        
+        if(visibility.pos) {
+            let ranked = [...data].sort((a,b) => b.total - a.total);
+            data.forEach(s => {
+                let rank = ranked.findIndex(x => x.total === s.total) + 1;
+                let cell = rows[s.sIdx].querySelector('.r-pos');
+                if(cell) cell.innerHTML = `<span class="pos-badge">${rank}</span>`;
+            });
+            updateTopHolders(ranked);
+        }
         save();
     }
 
+    function updateTopHolders(ranked) {
+        const listContainer = document.getElementById('topList');
+        const box = document.getElementById('topHoldersBox');
+        if(!ranked || ranked.length === 0) { box.style.display = 'none'; return; }
+        
+        box.style.display = 'block';
+        let cols = [[], [], []]; // 3টি কলামের জন্য অ্যারে
+
+        for(let i=0; i<10; i++) {
+            if(ranked[i] && ranked[i].name) {
+                let label = (i === 0) ? "1st 🏆" : (i === 1) ? "2nd" : (i === 2) ? "3rd" : (i + 1) + "th";
+                let rankClass = (i < 3) ? `rank-${i+1}` : "";
+                let itemHtml = `<div class="rank-item ${rankClass}">${label}. ${ranked[i].name} (${ranked[i].total})</div>`;
+                
+                // কলাম ডিস্ট্রিবিউশন: ১ম কলামে ৪ জন, পরের ২টিতে ৩ জন করে
+                if (i < 4) cols[0].push(itemHtml);
+                else if (i < 7) cols[1].push(itemHtml);
+                else cols[2].push(itemHtml);
+            }
+        }
+
+        listContainer.innerHTML = cols.map(col => `<div class="merit-column">${col.join('')}</div>`).join('');
+    }
+
     function save() {
-        const payload = { subjects, students, marks, fms, c: document.getElementById('cSel').value, g: document.getElementById('gSel').value, e: document.getElementById('eSel').value };
-        localStorage.setItem('glorious_final_db', JSON.stringify(payload));
+        const payload = { 
+            subjects, students, marks, fms, visibility, 
+            c: document.getElementById('cSel').value, 
+            g: document.getElementById('gSel').value, 
+            e: document.getElementById('eSel').value 
+        };
+        localStorage.setItem(DB_KEY, JSON.stringify(payload));
     }
 
     function load() {
-        const d = JSON.parse(localStorage.getItem('glorious_final_db'));
+        const d = JSON.parse(localStorage.getItem(DB_KEY));
         if(d) {
-            subjects = d.subjects || []; students = d.students || []; marks = d.marks || {}; fms = d.fms || {};
-            document.getElementById('cSel').value = d.c; document.getElementById('gSel').value = d.g; document.getElementById('eSel').value = d.e;
-            updateInfo(); render();
+            subjects = d.subjects || []; students = d.students || []; marks = d.marks || {}; fms = d.fms || {}; 
+            if(d.visibility) visibility = d.visibility;
+            document.getElementById('cSel').value = d.c || 'Nine'; 
+            document.getElementById('gSel').value = d.g || 'General'; 
+            document.getElementById('eSel').value = d.e || 'Monthly Model Test';
         }
+        updateInfo(); render();
     }
 
-    function resetAll() { if(confirm("Sob data muche phelben?")) { localStorage.removeItem('glorious_final_db'); location.reload(); } }
+    function resetAll() { 
+        if(confirm("সব ডাটা ডিলিট হবে! আপনি কি নিশ্চিত?")) { 
+            localStorage.removeItem(DB_KEY); location.reload(); 
+        } 
+    }
+    
     window.onload = load;
 </script>
 </body>
