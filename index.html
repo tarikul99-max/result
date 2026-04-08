@@ -368,23 +368,28 @@
         
         .table-wrap { padding: 20px; overflow-x: auto; background: #ffffff; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; border-radius: 16px; overflow: hidden; }
-        th, td { border: 1px solid #c8e6c9; padding: 6px 4px; text-align: center; vertical-align: middle; }
-        th { background: linear-gradient(95deg, #2e7d32, #388e3c); color: white; font-weight: 700; padding: 8px 4px; font-size: 12px; }
+        th, td { border: 1px solid #c8e6c9; padding: 8px 6px; text-align: center; vertical-align: middle; }
+        th { background: linear-gradient(95deg, #2e7d32, #388e3c); color: white; font-weight: 700; padding: 10px 6px; font-size: 12px; }
         
         .subject-header {
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 4px;
             align-items: center;
-            min-width: 110px;
+            min-width: 100px;
+            max-width: 120px;
+            word-break: break-word;
         }
         .subject-name {
             font-weight: bold;
             cursor: pointer;
             background: rgba(255,255,255,0.2);
             padding: 2px 6px;
-            border-radius: 12px;
+            border-radius: 20px;
             font-size: 11px;
+            white-space: normal;
+            word-break: break-word;
+            text-align: center;
         }
         .subject-name:hover {
             background: rgba(255,255,255,0.4);
@@ -396,6 +401,8 @@
             background: rgba(0,0,0,0.3);
             padding: 2px 6px;
             border-radius: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .mark-distribution input {
             width: 38px;
@@ -407,7 +414,7 @@
             border-radius: 8px;
         }
         .written-input, .mcq-input {
-            width: 48px;
+            width: 50px;
             text-align: center;
             border: 1px solid #c8e6c9;
             border-radius: 6px;
@@ -443,7 +450,7 @@
         }
         .stu-name-input:focus {
             border: 1px solid #2e7d32;
-            background: #c4b0d0;
+            background: #f1f8e9;
         }
         .roll-input {
             width: 50px;
@@ -512,11 +519,11 @@
             background: rgba(0,0,0,0.3);
         }
         
-        /* প্রিন্ট স্টাইল - A4 Landscape - সুন্দর ও পরিপাটি */
+        /* প্রিন্ট স্টাইল - A4 Landscape - সঠিক ফিট */
         @media print {
             @page {
                 size: A4 landscape;
-                margin: 8mm 5mm;
+                margin: 6mm 4mm;
             }
             
             body {
@@ -537,19 +544,21 @@
             /* লুকানোর এলিমেন্ট */
             .controls-panel, 
             .student-login-section, 
-            .info-bar button, 
+            .info-bar button,
             .btn-print, 
             .btn-login, 
             .admin-only, 
-            .optional-checkbox input, 
+            .optional-checkbox, 
             .btn-del, 
             .gpa-rule-box, 
             .copy-section,
             #loginBtn,
             .logout-student-btn,
             .show-hide-box,
-            .info-bar .btn-login,
-            .info-bar .btn-print {
+            .exam-item,
+            .mark-distribution,
+            .pass-mark-indicator,
+            .info-bar .btn-login {
                 display: none !important;
             }
             
@@ -557,18 +566,18 @@
                 background: #2e7d32 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                padding: 8px 12px;
+                padding: 6px 10px;
             }
             
             .info-bar {
                 background: #2e7d32 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                padding: 6px 10px;
-                font-size: 11px;
+                padding: 4px 8px;
+                font-size: 10px;
                 display: flex !important;
                 justify-content: center;
-                gap: 20px;
+                gap: 15px;
             }
             
             .info-bar span {
@@ -579,7 +588,7 @@
                 display: block !important;
                 background: #f5f5f5;
                 margin: 0;
-                padding: 8px;
+                padding: 6px;
                 border: 1px solid #ddd;
             }
             
@@ -587,28 +596,29 @@
                 break-inside: avoid;
                 page-break-inside: avoid;
                 border: 1px solid #ccc;
-                margin-bottom: 8px;
+                margin-bottom: 6px;
             }
             
             .table-wrap {
                 overflow: visible !important;
-                padding: 8px 0 !important;
+                padding: 4px 0 !important;
             }
             
-            /* মূল টেবিল স্টাইল */
+            /* টেবিল স্টাইল - স্থির প্রস্থ A4 ফিট */
             table {
                 width: 100%;
                 border-collapse: collapse;
-                font-size: 8px;
-                table-layout: fixed !important;
+                font-size: 7px;
+                table-layout: fixed;
             }
             
             th, td {
                 border: 1px solid #000 !important;
-                padding: 4px 2px;
+                padding: 3px 2px;
                 text-align: center;
                 vertical-align: middle;
                 word-break: break-word;
+                overflow: hidden;
             }
             
             th {
@@ -616,33 +626,102 @@
                 color: black !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                font-size: 8px;
+                font-size: 7px;
                 font-weight: bold;
                 padding: 4px 2px;
             }
             
-            /* রোল কলাম - ছোট */
-            th:first-child, td:first-child {
-                width: 35px !important;
+            /* কলামের প্রস্থ সঠিকভাবে নির্ধারণ - A4 এ ফিট হবে */
+            th:nth-child(1), td:nth-child(1) { 
+                width: 32px !important; 
                 min-width: 30px !important;
-                font-size: 7px !important;
+                max-width: 35px !important;
+                font-size: 6px !important;
             }
             
-            /* ছাত্রের নাম কলাম - 25 অক্ষরের জন্য যথেষ্ট বড় */
-            th:nth-child(2), td:nth-child(2) {
-                width: 140px !important;
-                min-width: 130px !important;
-                font-size: 7px !important;
+            th:nth-child(2), td:nth-child(2) { 
+                width: 100px !important; 
+                min-width: 90px !important;
+                max-width: 110px !important;
+                font-size: 6px !important;
             }
             
-            /* নামের ইনপুট ফিল্ড প্রিন্টে */
+            /* সাবজেক্ট কলাম */
+            .subject-cell {
+                width: 82px !important;
+                min-width: 75px !important;
+                max-width: 88px !important;
+            }
+            
+            .subject-header {
+                min-width: 70px;
+                max-width: 85px;
+                gap: 1px;
+                padding: 0;
+            }
+            
+            .subject-name {
+                font-size: 6px !important;
+                background: transparent !important;
+                color: #000 !important;
+                white-space: normal;
+                word-break: break-word;
+                padding: 0 2px;
+                line-height: 1.2;
+            }
+            
+            /* মার্কস ইনপুট স্টাইল */
+            .written-input, .mcq-input {
+                border: none !important;
+                background: transparent !important;
+                padding: 0 !important;
+                text-align: center;
+                width: 24px !important;
+                font-weight: bold;
+                font-size: 6px;
+                display: inline-block;
+            }
+            
+            td div[style*="display:flex"] {
+                display: flex !important;
+                justify-content: center !important;
+                gap: 2px !important;
+                flex-wrap: nowrap !important;
+            }
+            
+            .total-mark-display {
+                background: transparent !important;
+                padding: 0 !important;
+                font-size: 5px;
+                display: block;
+                margin-top: 1px;
+            }
+            
+            /* রেজাল্ট কলাম */
+            .cell-total, .cell-pct, .cell-gpa, .cell-res, .cell-pos {
+                width: 40px !important;
+                min-width: 36px !important;
+                max-width: 44px !important;
+            }
+            
+            .r-total, .r-pct, .r-gpa, .r-res, .r-pos {
+                font-size: 6px;
+            }
+            
+            .gpa-badge, .status-badge {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                font-size: 5px;
+                padding: 1px 2px;
+            }
+            
             .stu-name-input {
                 border: none !important;
                 background: transparent !important;
                 padding: 0 !important;
                 text-align: center;
                 width: 100% !important;
-                font-size: 7px !important;
+                font-size: 6px !important;
                 font-weight: bold;
                 color: #000 !important;
             }
@@ -653,130 +732,52 @@
                 padding: 0 !important;
                 text-align: center;
                 width: 100% !important;
-                font-size: 7px !important;
+                font-size: 6px !important;
                 font-weight: bold;
-            }
-            
-            /* সাবজেক্ট কলাম */
-            .subject-cell {
-                width: auto;
-                min-width: 85px !important;
-            }
-            
-            .subject-header {
-                min-width: 80px;
-            }
-            
-            .subject-name {
-                font-size: 7px !important;
-                background: transparent !important;
-                color: #000 !important;
-            }
-            
-            .mark-distribution {
-                display: none !important;
-            }
-            
-            .pass-mark-indicator {
-                display: none !important;
-            }
-            
-            /* মার্কস ইনপুট স্টাইল */
-            .written-input, .mcq-input {
-                border: none !important;
-                background: transparent !important;
-                padding: 0 !important;
-                text-align: center;
-                width: 28px !important;
-                font-weight: bold;
-                font-size: 7px;
-                display: inline-block;
-            }
-            
-            .total-mark-display {
-                background: transparent !important;
-                padding: 0 !important;
-                font-size: 6px;
-                display: block;
-                margin-top: 2px;
-            }
-            
-            .optional-checkbox {
-                display: none !important;
-            }
-            
-            /* GPA, রেজাল্ট ইত্যাদি */
-            .gpa-badge, .status-badge {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-                font-size: 6px;
-                padding: 1px 3px;
             }
             
             .footer {
                 background: #2e7d32 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                font-size: 8px;
-                padding: 4px;
+                font-size: 7px;
+                padding: 3px;
             }
             
             .exam-title {
-                font-size: 11px;
-                padding: 5px 10px;
-            }
-            
-            .exam-summary {
-                padding: 5px 10px;
-                font-size: 8px;
-            }
-            
-            .header-logo {
-                height: 35px;
-                width: 35px;
-            }
-            
-            .main-title-box h1 {
-                font-size: 14px;
-            }
-            
-            .main-title-box span {
                 font-size: 10px;
-            }
-            
-            .bismillah {
-                font-size: 10px;
-            }
-            
-            .header-right-address {
-                font-size: 7px;
                 padding: 4px 8px;
             }
             
-            .header-left p {
-                font-size: 9px !important;
-            }
-            
-            /* টোটাল, %, GPA, রেজাল্ট, র্যাঙ্ক কলাম */
-            .cell-total, .cell-pct, .cell-gpa, .cell-res, .cell-pos {
-                width: 50px !important;
-                min-width: 45px !important;
-            }
-            
-            .r-total, .r-pct, .r-gpa, .r-res, .r-pos {
+            .exam-summary {
+                padding: 4px 8px;
                 font-size: 7px;
             }
             
-            /* টেবিলের ভেতরের ডিভ লেআউট */
-            td div[style*="display:flex"] {
-                display: flex !important;
-                justify-content: center !important;
-                gap: 4px !important;
+            .header-logo {
+                height: 30px;
+                width: 30px;
             }
             
-            /* সব কন্টেন্ট যেন এক লাইনে থাকে */
-            .written-input, .mcq-input {
-                display: inline-block !important;
+            .main-title-box h1 {
+                font-size: 12px;
+            }
+            
+            .main-title-box span {
+                font-size: 9px;
+            }
+            
+            .bismillah {
+                font-size: 9px;
+            }
+            
+            .header-right-address {
+                font-size: 6px;
+                padding: 2px 6px;
+            }
+            
+            .header-left p {
+                font-size: 7px !important;
             }
         }
         
@@ -853,7 +854,7 @@
         </div>
     </div>
     
-    <div class="table-wrap" id="resultTableWrap"><table id="resTable"><thead><tr id="hRow"></tr></thead><tbody id="tBody"></tbody></table></div>
+    <div class="table-wrap" id="resultTableWrap"><table id="resTable"><thead><tr id="hRow"><tr></thead><tbody id="tBody"></tbody></table></div>
     <div class="footer"><p><i class="fas fa-copyright"></i> 2026 GLORIOUS Education Care | SSC Special Batch (Complete GPA Rules)</p></div>
 </div>
 
@@ -1304,7 +1305,7 @@
         if(loggedInStudent) { document.getElementById('resultTableWrap').style.display = 'none'; return; }
         document.getElementById('resultTableWrap').style.display = 'block';
         
-        let headHtml = `<th style="width:50px; min-width:50px;">রোল</th><th style="width:160px; min-width:140px;">ছাত্রের নাম (25)</th>`;
+        let headHtml = `<th style="width:45px;">রোল</th><th style="width:150px;">ছাত্রের নাম (25)</th>`;
         
         subjects.forEach((s, i) => {
             let wFull = writtenFullMarks[i] || 70;
@@ -1320,7 +1321,7 @@
             </div></th>`;
         });
         
-        headHtml += `<th class="cell-total" style="width:60px;">Total</th><th class="cell-pct" style="width:50px;">%</th><th class="cell-gpa" style="width:70px;">GPA<br>(4th)</th><th class="cell-res" style="width:60px;">Result</th><th class="cell-pos" style="width:50px;">Rank</th>`;
+        headHtml += `<th class="cell-total">Total</th><th class="cell-pct">%</th><th class="cell-gpa">GPA<br>(4th)</th><th class="cell-res">Result</th><th class="cell-pos">Rank</th>`;
         document.getElementById('hRow').innerHTML = headHtml;
         
         let bodyHtml = '';
@@ -1330,8 +1331,8 @@
             let displayName = name.length > 25 ? name.substring(0, 25) : name;
             
             bodyHtml += `<tr>
-                <td><input type="number" class="roll-input" value="${roll}" oninput="updateStudentRoll(${sIdx}, this.value)" ${isAdmin ? '' : 'disabled'} style="width:50px"></td>
-                <td style="width:160px; min-width:140px;">
+                <td><input type="number" class="roll-input" value="${roll}" oninput="updateStudentRoll(${sIdx}, this.value)" ${isAdmin ? '' : 'disabled'}></td>
+                <td style="width:150px;">
                     <input type="text" class="stu-name-input" value="${displayName}" maxlength="25" oninput="if(isAdmin) students[${sIdx}]=this.value.substring(0,25)" ${isAdmin ? '' : 'disabled'}>
                     <span class="btn-del" onclick="delStu(${sIdx})">✖</span>
                 </td>`;
@@ -1346,14 +1347,14 @@
                 let mcqPass = mcqVal >= mFull * 0.33;
                 let isOptional = studentOptional[wKey] === true;
                 
-                bodyHtml += `<td style="min-width:120px">
+                bodyHtml += `<td>
                     <div style="display:flex; gap:3px; justify-content:center; flex-wrap:wrap;">
                         <input type="number" class="written-input" value="${writtenVal}" 
                             oninput="let max=${wFull}; if(this.value>max) this.value=max; writtenMarks['${wKey}']=this.value; calc()" 
-                            ${isAdmin ? '' : 'disabled'} style="width:45px; ${!writtenPass && writtenVal > 0 ? 'border-color:#d32f2f; background:#ffebee;' : ''}">
+                            ${isAdmin ? '' : 'disabled'} style="${!writtenPass && writtenVal > 0 ? 'border-color:#d32f2f; background:#ffebee;' : ''}">
                         <input type="number" class="mcq-input" value="${mcqVal}" 
                             oninput="let max=${mFull}; if(this.value>max) this.value=max; mcqMarks['${wKey}']=this.value; calc()" 
-                            ${isAdmin ? '' : 'disabled'} style="width:45px; ${!mcqPass && mcqVal > 0 ? 'border-color:#d32f2f; background:#ffebee;' : ''}">
+                            ${isAdmin ? '' : 'disabled'} style="${!mcqPass && mcqVal > 0 ? 'border-color:#d32f2f; background:#ffebee;' : ''}">
                     </div>
                     <div class="optional-checkbox" onclick="event.stopPropagation()">
                         <input type="checkbox" ${isOptional ? 'checked' : ''} onchange="toggleOptional(${sIdx}, ${subIdx})" ${isAdmin ? '' : 'disabled'}> 
@@ -1393,7 +1394,7 @@
                 else subGPAs.push(gpa);
             }
             let avgPoints = subGPAs.reduce((a, b) => a + b, 0) + optionalBonus;
-            let finalGPA = avgPoints / subGPAs.length;
+            let finalGPA = subGPAs.length ? avgPoints / subGPAs.length : 0;
             finalGPA = Math.min(5.00, finalGPA);
             if(hasFail) finalGPA = 0.00;
             let percentTotal = totalFull ? (totalMarks / totalFull) * 100 : 0;
@@ -1432,4 +1433,4 @@
     window.onload = () => { changeClass(); };
 </script>
 </body>
-</html> 
+</html>
