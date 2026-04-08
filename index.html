@@ -1,356 +1,1429 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glorious Education Care - Final Result Sheet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SSC Special Batch | Complete Result Management System</title>
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        :root { 
-            --primary: #1b5e20; 
-            --header-bg: #8dc26f;
-            --table-border: #888888;
-            --row-alt: #f1f8e9;
-            --accent: #0078d4;
-            --danger: #d32f2f;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #bee2a4cb; margin: 0; padding: 10px; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans Bengali', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
         
-        .container { 
+        .container {
+            max-width: 1600px;
             width: 100%;
-            max-width: 1100px; 
-            margin: auto; 
-            background: #fff; 
-            padding: 0; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
-            overflow: hidden; 
+            margin: auto;
+            background: #fff;
+            border-radius: 28px;
+            overflow-x: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
-        .excel-header { 
-            background: linear-gradient(to right, #76b852 0%, #8dc26f 60%, #e1f291 100%) !important; 
-            padding: 10px 20px; 
-            border-bottom: 3px solid #1b5e20;
-            -webkit-print-color-adjust: exact; print-color-adjust: exact;
-        }
-
-        .bismillah { text-align: center; font-size: 13px; font-weight: bold; margin: 0 0 5px 0; }
-        .header-content { display: flex; align-items: center; justify-content: space-between; }
-        .header-left { display: flex; align-items: center; gap: 12px; }
-        .header-logo { height: 80px; width: 80px; background: white; border-radius: 50%; border: 2px solid #1b5e20; object-fit: contain; }
-        .slogan { font-size: 14px; font-weight: bold; color: #1b5e20; margin: 0; }
-        
-        .main-title-box { background: #002233; color: white !important; padding: 4px 20px; border-radius: 0 40px 40px 30px; }
-        .main-title-box h1 { margin: 0; font-size: 26px; text-transform: uppercase; display: inline; }
-        .main-title-box span { font-size: 18px; margin-left: 8px; }
-
-        .header-right-address { text-align: right; font-size: 12px; color: #000; font-weight: bold; line-height: 1.3; }
-
-        .info-bar { 
-            background: #e8f5e9 !important; padding: 8px; border-bottom: 1px solid #c8e6c9; 
-            display: flex; justify-content: center; gap: 30px; font-weight: bold; font-size: 14px;
-            -webkit-print-color-adjust: exact;
-        }
-
-        /* --- Merit List Section (Updated for 3 Columns) --- */
-        #topHoldersBox {
-            display: none; 
-            margin: 10px 15px;
-            padding: 12px;
-            border: 2px solid var(--primary);
-            border-radius: 8px;
-            background: #f9fff9;
-        }
-        .top-title { font-weight: bold; color: var(--primary); border-bottom: 2px solid var(--primary); margin-bottom: 10px; text-transform: uppercase; font-size: 14px; padding-bottom: 5px; text-align: center; }
-        
-        .top-list-container { 
-            display: flex; 
-            justify-content: space-between; 
-            gap: 15px; 
+        .excel-header {
+            background: linear-gradient(123deg, #276e2c, #59ad5e, #5eac40, #629d3b);
+            padding: 20px 25px;
+            color: white;
         }
         
-        .merit-column { 
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 5px; 
-        }
-
-        .rank-item { 
-            padding: 4px 8px; 
-            border-bottom: 1px dashed #ddd; 
-            font-weight: bold;
-            font-size: 13px;
-            color: #333;
-            white-space: nowrap;
-        }
-
-        .rank-1 { color: #a17400; font-size: 14px; }
-        .rank-2 { color: #555555b7; }
-        .rank-3 { color: #b8773ee8; }
-
-        .controls-panel { background: #fff; padding: 10px; border-bottom: 1px solid #ddd; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-        input, select { padding: 5px; border: 1px solid #999; border-radius: 4px; }
-        button { padding: 6px 12px; cursor: pointer; border-radius: 4px; border: none; font-weight: bold; color: white; transition: 0.2s; }
-        button:hover { opacity: 0.8; }
-        .btn-add { background: var(--accent); }
-        .btn-print { background: var(--primary); }
-        .btn-reset { background: var(--danger); }
-
-        .table-wrap { padding: 10px; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 800px; }
-        th, td { border: 1px solid var(--table-border); padding: 5px 2px; text-align: center; }
-        th { background: #f5f5f5 !important; color: #1b5e20; font-size: 11px; position: relative; }
-        
-        .fm-input { width: 35px; border: 1px solid #fbc02d; text-align: center; font-size: 10px; font-weight: bold; }
-        .mark-input { width: 90%; border: none; text-align: center; font-weight: bold; background: transparent; outline: none; }
-        .stu-name-input { width: 85%; border: none; background: transparent; font-weight: bold; text-align: left; outline: none; }
-        
-        .status-badge { padding: 2px 6px; border-radius: 10px; font-size: 10px; font-weight: bold; }
-        .pass { background: #c8e6c9 !important; color: #1b5e20 !important; }
-        .fail { background: #ffcdd2 !important; color: #b71c1c !important; }
-        .pos-badge { background: #1b5e20 !important; color: white !important; padding: 2px 8px; border-radius: 50px; font-size: 11px; }
-
-        .btn-del { color: red; cursor: pointer; font-weight: bold; font-size: 16px; line-height: 1; vertical-align: middle; }
-        
-        .signature-wrapper {
-            margin-top: 50px;
-            padding: 20px 50px 40px 0;
+        .header-content {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
-        .sig-box { text-align: center; }
-        .sig-line { border-top: 1.5px solid #000; width: 180px; font-weight: bold; font-size: 12px; padding-top: 5px; }
-
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .header-logo {
+            height: 70px;
+            width: 70px;
+            background: white;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            object-fit: cover;
+        }
+        
+        .main-title-box {
+            background: linear-gradient(135deg, #0a3e0a, #1b5e20);
+            padding: 6px 20px;
+            border-radius: 0 30px 30px 30px;
+        }
+        
+        .main-title-box h1 {
+            margin: 0;
+            font-size: 28px;
+            display: inline;
+            color: #fafafa;
+        }
+        
+        .main-title-box span {
+            font-size: 18px;
+            margin-left: 8px;
+            color: #e8f5e9;
+        }
+        
+        .header-right-address {
+            text-align: right;
+            font-size: 13px;
+            background: rgba(0,0,0,0.25);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        .bismillah {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: inline-block;
+            padding: 4px 25px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+        }
+        
+        .info-bar {
+            background: linear-gradient(95deg, #2e7d32, #388e3c, #4caf50);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            flex-wrap: wrap;
+            font-weight: bold;
+            color: white;
+            border-bottom: 2px solid #81c784;
+            font-size: 16px;
+        }
+        
+        .info-bar i { color: #c8e6c9; }
+        
+        .student-login-section {
+            background: linear-gradient(135deg, #ffffff, #f1f8e9);
+            padding: 25px;
+            margin: 20px;
+            border-radius: 24px;
+            text-align: center;
+            border: 2px solid #81c784;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        
+        .student-login-section h3 { color: #1b5e20; margin-bottom: 15px; font-size: 22px; }
+        
+        .login-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        
+        .student-login-input {
+            padding: 12px 20px;
+            border: 2px solid #b0e0b1;
+            border-radius: 50px;
+            width: 220px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .student-login-input:focus {
+            border-color: #2e7d32;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46,125,50,0.2);
+        }
+        
+        .student-login-btn {
+            background: #2e7d32;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .student-login-btn:hover {
+            transform: translateY(-2px);
+            background: #1b5e20;
+            box-shadow: 0 5px 15px rgba(46,125,50,0.3);
+        }
+        
+        .student-info-card {
+            background: #f1f8e9;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 24px;
+            display: none;
+            border-left: 8px solid #2e7d32;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        
+        .student-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .logout-student-btn {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .exam-card {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #c8e6c9;
+        }
+        
+        .exam-title {
+            background: linear-gradient(95deg, #2e7d32, #388e3c);
+            color: white;
+            padding: 12px 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .subject-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .subject-table th,
+        .subject-table td {
+            padding: 10px 12px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .subject-table th {
+            background: #f5f5f5;
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .exam-summary {
+            background: #e8f5e9;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-top: 2px solid #c8e6c9;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        
+        .summary-item {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .gpa-badge-sm {
+            background: #c8e6c9;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #1b5e20;
+        }
+        
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .pass { background: #c8e6c9; color: #1b5e20; }
+        .fail { background: #ffcdd2; color: #b71c1c; }
+        
+        #topHoldersBox {
+            display: none;
+            margin: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffffff, #f1f8e9);
+            border-radius: 24px;
+            border-left: 8px solid #2e7d32;
+        }
+        
+        .top-title {
+            font-weight: bold;
+            color: #1b5e20;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .top-list-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .merit-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .rank-item {
+            background: white;
+            padding: 10px 18px;
+            border-radius: 40px;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #c8e6c9;
+            font-size: 14px;
+        }
+        
+        .controls-panel {
+            background: #faf5e8;
+            padding: 15px 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #c8e6c9;
+        }
+        
+        .show-hide-box {
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 5px 12px;
+            border-radius: 30px;
+            display: flex;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        select, input {
+            padding: 8px 14px;
+            border: 1px solid #c8e6c9;
+            border-radius: 30px;
+            font-weight: 500;
+            background: white;
+            font-size: 14px;
+        }
+        
+        button {
+            padding: 8px 18px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        button:hover { transform: translateY(-2px); }
+        
+        .btn-add { background: #2e7d32; color: white; }
+        .btn-print { background: #1b5e20; color: white; }
+        .btn-login { background: #37474f; color: white; }
+        .btn-remove { background: #d32f2f; color: white; }
+        .btn-copy { background: #0288d1; color: white; }
+        .btn-reset { background: #d32f2f; color: white; }
+        .btn-edit { background: #ff9800; color: white; }
+        .admin-only { display: none; }
+        .is-admin .admin-only { display: inline-flex; }
+        
+        .table-wrap { padding: 20px; overflow-x: auto; background: #ffffff; }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; border-radius: 16px; overflow: hidden; }
+        th, td { border: 1px solid #c8e6c9; padding: 6px 4px; text-align: center; vertical-align: middle; }
+        th { background: linear-gradient(95deg, #2e7d32, #388e3c); color: white; font-weight: 700; padding: 8px 4px; font-size: 12px; }
+        
+        .subject-header {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            align-items: center;
+            min-width: 110px;
+        }
+        .subject-name {
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+        .subject-name:hover {
+            background: rgba(255,255,255,0.4);
+        }
+        .mark-distribution {
+            display: flex;
+            gap: 5px;
+            font-size: 9px;
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 15px;
+        }
+        .mark-distribution input {
+            width: 38px;
+            padding: 2px;
+            font-size: 9px;
+            text-align: center;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 8px;
+        }
+        .written-input, .mcq-input {
+            width: 48px;
+            text-align: center;
+            border: 1px solid #c8e6c9;
+            border-radius: 6px;
+            padding: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .written-input:focus, .mcq-input:focus {
+            border-color: #2e7d32;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(46,125,50,0.2);
+        }
+        .total-mark-display {
+            font-size: 10px;
+            font-weight: bold;
+            background: #e8f5e9;
+            display: inline-block;
+            padding: 2px 5px;
+            border-radius: 10px;
+            margin-top: 3px;
+        }
+        .stu-name-input { 
+            width: 100%; 
+            background: transparent; 
+            font-weight: 600; 
+            padding: 4px; 
+            outline: none; 
+            max-width: 130px; 
+            font-size: 11px; 
+            border: 1px dashed #81c784;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stu-name-input:focus {
+            border: 1px solid #2e7d32;
+            background: #c4b0d0;
+        }
+        .roll-input {
+            width: 50px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #c8e6c9;
+            border-radius: 6px;
+            padding: 4px 2px;
+            background: #f5f5f5;
+            font-size: 12px;
+        }
+        .gpa-badge { padding: 2px 5px; border-radius: 12px; font-size: 10px; font-weight: bold; display: inline-block; background: #e8f5e9; color: #1b5e20; border: 1px solid #81c784; }
+        .btn-del { color: #d32f2f; cursor: pointer; font-weight: bold; display: none; margin-left: 4px; font-size: 11px; background: transparent; padding: 0 3px; }
+        .is-admin .btn-del { display: inline-block; }
+        .footer { background: linear-gradient(95deg, #1b5e20, #2e7d32); color: white; padding: 15px; text-align: center; font-size: 12px; }
+        .optional-checkbox {
+            margin-top: 3px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 9px;
+            background: #ffecb3;
+            padding: 2px 6px;
+            border-radius: 15px;
+            cursor: pointer;
+            justify-content: center;
+        }
+        .optional-checkbox input {
+            width: 11px;
+            height: 11px;
+            margin: 0;
+            cursor: pointer;
+        }
+        .info-note { background: #e1f5fe; padding: 6px 12px; border-radius: 16px; margin: 10px 20px; font-size: 12px; color: #01579b; display: inline-block; }
+        .gpa-rule-box {
+            background: #fff3e0;
+            padding: 8px 12px;
+            margin: 10px 20px;
+            border-radius: 14px;
+            border-left: 4px solid #ff9800;
+            font-size: 12px;
+        }
+        .copy-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 12px;
+        }
+        .copy-section select {
+            padding: 4px 8px;
+            font-size: 11px;
+        }
+        
+        .exam-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 5px;
+        }
+        .exam-item button {
+            padding: 2px 6px;
+            font-size: 10px;
+            background: rgba(0,0,0,0.3);
+        }
+        
+        /* প্রিন্ট স্টাইল - A4 Landscape - সুন্দর ও পরিপাটি */
         @media print {
-            @page { size: A4 landscape; margin: 10mm; }
-            body { background: white; padding: 0; }
-            .container { width: 100%; box-shadow: none; border: none; max-width: none; display: block !important; }
-            .controls-panel, .btn-del, .fm-input { display: none !important; }
-            #topHoldersBox { display: block !important; page-break-inside: avoid; }
+            @page {
+                size: A4 landscape;
+                margin: 8mm 5mm;
+            }
             
-            .rank-1 { color: #a17400 !important; }
-            .rank-2 { color: #555555b7 !important; }
-            .rank-3 { color: #b8773ee8 !important; }
-
-            .table-wrap { padding: 0; overflow: visible; }
-            table { font-size: 11px; width: 100%; page-break-inside: auto; }
-            tr { page-break-inside: avoid; }
-            th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .status-badge, .pos-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .signature-wrapper { page-break-inside: avoid; margin-top: 30px; }
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+                overflow: visible !important;
+            }
+            
+            /* লুকানোর এলিমেন্ট */
+            .controls-panel, 
+            .student-login-section, 
+            .info-bar button, 
+            .btn-print, 
+            .btn-login, 
+            .admin-only, 
+            .optional-checkbox input, 
+            .btn-del, 
+            .gpa-rule-box, 
+            .copy-section,
+            #loginBtn,
+            .logout-student-btn,
+            .show-hide-box,
+            .info-bar .btn-login,
+            .info-bar .btn-print {
+                display: none !important;
+            }
+            
+            .excel-header {
+                background: #2e7d32 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding: 8px 12px;
+            }
+            
+            .info-bar {
+                background: #2e7d32 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding: 6px 10px;
+                font-size: 11px;
+                display: flex !important;
+                justify-content: center;
+                gap: 20px;
+            }
+            
+            .info-bar span {
+                display: inline-block;
+            }
+            
+            .student-info-card {
+                display: block !important;
+                background: #f5f5f5;
+                margin: 0;
+                padding: 8px;
+                border: 1px solid #ddd;
+            }
+            
+            .exam-card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                border: 1px solid #ccc;
+                margin-bottom: 8px;
+            }
+            
+            .table-wrap {
+                overflow: visible !important;
+                padding: 8px 0 !important;
+            }
+            
+            /* মূল টেবিল স্টাইল */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 8px;
+                table-layout: fixed !important;
+            }
+            
+            th, td {
+                border: 1px solid #000 !important;
+                padding: 4px 2px;
+                text-align: center;
+                vertical-align: middle;
+                word-break: break-word;
+            }
+            
+            th {
+                background: #e8e8e8 !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                font-size: 8px;
+                font-weight: bold;
+                padding: 4px 2px;
+            }
+            
+            /* রোল কলাম - ছোট */
+            th:first-child, td:first-child {
+                width: 35px !important;
+                min-width: 30px !important;
+                font-size: 7px !important;
+            }
+            
+            /* ছাত্রের নাম কলাম - 25 অক্ষরের জন্য যথেষ্ট বড় */
+            th:nth-child(2), td:nth-child(2) {
+                width: 140px !important;
+                min-width: 130px !important;
+                font-size: 7px !important;
+            }
+            
+            /* নামের ইনপুট ফিল্ড প্রিন্টে */
+            .stu-name-input {
+                border: none !important;
+                background: transparent !important;
+                padding: 0 !important;
+                text-align: center;
+                width: 100% !important;
+                font-size: 7px !important;
+                font-weight: bold;
+                color: #000 !important;
+            }
+            
+            .roll-input {
+                border: none !important;
+                background: transparent !important;
+                padding: 0 !important;
+                text-align: center;
+                width: 100% !important;
+                font-size: 7px !important;
+                font-weight: bold;
+            }
+            
+            /* সাবজেক্ট কলাম */
+            .subject-cell {
+                width: auto;
+                min-width: 85px !important;
+            }
+            
+            .subject-header {
+                min-width: 80px;
+            }
+            
+            .subject-name {
+                font-size: 7px !important;
+                background: transparent !important;
+                color: #000 !important;
+            }
+            
+            .mark-distribution {
+                display: none !important;
+            }
+            
+            .pass-mark-indicator {
+                display: none !important;
+            }
+            
+            /* মার্কস ইনপুট স্টাইল */
+            .written-input, .mcq-input {
+                border: none !important;
+                background: transparent !important;
+                padding: 0 !important;
+                text-align: center;
+                width: 28px !important;
+                font-weight: bold;
+                font-size: 7px;
+                display: inline-block;
+            }
+            
+            .total-mark-display {
+                background: transparent !important;
+                padding: 0 !important;
+                font-size: 6px;
+                display: block;
+                margin-top: 2px;
+            }
+            
+            .optional-checkbox {
+                display: none !important;
+            }
+            
+            /* GPA, রেজাল্ট ইত্যাদি */
+            .gpa-badge, .status-badge {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                font-size: 6px;
+                padding: 1px 3px;
+            }
+            
+            .footer {
+                background: #2e7d32 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                font-size: 8px;
+                padding: 4px;
+            }
+            
+            .exam-title {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+            
+            .exam-summary {
+                padding: 5px 10px;
+                font-size: 8px;
+            }
+            
+            .header-logo {
+                height: 35px;
+                width: 35px;
+            }
+            
+            .main-title-box h1 {
+                font-size: 14px;
+            }
+            
+            .main-title-box span {
+                font-size: 10px;
+            }
+            
+            .bismillah {
+                font-size: 10px;
+            }
+            
+            .header-right-address {
+                font-size: 7px;
+                padding: 4px 8px;
+            }
+            
+            .header-left p {
+                font-size: 9px !important;
+            }
+            
+            /* টোটাল, %, GPA, রেজাল্ট, র্যাঙ্ক কলাম */
+            .cell-total, .cell-pct, .cell-gpa, .cell-res, .cell-pos {
+                width: 50px !important;
+                min-width: 45px !important;
+            }
+            
+            .r-total, .r-pct, .r-gpa, .r-res, .r-pos {
+                font-size: 7px;
+            }
+            
+            /* টেবিলের ভেতরের ডিভ লেআউট */
+            td div[style*="display:flex"] {
+                display: flex !important;
+                justify-content: center !important;
+                gap: 4px !important;
+            }
+            
+            /* সব কন্টেন্ট যেন এক লাইনে থাকে */
+            .written-input, .mcq-input {
+                display: inline-block !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .written-input, .mcq-input { width: 40px; }
+            .roll-input { width: 50px; }
         }
     </style>
 </head>
-<body>
-
+<body id="mainBody">
 <div class="container">
     <div class="excel-header">
-        <p class="bismillah">বিসমিল্লাহির রাহমানির রাহিম</p>
+        <div style="text-align: center;"><div class="bismillah">বিসমিল্লাহির রাহমানির রাহিম</div></div>
         <div class="header-content">
             <div class="header-left">
-                <img src="logo.jpeg" alt="Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/80'">
-                <div class="header-mid">
-                    <p class="slogan">সৃজনশীল প্রতিভার অন্বেষণে..........</p>
-                    <div class="main-title-box">
-                        <h1>GLORIOUS</h1>
-                        <span>Education Care</span>
-                    </div>
-                </div>
+                <img src="logo.jpeg" alt="Logo" class="header-logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%23ffd966\'/%3E%3Ctext x=\'50\' y=\'68\' font-size=\'40\' text-anchor=\'middle\' fill=\'%231b5e20\'%3EG%3C/text%3E%3C/svg%3E'">
+                <div><p style="margin:0; font-weight:bold; font-size:14px;">সৃজনশীল প্রতিভার অন্বেষণে..........</p>
+                <div class="main-title-box"><h1>GLORIOUS</h1><span>Education Care</span></div></div>
             </div>
-            <div class="header-right-address">
-                ফরিদুল হক চৌধুরী মার্কেট (২য় তলা),<br>
-                পেকুয়া চৌমুহনীর পশ্চিম পার্শ্বে, পেকুয়া।<br>
-                📞 ০১৮৬৮-৬৫৩৭২২, ০১৭৫৬৬১৭৯৯৬
-            </div>
+            <div class="header-right-address"><i class="fas fa-map-marker-alt"></i> ফরিদুল হক চৌধুরী মার্কেট (২য় তলা), পেকুয়া।<br>📞 ০১৮৬৮-৬৫৩৭২২</div>
+        </div>
+    </div>
+    <div class="info-bar">
+        <span><i class="fas fa-file-alt"></i> Exam: <strong id="vExam">-</strong></span>
+        <span><i class="fas fa-graduation-cap"></i> Class: <strong id="vClass">SSC Special Batch</strong></span>
+        <span><i class="fas fa-layer-group"></i> Group: <strong id="vGroup">-</strong></span>
+        <button class="btn-login" id="loginBtn" onclick="toggleAdmin()"><i class="fas fa-lock"></i> Admin Login</button>
+        <button class="btn-print" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+    </div>
+    
+    <div class="gpa-rule-box">
+        <i class="fas fa-calculator"></i> <strong>GPA গণনার নিয়ম (SSC):</strong><br>
+        • প্রতিটি বিষয়ে Written 33% <strong>এবং</strong> MCQ 33% - দুই অংশেই পাস করতে হবে<br>
+        • GPA নির্ধারণ: 80%+ = A+ (5.00), 70-79% = A (4.00), 60-69% = A- (3.50), 50-59% = B (3.00), 40-49% = C (2.00), 33-39% = D (1.00)<br>
+        • <strong>৪র্থ বিষয়ের Bonus = (৪র্থ বিষয়ের GPA - 2.00)</strong><br>
+        • চূড়ান্ত GPA = (৮টি সাধারণ বিষয়ের GPA এর যোগফল + Bonus) ÷ 8<br>
+        • সর্বোচ্চ GPA 5.00, কোনো সাধারণ বিষয়ে ফেল করলে সামগ্রিক ফলাফল Fail
+    </div>
+    
+    <div id="studentLoginSection" class="student-login-section">
+        <h3><i class="fas fa-user-graduate"></i> 👨‍🎓 Student Login (SSC Special Batch)</h3>
+        <p style="color:#2e7d32;">রোল নম্বর, নাম, পরীক্ষা ও গ্রুপ দিয়ে লগইন করুন</p>
+        <div class="login-group">
+            <input type="number" id="studentRoll" class="student-login-input" placeholder="Roll Number / রোল নম্বর">
+            <input type="text" id="studentName" class="student-login-input" placeholder="Full Name (max 25 character)" maxlength="25">
+            <select id="studentExam" class="student-login-input" style="width:180px;">
+                <option value="">-- পরীক্ষা সিলেক্ট করুন --</option>
+            </select>
+            <select id="studentGroup" class="student-login-input" style="width:140px;"><option value="Science">বিজ্ঞান</option><option value="Commerce">বাণিজ্য</option><option value="Arts">মানবিক</option></select>
+        </div>
+        <button class="student-login-btn" onclick="studentLogin()"><i class="fas fa-sign-in-alt"></i> বিস্তারিত ফলাফল দেখুন</button>
+    </div>
+    
+    <div id="studentInfoCard" class="student-info-card"><div class="student-result-header"><h3><i class="fas fa-id-card"></i> 📋 SSC ফলাফল (৪র্থ বিষয়ের নিয়ম)</h3><button class="logout-student-btn" onclick="studentLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button></div><div id="studentOwnResult"></div></div>
+    <div id="topHoldersBox"><div class="top-title"><i class="fas fa-trophy"></i> 🏆 মেধা তালিকা (Top 10)</div><div class="top-list-container" id="topList"></div></div>
+    
+    <div class="controls-panel" id="adminControlsPanel">
+        <select id="cSel" onchange="changeClass()"><option selected>SSC Special Batch</option></select>
+        <select id="gSel" onchange="changeGroup()"><option value="Science">বিজ্ঞান</option><option value="Commerce">বাণিজ্য</option><option value="Arts">মানবিক</option></select>
+        <select id="eSel" onchange="updateInfo()"></select>
+        <div class="copy-section admin-only">
+            <span style="font-size:12px;"><i class="fas fa-copy"></i> থেকে কপি:</span>
+            <select id="copyExamSelect"></select>
+            <button class="btn-copy" onclick="copyStudentsFromExam()"><i class="fas fa-paste"></i> ছাত্র কপি করুন</button>
+        </div>
+        <div class="show-hide-box"><label><input type="checkbox" id="chkTotal" checked> Total</label><label><input type="checkbox" id="chkPct" checked> %</label><label><input type="checkbox" id="chkGPA" checked> GPA</label><label><input type="checkbox" id="chkRes" checked> Result</label><label><input type="checkbox" id="chkPos" checked> Rank</label></div>
+        <div class="admin-only">
+            <input type="text" id="examInp" placeholder="New Exam" style="width:100px"><button class="btn-add" onclick="addExam()">+Exam</button>
+            <input type="text" id="subInp" placeholder="Subject" style="width:80px"><button class="btn-add" onclick="addSub()">+Sub</button>
+            <input type="text" id="nameInp" placeholder="Student Name" style="width:130px" maxlength="25"><button class="btn-add" onclick="addStu()">+Student</button>
+            <button class="btn-add" onclick="saveToCloud()">Save</button>
+            <button class="btn-reset" onclick="resetCurrentPageData()"><i class="fas fa-trash-alt"></i> Page Reset</button>
         </div>
     </div>
     
-    <div class="info-bar">
-        <span>Exam: <span id="vExam">-</span></span>
-        <span>Class: <span id="vClass">-</span></span>
-        <span>Group: <span id="vGroup">-</span></span>
-        <span>Students: <span id="vCount">0</span></span>
-    </div>
-
-    <div id="topHoldersBox">
-        <div class="top-title">🏆 Merit List (Top 10)</div>
-        <div class="top-list-container" id="topList">
-            </div>
-    </div>
-
-    <div class="controls-panel">
-        <select id="cSel" onchange="updateInfo()"><option>Six</option><option>Seven</option><option>Eight</option><option selected>Nine</option><option>Ten</option><option>SSC Candidate</option></select>
-        <select id="gSel" onchange="updateInfo()"><option>General</option><option>Science</option><option>Commerce</option><option>Arts</option></select>
-        <select id="eSel" onchange="updateInfo()"><option>Monthly Model Test</option><option>Final Model Test</option><option>Weekly Model Test</option></select>
-        <input type="text" id="subInp" placeholder="Subject Name" style="width:100px">
-        <button class="btn-add" onclick="addSub()">+ Add Subject</button>
-        <input type="text" id="nameInp" placeholder="Student Name" style="width:120px">
-        <button class="btn-add" onclick="addStu()">+ Add Student</button>
-        <button class="btn-print" onclick="window.print()">🖨️ Print Sheet</button>
-        <button class="btn-reset" onclick="resetAll()">🗑️ Reset</button>
-    </div>
-
-    <div class="table-wrap">
-        <table id="resTable">
-            <thead><tr id="hRow"></tr></thead>
-            <tbody id="tBody"></tbody>
-        </table>
-    </div>
-
-    <div class="signature-wrapper">
-        <div class="sig-box">
-            <div class="sig-line">Director Signature</div>
-        </div>
-    </div>
+    <div class="table-wrap" id="resultTableWrap"><table id="resTable"><thead><tr id="hRow"></tr></thead><tbody id="tBody"></tbody></table></div>
+    <div class="footer"><p><i class="fas fa-copyright"></i> 2026 GLORIOUS Education Care | SSC Special Batch (Complete GPA Rules)</p></div>
 </div>
 
 <script>
-    const DB_KEY = 'glorious_final_db'; 
-
-    let subjects = []; let students = []; let marks = {}; let fms = {};
-    let visibility = { total: true, pct: true, res: true, pos: true };
-
-    function updateInfo() {
-        document.getElementById('vClass').innerText = document.getElementById('cSel').value;
-        document.getElementById('vGroup').innerText = document.getElementById('gSel').value;
-        document.getElementById('vExam').innerText = document.getElementById('eSel').value;
-        save();
+    const firebaseConfig = { apiKey: "AIzaSyCcwdSFN9L8kD7QayZgaoqUvTVjbpzQ2mI", authDomain: "marksheet-72a4b.firebaseapp.com", databaseURL: "https://marksheet-72a4b-default-rtdb.firebaseio.com/", projectId: "marksheet-72a4b" };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    let subjects = [], students = [], rolls = [], writtenMarks = {}, mcqMarks = {};
+    let writtenFullMarks = {}, mcqFullMarks = {};
+    let examsList = [], isAdmin = false, loggedInStudent = null;
+    let studentOptional = {};
+    
+    function getGPAFromPercent(percent) {
+        if(percent >= 80) return 5.00;
+        if(percent >= 70) return 4.00;
+        if(percent >= 60) return 3.50;
+        if(percent >= 50) return 3.00;
+        if(percent >= 40) return 2.00;
+        if(percent >= 33) return 1.00;
+        return 0.00;
     }
-
-    function addSub() {
-        let v = document.getElementById('subInp').value.trim();
-        if(v) { subjects.push(v); document.getElementById('subInp').value=''; render(); }
+    
+    function getGrade(percent) { 
+        let g = getGPAFromPercent(percent); 
+        if(g >= 5.00) return 'A+'; 
+        if(g >= 4.00) return 'A'; 
+        if(g >= 3.50) return 'A-'; 
+        if(g >= 3.00) return 'B'; 
+        if(g >= 2.00) return 'C'; 
+        if(g >= 1.00) return 'D'; 
+        return 'F'; 
     }
-
-    function addStu() {
-        let v = document.getElementById('nameInp').value.trim();
-        if(v) { students.push(v); document.getElementById('nameInp').value=''; render(); }
+    
+    function isSubjectPass(written, mcq, subIdx) {
+        let writtenFull = writtenFullMarks[subIdx] || 70;
+        let mcqFull = mcqFullMarks[subIdx] || 30;
+        return (written >= writtenFull * 0.33 && mcq >= mcqFull * 0.33);
     }
-
-    function toggleCol(col) { visibility[col] = false; render(); }
-
-    function render() {
-        const head = document.getElementById('hRow');
-        const body = document.getElementById('tBody');
-        document.getElementById('vCount').innerText = students.length;
-
-        let hHtml = `<th style="width:40px">SL</th><th style="width:200px">Student Name</th>`;
-        subjects.forEach((s, i) => {
-            hHtml += `<th>${s}<br>
-                <input type="number" class="fm-input" value="${fms[i]||100}" oninput="fms[${i}]=this.value;calc()">
-                <span class="btn-del" onclick="if(confirm('Delete Subject?')){subjects.splice(${i},1);render();}">×</span></th>`;
+    
+    function changeClass() { loadExamsForClass(document.getElementById('cSel').value, document.getElementById('gSel').value); }
+    function changeGroup() { loadExamsForClass(document.getElementById('cSel').value, document.getElementById('gSel').value); }
+    
+    function loadExamsForClass(className, group) {
+        db.ref(`exams_list_per_class/${className}_${group}`).once('value', (snap) => {
+            examsList = snap.val() || [];
+            updateExamDropdowns();
+            if(examsList.length) { 
+                document.getElementById('eSel').value = examsList[0]; 
+                updateInfo(); 
+            } else { 
+                subjects = []; students = []; rolls = []; writtenMarks = {}; mcqMarks = {}; writtenFullMarks = {}; mcqFullMarks = {}; studentOptional = {}; render(); 
+            }
         });
-
-        if(visibility.total) hHtml += `<th style="width:60px">Total <span class="btn-del" onclick="toggleCol('total')">×</span></th>`;
-        if(visibility.pct)   hHtml += `<th style="width:50px">% <span class="btn-del" onclick="toggleCol('pct')">×</span></th>`;
-        if(visibility.res)   hHtml += `<th style="width:60px">Res <span class="btn-del" onclick="toggleCol('res')">×</span></th>`;
-        if(visibility.pos)   hHtml += `<th style="width:55px">Position <span class="btn-del" onclick="toggleCol('pos')">×</span></th>`;
-        head.innerHTML = hHtml;
-
-        let bHtml = '';
-        students.forEach((name, sIdx) => {
-            bHtml += `<tr><td>${sIdx+1}</td><td style="text-align:left;padding-left:8px">
-                <input type="text" class="stu-name-input" value="${name}" oninput="students[${sIdx}]=this.value;save()">
-                <span class="btn-del" onclick="if(confirm('Delete Student?')){students.splice(${sIdx},1);render();}">×</span></td>`;
-            
-            subjects.forEach((_, subIdx) => {
-                let key = `${sIdx}_${subIdx}`;
-                bHtml += `<td><input type="number" class="mark-input" value="${marks[key]||0}" oninput="marks['${key}']=this.value;calc()"></td>`;
-            });
-
-            if(visibility.total) bHtml += `<td class="r-total">0</td>`;
-            if(visibility.pct)   bHtml += `<td class="r-pct">0%</td>`;
-            if(visibility.res)   bHtml += `<td class="r-stat">-</td>`;
-            if(visibility.pos)   bHtml += `<td class="r-pos">-</td>`;
-            bHtml += `</tr>`;
-        });
-        body.innerHTML = bHtml;
-        calc();
     }
-
-    function calc() {
-        const rows = document.querySelectorAll('#tBody tr');
-        let data = [];
-        rows.forEach((row, sIdx) => {
-            let total = 0, full = 0, fail = false;
-            subjects.forEach((_, subIdx) => {
-                let v = parseFloat(marks[`${sIdx}_${subIdx}`]) || 0;
-                let fm = parseFloat(fms[subIdx]) || 100;
-                total += v; full += fm;
-                if(v < (fm * 0.33)) fail = true;
-            });
-            if(visibility.total) row.querySelector('.r-total').innerText = total;
-            if(visibility.pct)   row.querySelector('.r-pct').innerText = (full > 0 ? Math.round((total/full)*100) : 0) + '%';
-            if(visibility.res)   row.querySelector('.r-stat').innerHTML = fail ? '<span class="status-badge fail">Fail</span>' : '<span class="status-badge pass">Pass</span>';
-            data.push({ sIdx, total, name: students[sIdx] });
-        });
+    
+    function updateExamDropdowns() {
+        let eSel = document.getElementById('eSel');
+        let copySelect = document.getElementById('copyExamSelect');
+        let studentExamSel = document.getElementById('studentExam');
         
-        if(visibility.pos) {
-            let ranked = [...data].sort((a,b) => b.total - a.total);
-            data.forEach(s => {
-                let rank = ranked.findIndex(x => x.total === s.total) + 1;
-                let cell = rows[s.sIdx].querySelector('.r-pos');
-                if(cell) cell.innerHTML = `<span class="pos-badge">${rank}</span>`;
-            });
-            updateTopHolders(ranked);
+        let examOptions = '';
+        for(let i = 0; i < examsList.length; i++) {
+            examOptions += `<option value="${examsList[i]}">${examsList[i]}</option>`;
         }
-        save();
-    }
-
-    function updateTopHolders(ranked) {
-        const listContainer = document.getElementById('topList');
-        const box = document.getElementById('topHoldersBox');
-        if(!ranked || ranked.length === 0) { box.style.display = 'none'; return; }
+        eSel.innerHTML = examOptions;
         
-        box.style.display = 'block';
-        let cols = [[], [], []]; // 3টি কলামের জন্য অ্যারে
-
-        for(let i=0; i<10; i++) {
-            if(ranked[i] && ranked[i].name) {
-                let label = (i === 0) ? "1st 🏆" : (i === 1) ? "2nd" : (i === 2) ? "3rd" : (i + 1) + "th";
-                let rankClass = (i < 3) ? `rank-${i+1}` : "";
-                let itemHtml = `<div class="rank-item ${rankClass}">${label}. ${ranked[i].name} (${ranked[i].total})</div>`;
+        let examContainer = eSel.parentElement;
+        let existingControls = examContainer.querySelector('.exam-item');
+        if(existingControls) existingControls.remove();
+        
+        let controlsSpan = document.createElement('span');
+        controlsSpan.className = 'exam-item admin-only';
+        controlsSpan.innerHTML = `
+            <button class="btn-edit" onclick="editSelectedExam()" style="padding:2px 8px; font-size:11px;"><i class="fas fa-edit"></i></button>
+            <button class="btn-remove" onclick="removeSelectedExam()" style="padding:2px 8px; font-size:11px;"><i class="fas fa-trash"></i></button>
+        `;
+        examContainer.appendChild(controlsSpan);
+        
+        copySelect.innerHTML = '<option value="">-- সিলেক্ট করুন --</option>' + examsList.map(e => `<option value="${e}">${e}</option>`).join('');
+        studentExamSel.innerHTML = '<option value="">-- পরীক্ষা সিলেক্ট করুন --</option>' + examsList.map(e => `<option value="${e}">${e}</option>`).join('');
+        
+        if(isAdmin) {
+            let adminOnlyElements = document.querySelectorAll('.admin-only');
+            adminOnlyElements.forEach(el => el.style.display = 'inline-flex');
+        }
+    }
+    
+    function editSelectedExam() {
+        if(!isAdmin) return;
+        let oldName = document.getElementById('eSel').value;
+        if(!oldName) { alert("কোন পরীক্ষা সিলেক্ট করা হয়নি!"); return; }
+        let newName = prompt("পরীক্ষার নতুন নাম লিখুন:", oldName);
+        if(newName && newName.trim() !== "" && newName !== oldName) {
+            let c = document.getElementById('cSel').value;
+            let g = document.getElementById('gSel').value;
+            let oldPath = `results/${c}_${g}_${oldName}`.replace(/\s+/g, '_');
+            let newPath = `results/${c}_${g}_${newName}`.replace(/\s+/g, '_');
+            
+            db.ref(oldPath).once('value', (snap) => {
+                let data = snap.val();
+                if(data) {
+                    db.ref(newPath).set(data).then(() => {
+                        db.ref(oldPath).remove().then(() => {
+                            let index = examsList.indexOf(oldName);
+                            if(index !== -1) {
+                                examsList[index] = newName;
+                                db.ref(`exams_list_per_class/${c}_${g}`).set(examsList).then(() => {
+                                    updateExamDropdowns();
+                                    document.getElementById('eSel').value = newName;
+                                    updateInfo();
+                                    alert("পরীক্ষার নাম পরিবর্তন করা হয়েছে!");
+                                });
+                            }
+                        });
+                    });
+                }
+            });
+        }
+    }
+    
+    function removeSelectedExam() {
+        if(!isAdmin) return;
+        let examName = document.getElementById('eSel').value;
+        if(!examName) { alert("কোন পরীক্ষা সিলেক্ট করা হয়নি!"); return; }
+        if(confirm(`"${examName}" পরীক্ষাটি মুছে ফেলতে চান? সমস্ত ডাটা মুছে যাবে!`)) {
+            let c = document.getElementById('cSel').value;
+            let g = document.getElementById('gSel').value;
+            let path = `results/${c}_${g}_${examName}`.replace(/\s+/g, '_');
+            db.ref(path).remove().then(() => {
+                let index = examsList.indexOf(examName);
+                if(index !== -1) {
+                    examsList.splice(index, 1);
+                    db.ref(`exams_list_per_class/${c}_${g}`).set(examsList).then(() => {
+                        updateExamDropdowns();
+                        if(examsList.length) {
+                            document.getElementById('eSel').value = examsList[0];
+                            updateInfo();
+                        } else {
+                            subjects = []; students = []; rolls = []; render();
+                        }
+                        alert("পরীক্ষা মুছে ফেলা হয়েছে!");
+                    });
+                }
+            });
+        }
+    }
+    
+    function updateInfo() {
+        let grp = document.getElementById('gSel').value, exam = document.getElementById('eSel').value, cls = document.getElementById('cSel').value;
+        document.getElementById('vClass').innerText = cls;
+        document.getElementById('vGroup').innerText = grp;
+        document.getElementById('vExam').innerText = exam || '-';
+        if(exam) db.ref(getPath()).on('value', (snap) => { 
+            let d = snap.val() || {}; 
+            subjects = d.subjects || []; 
+            students = d.students || [];
+            rolls = d.rolls || [];
+            writtenMarks = d.writtenMarks || {}; 
+            mcqMarks = d.mcqMarks || {}; 
+            writtenFullMarks = d.writtenFullMarks || {};
+            mcqFullMarks = d.mcqFullMarks || {};
+            studentOptional = d.studentOptional || {}; 
+            render(); 
+        });
+    }
+    
+    function getPath(examName=null) { let c = document.getElementById('cSel').value, e = examName || document.getElementById('eSel').value, g = document.getElementById('gSel').value; return `results/${c}_${g}_${e}`.replace(/\s+/g, '_'); }
+    
+    function toggleOptional(studentIdx, subIdx) {
+        if(!isAdmin) return;
+        let key = `${studentIdx}_${subIdx}`;
+        studentOptional[key] = !studentOptional[key];
+        render();
+    }
+    
+    function editSubjectName(subIdx) {
+        if(!isAdmin) return;
+        let newName = prompt("সাবজেক্টের নতুন নাম লিখুন:", subjects[subIdx]);
+        if(newName && newName.trim() !== "") { subjects[subIdx] = newName.trim(); render(); }
+    }
+    
+    function updateWrittenFull(subIdx, value) {
+        if(!isAdmin) return;
+        let val = parseFloat(value);
+        writtenFullMarks[subIdx] = (val > 0) ? val : 70;
+        render();
+    }
+    
+    function updateMcqFull(subIdx, value) {
+        if(!isAdmin) return;
+        let val = parseFloat(value);
+        mcqFullMarks[subIdx] = (val > 0) ? val : 30;
+        render();
+    }
+    
+    function updateStudentRoll(sIdx, value) {
+        if(!isAdmin) return;
+        rolls[sIdx] = parseInt(value) || (sIdx + 1);
+        render();
+    }
+    
+    function copyStudentsFromExam() {
+        if(!isAdmin) return;
+        let sourceExam = document.getElementById('copyExamSelect').value;
+        let currentExam = document.getElementById('eSel').value;
+        if(!sourceExam) { alert("কোন পরীক্ষা সিলেক্ট করুন!"); return; }
+        if(sourceExam === currentExam) { alert("বর্তমান পরীক্ষা থেকে কপি করা যাবে না!"); return; }
+        let c = document.getElementById('cSel').value;
+        let g = document.getElementById('gSel').value;
+        let sourcePath = `results/${c}_${g}_${sourceExam}`.replace(/\s+/g, '_');
+        let targetPath = getPath();
+        db.ref(sourcePath).once('value', (snap) => {
+            let sourceData = snap.val() || {};
+            let sourceStudents = sourceData.students || [];
+            let sourceRolls = sourceData.rolls || [];
+            if(sourceStudents.length === 0) { alert("সোর্স পরীক্ষায় কোনো ছাত্র নেই!"); return; }
+            if(confirm(`${sourceStudents.length} জন ছাত্রকে বর্তমান পরীক্ষায় কপি করতে চান?`)) {
+                db.ref(targetPath).once('value', (targetSnap) => {
+                    let targetData = targetSnap.val() || {};
+                    targetData.students = [...sourceStudents];
+                    targetData.rolls = [...sourceRolls];
+                    if(subjects.length === 0 && sourceData.subjects) {
+                        targetData.subjects = sourceData.subjects;
+                        targetData.writtenFullMarks = sourceData.writtenFullMarks || {};
+                        targetData.mcqFullMarks = sourceData.mcqFullMarks || {};
+                        subjects = sourceData.subjects;
+                        writtenFullMarks = sourceData.writtenFullMarks || {};
+                        mcqFullMarks = sourceData.mcqFullMarks || {};
+                    }
+                    let newMarks = {};
+                    for(let i = 0; i < sourceStudents.length; i++) {
+                        for(let j = 0; j < subjects.length; j++) { newMarks[`${i}_${j}`] = 0; }
+                    }
+                    targetData.writtenMarks = newMarks;
+                    targetData.mcqMarks = newMarks;
+                    targetData.studentOptional = {};
+                    db.ref(targetPath).set(targetData).then(() => {
+                        students = sourceStudents;
+                        rolls = sourceRolls;
+                        writtenMarks = newMarks;
+                        mcqMarks = newMarks;
+                        studentOptional = {};
+                        render();
+                        alert(`${sourceStudents.length} জন ছাত্র সফলভাবে কপি করা হয়েছে!`);
+                    });
+                });
+            }
+        });
+    }
+    
+    function resetCurrentPageData() {
+        if(!isAdmin) {
+            alert("শুধুমাত্র এডমিন এই কাজ করতে পারবেন!");
+            return;
+        }
+        
+        let confirmReset = confirm("⚠️ সতর্কতা: বর্তমান পরীক্ষার সব ডাটা রিসেট হয়ে যাবে!\n\nসব ছাত্র, সাবজেক্ট, মার্কস মুছে যাবে।\n\nআপনি কি নিশ্চিত?");
+        
+        if(confirmReset) {
+            let finalConfirm = prompt("নিশ্চিত করতে 'RESET' টাইপ করুন:");
+            if(finalConfirm === "RESET") {
+                let currentExam = document.getElementById('eSel').value;
+                let currentGroup = document.getElementById('gSel').value;
+                let currentClass = document.getElementById('cSel').value;
+                let path = `results/${currentClass}_${currentGroup}_${currentExam}`.replace(/\s+/g, '_');
                 
-                // কলাম ডিস্ট্রিবিউশন: ১ম কলামে ৪ জন, পরের ২টিতে ৩ জন করে
-                if (i < 4) cols[0].push(itemHtml);
-                else if (i < 7) cols[1].push(itemHtml);
-                else cols[2].push(itemHtml);
+                db.ref(path).remove().then(() => {
+                    subjects = [];
+                    students = [];
+                    rolls = [];
+                    writtenMarks = {};
+                    mcqMarks = {};
+                    writtenFullMarks = {};
+                    mcqFullMarks = {};
+                    studentOptional = {};
+                    
+                    render();
+                    
+                    alert("✅ বর্তমান পরীক্ষার সব ডাটা রিসেট করা হয়েছে!");
+                }).catch((error) => {
+                    alert("রিসেট করতে সমস্যা হয়েছে: " + error.message);
+                });
+            } else {
+                alert("রিসেট বাতিল করা হয়েছে। সঠিকভাবে 'RESET' টাইপ করুন।");
             }
         }
-
-        listContainer.innerHTML = cols.map(col => `<div class="merit-column">${col.join('')}</div>`).join('');
     }
-
-    function save() {
-        const payload = { 
-            subjects, students, marks, fms, visibility, 
-            c: document.getElementById('cSel').value, 
-            g: document.getElementById('gSel').value, 
-            e: document.getElementById('eSel').value 
-        };
-        localStorage.setItem(DB_KEY, JSON.stringify(payload));
+    
+    function studentLogin() {
+        let roll = parseInt(document.getElementById('studentRoll').value);
+        let name = document.getElementById('studentName').value.trim();
+        let selectedExam = document.getElementById('studentExam').value;
+        let selectedGroup = document.getElementById('studentGroup').value;
+        let selectedClass = "SSC Special Batch";
+        
+        if(!roll || !name || !selectedExam) { alert("রোল নম্বর, নাম এবং পরীক্ষা নির্বাচন করুন!"); return; }
+        
+        let path = `results/${selectedClass}_${selectedGroup}_${selectedExam}`.replace(/\s+/g, '_');
+        db.ref(path).once('value', (examSnap) => {
+            let data = examSnap.val() || {};
+            let studentsList = data.students || [];
+            let rollsList = data.rolls || [];
+            let studentIdx = -1;
+            for(let i = 0; i < studentsList.length; i++) {
+                if(rollsList[i] === roll && studentsList[i] === name) { studentIdx = i; break; }
+            }
+            if(studentIdx === -1) {
+                alert(`রোল ${roll} এবং নাম "${name}" এর জন্য "${selectedExam}" পরীক্ষায় কোনো ফলাফল পাওয়া যায়নি!`);
+                return;
+            }
+            
+            let subList = data.subjects || [];
+            let writtenData = data.writtenMarks || {};
+            let mcqData = data.mcqMarks || {};
+            let writtenFull = data.writtenFullMarks || {};
+            let mcqFull = data.mcqFullMarks || {};
+            let optData = data.studentOptional || {};
+            let subjectMarks = [];
+            let totalObtained = 0, totalFull = 0, optionalBonusTotal = 0;
+            let hasFail = false;
+            
+            subList.forEach((sub, idx) => {
+                let written = parseFloat(writtenData[`${studentIdx}_${idx}`]) || 0;
+                let mcq = parseFloat(mcqData[`${studentIdx}_${idx}`]) || 0;
+                let wFull = writtenFull[idx] || 70;
+                let mFull = mcqFull[idx] || 30;
+                let obt = written + mcq;
+                let full = wFull + mFull;
+                totalObtained += obt; totalFull += full;
+                let percent = (obt / full) * 100;
+                let gpa = getGPAFromPercent(percent);
+                let isOptional = optData[`${studentIdx}_${idx}`] === true;
+                let subjectPass = (written >= wFull * 0.33 && mcq >= mFull * 0.33);
+                if(!subjectPass) hasFail = true;
+                if(isOptional && gpa > 0) optionalBonusTotal += Math.max(0, gpa - 2.00);
+                subjectMarks.push({ name: sub, written, mcq, wFull, mFull, obtained: obt, full, percent: Math.round(percent), isOptional, subjectPass });
+            });
+            
+            let percentOverall = totalFull ? (totalObtained / totalFull) * 100 : 0;
+            let rawGPA = getGPAFromPercent(percentOverall);
+            let finalGPA = rawGPA + optionalBonusTotal;
+            if(finalGPA > 5) finalGPA = 5.00;
+            if(hasFail) finalGPA = 0.00;
+            
+            let examData = [{ 
+                examName: selectedExam, 
+                subjects: subjectMarks, 
+                total: totalObtained, 
+                fullMark: totalFull, 
+                percent: Math.round(percentOverall), 
+                gpa: finalGPA.toFixed(2), 
+                grade: getGrade(percentOverall), 
+                result: hasFail ? 'Fail' : 'Pass', 
+                optionalBonus: optionalBonusTotal 
+            }];
+            
+            loggedInStudent = { roll, name, class: selectedClass, group: selectedGroup };
+            displayDetailedResults(examData);
+        });
     }
-
-    function load() {
-        const d = JSON.parse(localStorage.getItem(DB_KEY));
-        if(d) {
-            subjects = d.subjects || []; students = d.students || []; marks = d.marks || {}; fms = d.fms || {}; 
-            if(d.visibility) visibility = d.visibility;
-            document.getElementById('cSel').value = d.c || 'Nine'; 
-            document.getElementById('gSel').value = d.g || 'General'; 
-            document.getElementById('eSel').value = d.e || 'Monthly Model Test';
-        }
-        updateInfo(); render();
+    
+    function displayDetailedResults(examsData) {
+        document.getElementById('studentLoginSection').style.display = 'none';
+        document.getElementById('studentInfoCard').style.display = 'block';
+        document.getElementById('adminControlsPanel').style.display = 'none';
+        document.getElementById('resultTableWrap').style.display = 'none';
+        document.getElementById('topHoldersBox').style.display = 'none';
+        let html = `<div style="background:white; border-radius:20px; padding:20px;"><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin-bottom:25px; background:#e8f5e9; border-radius:16px; padding:15px;"><p><strong><i class="fas fa-user"></i> নাম:</strong> ${loggedInStudent.name}</p><p><strong><i class="fas fa-sort-numeric-down"></i> রোল:</strong> ${loggedInStudent.roll}</p><p><strong><i class="fas fa-graduation-cap"></i> শ্রেণি:</strong> ${loggedInStudent.class}</p><p><strong><i class="fas fa-layer-group"></i> গ্রুপ:</strong> ${loggedInStudent.group}</p></div>`;
+        examsData.forEach(exam => {
+            html += `<div class="exam-card"><div class="exam-title">📚 ${exam.examName} ${exam.optionalBonus > 0 ? '<span style="background:#ffd966;padding:2px 8px;border-radius:20px;">+৪র্থ বোনাস</span>' : ''}</div><table class="subject-table"><thead><tr><th>#</th><th>বিষয়</th><th>Written</th><th>MCQ</th><th>মোট</th><th>৪র্থ?</th><th>ফলাফল</th> </thead><tbody>`;
+            exam.subjects.forEach((sub, idx) => {
+                let writtenPass = sub.written >= sub.wFull * 0.33;
+                let mcqPass = sub.mcq >= sub.mFull * 0.33;
+                html += `<tr>
+                    <td>${idx+1}</td>
+                    <td style="text-align:left">${sub.name}</td>
+                    <td>${sub.written}/${sub.wFull} ${!writtenPass && sub.written > 0 ? '⚠️' : ''}</td>
+                    <td>${sub.mcq}/${sub.mFull} ${!mcqPass && sub.mcq > 0 ? '⚠️' : ''}</td>
+                    <td><strong>${sub.obtained}/${sub.full}</strong> (${sub.percent}%)</td>
+                    <td>${sub.isOptional ? '✅ হ্যাঁ' : '❌ না'}</td>
+                    <td><span class="status-badge ${sub.subjectPass ? 'pass' : 'fail'}">${sub.subjectPass ? 'পাস' : 'ফেল'}</span></td>
+                </tr>`;
+            });
+            html += `</tbody></table><div class="exam-summary"><div class="summary-item"><span>📊 মোট:</span><span>${exam.total}/${exam.fullMark}</span></div><div class="summary-item"><span>📈 শতকরা:</span><span>${exam.percent}%</span></div><div class="summary-item"><span>⭐ GPA (৪র্থ নিয়ম):</span><span class="gpa-badge-sm">${exam.gpa} (${exam.grade})</span></div><div class="summary-item"><span>🎯 ফলাফল:</span><span class="status-badge ${exam.result === 'Pass' ? 'pass' : 'fail'}">${exam.result}</span></div>${exam.optionalBonus > 0 ? `<div class="summary-item"><span>✨ ৪র্থ বোনাস:</span><span>+${exam.optionalBonus.toFixed(2)}</span></div>` : ''}</div></div>`;
+        });
+        html += `</div><div class="info-note"><i class="fas fa-calculator"></i> <strong>GPA গণনার নিয়ম:</strong><br>• প্রতিটি বিষয়ে Written 33% এবং MCQ 33% - দুই অংশেই পাস করতে হবে<br>• ৪র্থ বিষয়ের Bonus = (৪র্থ বিষয়ের GPA - 2.00)<br>• চূড়ান্ত GPA = (৮টি সাধারণ বিষয়ের GPA এর যোগফল + Bonus) ÷ 8<br>• সর্বোচ্চ GPA 5.00, কোনো সাধারণ বিষয়ে ফেল করলে ফলাফল Fail</div>`;
+        document.getElementById('studentOwnResult').innerHTML = html;
     }
-
-    function resetAll() { 
-        if(confirm("সব ডাটা ডিলিট হবে! আপনি কি নিশ্চিত?")) { 
-            localStorage.removeItem(DB_KEY); location.reload(); 
+    
+    function studentLogout() { 
+        loggedInStudent = null; 
+        document.getElementById('studentLoginSection').style.display = 'block'; 
+        document.getElementById('studentInfoCard').style.display = 'none'; 
+        document.getElementById('adminControlsPanel').style.display = 'flex'; 
+        document.getElementById('resultTableWrap').style.display = 'block'; 
+        document.getElementById('topHoldersBox').style.display = 'block'; 
+        render(); 
+    }
+    
+    function toggleAdmin() { 
+        if(!isAdmin) { 
+            let pass = prompt("এডমিন পাসওয়ার্ড দিন:"); 
+            if(pass === "#$t") { 
+                isAdmin = true; 
+                document.body.classList.add('is-admin'); 
+                document.getElementById('loginBtn').innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout Admin'; 
+                if(loggedInStudent) studentLogout(); 
+                updateExamDropdowns();
+            } else if(pass !== null) alert("ভুল পাসওয়ার্ড!"); 
+        } else { 
+            isAdmin = false; 
+            document.body.classList.remove('is-admin'); 
+            document.getElementById('loginBtn').innerHTML = '<i class="fas fa-lock"></i> Admin Login'; 
+            render(); 
         } 
     }
     
-    window.onload = load;
+    function addExam() { 
+        if(!isAdmin) return; 
+        let v = document.getElementById('examInp').value.trim(); 
+        if(v && !examsList.includes(v)) { 
+            let c = document.getElementById('cSel').value, g = document.getElementById('gSel').value; 
+            db.ref(`exams_list_per_class/${c}_${g}`).once('value', (snap) => { 
+                let list = snap.val() || []; 
+                list.push(v); 
+                db.ref(`exams_list_per_class/${c}_${g}`).set(list).then(() => { 
+                    examsList = list; 
+                    updateExamDropdowns();
+                    document.getElementById('eSel').value = v; 
+                    document.getElementById('examInp').value = ''; 
+                    updateInfo(); 
+                }); 
+            }); 
+        } 
+    }
+    
+    function saveToCloud() { 
+        if(isAdmin) db.ref(getPath()).set({ subjects, students, rolls, writtenMarks, mcqMarks, writtenFullMarks, mcqFullMarks, studentOptional }).then(() => alert("ডেটা সেভ হয়েছে!")); 
+    }
+    
+    function render() {
+        if(loggedInStudent) { document.getElementById('resultTableWrap').style.display = 'none'; return; }
+        document.getElementById('resultTableWrap').style.display = 'block';
+        
+        let headHtml = `<th style="width:50px; min-width:50px;">রোল</th><th style="width:160px; min-width:140px;">ছাত্রের নাম (25)</th>`;
+        
+        subjects.forEach((s, i) => {
+            let wFull = writtenFullMarks[i] || 70;
+            let mFull = mcqFullMarks[i] || 30;
+            headHtml += `<th class="subject-cell"><div class="subject-header">
+                <span class="subject-name" ondblclick="editSubjectName(${i})" title="ডাবল ক্লিক করে নাম এডিট করুন">${s}</span>
+                <div class="mark-distribution">
+                    <span>✍️ <input type="number" value="${wFull}" onchange="updateWrittenFull(${i}, this.value)" ${isAdmin ? '' : 'disabled'} style="width:38px"></span>
+                    <span>📝 <input type="number" value="${mFull}" onchange="updateMcqFull(${i}, this.value)" ${isAdmin ? '' : 'disabled'} style="width:38px"></span>
+                </div>
+                <div class="pass-mark-indicator" style="font-size:8px; color:#ffeb3b;">পাস: W${Math.round(wFull * 0.33)}|M${Math.round(mFull * 0.33)}</div>
+                <span class="btn-del" onclick="delSub(${i})">✖</span>
+            </div></th>`;
+        });
+        
+        headHtml += `<th class="cell-total" style="width:60px;">Total</th><th class="cell-pct" style="width:50px;">%</th><th class="cell-gpa" style="width:70px;">GPA<br>(4th)</th><th class="cell-res" style="width:60px;">Result</th><th class="cell-pos" style="width:50px;">Rank</th>`;
+        document.getElementById('hRow').innerHTML = headHtml;
+        
+        let bodyHtml = '';
+        for(let sIdx = 0; sIdx < students.length; sIdx++) {
+            let name = students[sIdx] || '';
+            let roll = rolls[sIdx] || (sIdx + 1);
+            let displayName = name.length > 25 ? name.substring(0, 25) : name;
+            
+            bodyHtml += `<tr>
+                <td><input type="number" class="roll-input" value="${roll}" oninput="updateStudentRoll(${sIdx}, this.value)" ${isAdmin ? '' : 'disabled'} style="width:50px"></td>
+                <td style="width:160px; min-width:140px;">
+                    <input type="text" class="stu-name-input" value="${displayName}" maxlength="25" oninput="if(isAdmin) students[${sIdx}]=this.value.substring(0,25)" ${isAdmin ? '' : 'disabled'}>
+                    <span class="btn-del" onclick="delStu(${sIdx})">✖</span>
+                </td>`;
+            
+            for(let subIdx = 0; subIdx < subjects.length; subIdx++) {
+                let wKey = `${sIdx}_${subIdx}`;
+                let writtenVal = writtenMarks[wKey] || 0;
+                let mcqVal = mcqMarks[wKey] || 0;
+                let wFull = writtenFullMarks[subIdx] || 70;
+                let mFull = mcqFullMarks[subIdx] || 30;
+                let writtenPass = writtenVal >= wFull * 0.33;
+                let mcqPass = mcqVal >= mFull * 0.33;
+                let isOptional = studentOptional[wKey] === true;
+                
+                bodyHtml += `<td style="min-width:120px">
+                    <div style="display:flex; gap:3px; justify-content:center; flex-wrap:wrap;">
+                        <input type="number" class="written-input" value="${writtenVal}" 
+                            oninput="let max=${wFull}; if(this.value>max) this.value=max; writtenMarks['${wKey}']=this.value; calc()" 
+                            ${isAdmin ? '' : 'disabled'} style="width:45px; ${!writtenPass && writtenVal > 0 ? 'border-color:#d32f2f; background:#ffebee;' : ''}">
+                        <input type="number" class="mcq-input" value="${mcqVal}" 
+                            oninput="let max=${mFull}; if(this.value>max) this.value=max; mcqMarks['${wKey}']=this.value; calc()" 
+                            ${isAdmin ? '' : 'disabled'} style="width:45px; ${!mcqPass && mcqVal > 0 ? 'border-color:#d32f2f; background:#ffebee;' : ''}">
+                    </div>
+                    <div class="optional-checkbox" onclick="event.stopPropagation()">
+                        <input type="checkbox" ${isOptional ? 'checked' : ''} onchange="toggleOptional(${sIdx}, ${subIdx})" ${isAdmin ? '' : 'disabled'}> 
+                        <span>৪র্থ</span>
+                    </div>
+                    <span class="total-mark-display">মোট: ${parseFloat(writtenVal) + parseFloat(mcqVal)}</span>
+                </td>`;
+            }
+            
+            bodyHtml += `<td class="r-total">0</td><td class="r-pct">0%</td><td class="r-gpa">-</td><td class="r-res">-</td><td class="r-pos">-</td></tr>`;
+        }
+        
+        document.getElementById('tBody').innerHTML = bodyHtml;
+        calc(); 
+        toggleCols();
+    }
+    
+    function calc() {
+        let rows = document.querySelectorAll('#tBody tr');
+        let allData = [];
+        for(let sIdx = 0; sIdx < rows.length; sIdx++) {
+            let row = rows[sIdx];
+            let totalMarks = 0, totalFull = 0, subGPAs = [], hasFail = false, optionalBonus = 0;
+            for(let subIdx = 0; subIdx < subjects.length; subIdx++) {
+                let written = parseFloat(writtenMarks[`${sIdx}_${subIdx}`]) || 0;
+                let mcq = parseFloat(mcqMarks[`${sIdx}_${subIdx}`]) || 0;
+                let wFull = writtenFullMarks[subIdx] || 70;
+                let mFull = mcqFullMarks[subIdx] || 30;
+                let obt = written + mcq, full = wFull + mFull;
+                totalMarks += obt; totalFull += full;
+                let percent = (obt / full) * 100;
+                let gpa = getGPAFromPercent(percent);
+                let subjectPass = isSubjectPass(written, mcq, subIdx);
+                if(!subjectPass) hasFail = true;
+                let isOptional = studentOptional[`${sIdx}_${subIdx}`] === true;
+                if(isOptional && gpa > 0) { optionalBonus = Math.max(0, gpa - 2.00); }
+                else subGPAs.push(gpa);
+            }
+            let avgPoints = subGPAs.reduce((a, b) => a + b, 0) + optionalBonus;
+            let finalGPA = avgPoints / subGPAs.length;
+            finalGPA = Math.min(5.00, finalGPA);
+            if(hasFail) finalGPA = 0.00;
+            let percentTotal = totalFull ? (totalMarks / totalFull) * 100 : 0;
+            row.querySelector('.r-total').innerText = totalMarks + '/' + totalFull;
+            row.querySelector('.r-pct').innerText = Math.round(percentTotal) + '%';
+            row.querySelector('.r-gpa').innerHTML = `<span class="gpa-badge">${finalGPA.toFixed(2)} (${getGrade(percentTotal)})</span>`;
+            row.querySelector('.r-res').innerHTML = hasFail ? '<span class="status-badge fail">Fail</span>' : '<span class="status-badge pass">Pass</span>';
+            allData.push({ sIdx, total: totalMarks, name: students[sIdx], hasFail });
+        }
+        let sorted = [...allData].sort((a, b) => b.total - a.total);
+        allData.forEach(d => { let rank = sorted.findIndex(x => x.total === d.total) + 1; rows[d.sIdx].querySelector('.r-pos').innerHTML = `<span style="font-weight:800">${rank}</span>`; });
+        let topPassed = allData.filter(d => !d.hasFail && d.total > 0).sort((a, b) => b.total - a.total).slice(0, 10);
+        if(topPassed.length) {
+            document.getElementById('topHoldersBox').style.display = 'block';
+            let medals = ['🥇 1st', '🥈 2nd', '🥉 3rd'];
+            let items = topPassed.map((r, i) => { let medal = i < 3 ? medals[i] : `${i + 1}th`; return `<div class="rank-item"><span>${medal}</span><span><strong>${(r.name || '').substring(0, 20)}</strong> (${r.total})</span></div>`; });
+            let mid = Math.ceil(items.length / 2);
+            document.getElementById('topList').innerHTML = `<div class="merit-column">${items.slice(0, mid).join('')}</div><div class="merit-column">${items.slice(mid).join('')}</div>`;
+        } else { document.getElementById('topHoldersBox').style.display = 'none'; }
+    }
+    
+    function toggleCols() { 
+        let t = document.getElementById('chkTotal').checked, p = document.getElementById('chkPct').checked, g = document.getElementById('chkGPA').checked, r = document.getElementById('chkRes').checked, s = document.getElementById('chkPos').checked; 
+        document.querySelectorAll('.cell-total').forEach(el => el.style.display = t ? '' : 'none'); 
+        document.querySelectorAll('.cell-pct').forEach(el => el.style.display = p ? '' : 'none'); 
+        document.querySelectorAll('.cell-gpa').forEach(el => el.style.display = g ? '' : 'none'); 
+        document.querySelectorAll('.cell-res').forEach(el => el.style.display = r ? '' : 'none'); 
+        document.querySelectorAll('.cell-pos').forEach(el => el.style.display = s ? '' : 'none'); 
+    }
+    
+    function addSub() { if(isAdmin) { let v = document.getElementById('subInp').value; if(v) { subjects.push(v); render(); document.getElementById('subInp').value = ''; } } }
+    function addStu() { if(isAdmin) { let v = document.getElementById('nameInp').value.trim(); if(v) { let shortName = v.length > 25 ? v.substring(0, 25) : v; students.push(shortName); rolls.push(students.length); render(); document.getElementById('nameInp').value = ''; } } }
+    function delSub(i) { if(isAdmin && confirm("সাবজেক্ট ডিলিট করবেন?")) { subjects.splice(i, 1); render(); } }
+    function delStu(i) { if(isAdmin && confirm("ছাত্র ডিলিট করবেন?")) { students.splice(i, 1); rolls.splice(i, 1); render(); } }
+    
+    window.onload = () => { changeClass(); };
 </script>
 </body>
-</html>
+</html> 
