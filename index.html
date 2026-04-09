@@ -12,19 +12,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', 'Noto Sans Bengali', sans-serif;
             background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
             min-height: 100vh;
             padding: 20px;
         }
-        
         .container {
             max-width: 1600px;
             width: 100%;
@@ -34,13 +28,11 @@
             overflow-x: auto;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        
         .excel-header {
             background: linear-gradient(123deg, #276e2c, #59ad5e, #5eac40, #629d3b);
             padding: 20px 25px;
             color: white;
         }
-        
         .header-content {
             display: flex;
             justify-content: space-between;
@@ -48,14 +40,12 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-        
         .header-left {
             display: flex;
             align-items: center;
             gap: 15px;
             flex-wrap: wrap;
         }
-        
         .header-logo {
             height: 70px;
             width: 70px;
@@ -64,26 +54,22 @@
             border: 2px solid #ffffff;
             object-fit: cover;
         }
-        
         .main-title-box {
             background: linear-gradient(135deg, #0a3e0a, #1b5e20);
             padding: 6px 20px;
             border-radius: 0 30px 30px 30px;
         }
-        
         .main-title-box h1 {
             margin: 0;
             font-size: 28px;
             display: inline;
             color: #fafafa;
         }
-        
         .main-title-box span {
             font-size: 18px;
             margin-left: 8px;
             color: #e8f5e9;
         }
-        
         .header-right-address {
             text-align: right;
             font-size: 13px;
@@ -91,7 +77,6 @@
             padding: 8px 15px;
             border-radius: 20px;
         }
-        
         .bismillah {
             text-align: center;
             font-size: 20px;
@@ -102,7 +87,6 @@
             background: rgba(255,255,255,0.15);
             border-radius: 30px;
         }
-        
         .info-bar {
             background: linear-gradient(95deg, #2e7d32, #388e3c, #4caf50);
             padding: 15px 20px;
@@ -115,9 +99,7 @@
             border-bottom: 2px solid #81c784;
             font-size: 16px;
         }
-        
         .info-bar i { color: #c8e6c9; }
-        
         .student-login-section {
             background: linear-gradient(135deg, #ffffff, #f1f8e9);
             padding: 25px;
@@ -127,9 +109,7 @@
             border: 2px solid #81c784;
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
-        
         .student-login-section h3 { color: #1b5e20; margin-bottom: 15px; font-size: 22px; }
-        
         .login-group {
             display: flex;
             justify-content: center;
@@ -137,7 +117,6 @@
             flex-wrap: wrap;
             margin: 15px 0;
         }
-        
         .student-login-input {
             padding: 12px 20px;
             border: 2px solid #b0e0b1;
@@ -146,13 +125,11 @@
             font-size: 15px;
             transition: all 0.3s ease;
         }
-        
         .student-login-input:focus {
             border-color: #2e7d32;
             outline: none;
             box-shadow: 0 0 0 3px rgba(46,125,50,0.2);
         }
-        
         .student-login-btn {
             background: #2e7d32;
             color: white;
@@ -164,13 +141,11 @@
             font-size: 18px;
             transition: all 0.3s ease;
         }
-        
         .student-login-btn:hover {
             transform: translateY(-2px);
             background: #1b5e20;
             box-shadow: 0 5px 15px rgba(46,125,50,0.3);
         }
-        
         .student-info-card {
             background: #f1f8e9;
             padding: 20px;
@@ -180,7 +155,6 @@
             border-left: 8px solid #2e7d32;
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
-        
         .student-result-header {
             display: flex;
             justify-content: space-between;
@@ -188,7 +162,6 @@
             flex-wrap: wrap;
             margin-bottom: 15px;
         }
-        
         .logout-student-btn {
             background: #ff9800;
             color: white;
@@ -198,7 +171,6 @@
             cursor: pointer;
             font-size: 14px;
         }
-        
         .exam-card {
             background: white;
             border-radius: 20px;
@@ -207,7 +179,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             border: 1px solid #c8e6c9;
         }
-        
         .exam-title {
             background: linear-gradient(95deg, #2e7d32, #388e3c);
             color: white;
@@ -215,26 +186,21 @@
             font-size: 20px;
             font-weight: bold;
         }
-        
         .subject-table {
             width: 100%;
             border-collapse: collapse;
         }
-        
-        .subject-table th,
-        .subject-table td {
+        .subject-table th, .subject-table td {
             padding: 10px 12px;
             text-align: center;
             border-bottom: 1px solid #e0e0e0;
         }
-        
         .subject-table th {
             background: #f5f5f5;
             color: #2e7d32;
             font-weight: bold;
             font-size: 14px;
         }
-        
         .exam-summary {
             background: #e8f5e9;
             padding: 12px 20px;
@@ -246,13 +212,11 @@
             font-weight: bold;
             font-size: 15px;
         }
-        
         .summary-item {
             display: flex;
             gap: 8px;
             align-items: center;
         }
-        
         .gpa-badge-sm {
             background: #c8e6c9;
             padding: 4px 10px;
@@ -260,7 +224,6 @@
             font-weight: bold;
             color: #1b5e20;
         }
-        
         .status-badge {
             padding: 4px 10px;
             border-radius: 30px;
@@ -268,10 +231,8 @@
             font-weight: bold;
             display: inline-block;
         }
-        
         .pass { background: #c8e6c9; color: #1b5e20; }
         .fail { background: #ffcdd2; color: #b71c1c; }
-        
         #topHoldersBox {
             display: none;
             margin: 20px;
@@ -280,28 +241,24 @@
             border-radius: 24px;
             border-left: 8px solid #2e7d32;
         }
-        
         .top-title {
             font-weight: bold;
             color: #1b5e20;
             font-size: 20px;
             margin-bottom: 15px;
         }
-        
         .top-list-container {
             display: flex;
             justify-content: space-between;
             gap: 20px;
             flex-wrap: wrap;
         }
-        
         .merit-column {
             flex: 1;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-        
         .rank-item {
             background: white;
             padding: 10px 18px;
@@ -312,7 +269,6 @@
             border: 1px solid #c8e6c9;
             font-size: 14px;
         }
-        
         .controls-panel {
             background: #faf5e8;
             padding: 15px 20px;
@@ -323,7 +279,6 @@
             align-items: center;
             border-bottom: 1px solid #c8e6c9;
         }
-        
         .show-hide-box {
             background: #e8f5e9;
             border: 1px solid #c8e6c9;
@@ -334,7 +289,6 @@
             font-size: 14px;
             font-weight: bold;
         }
-        
         select, input {
             padding: 8px 14px;
             border: 1px solid #c8e6c9;
@@ -343,7 +297,6 @@
             background: white;
             font-size: 14px;
         }
-        
         button {
             padding: 8px 18px;
             border-radius: 30px;
@@ -353,9 +306,7 @@
             transition: all 0.3s ease;
             font-size: 14px;
         }
-        
         button:hover { transform: translateY(-2px); }
-        
         .btn-add { background: #2e7d32; color: white; }
         .btn-print { background: #1b5e20; color: white; }
         .btn-login { background: #37474f; color: white; }
@@ -365,19 +316,17 @@
         .btn-edit { background: #ff9800; color: white; }
         .admin-only { display: none; }
         .is-admin .admin-only { display: inline-flex; }
-        
         .table-wrap { padding: 20px; overflow-x: auto; background: #ffffff; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; border-radius: 16px; overflow: hidden; }
         th, td { border: 1px solid #c8e6c9; padding: 8px 6px; text-align: center; vertical-align: middle; }
         th { background: linear-gradient(95deg, #2e7d32, #388e3c); color: white; font-weight: 700; padding: 10px 6px; font-size: 12px; }
-        
         .subject-header {
             display: flex;
             flex-direction: column;
             gap: 4px;
             align-items: center;
-            min-width: 100px;
-            max-width: 120px;
+            min-width: 110px;
+            max-width: 140px;
             word-break: break-word;
         }
         .subject-name {
@@ -391,9 +340,7 @@
             word-break: break-word;
             text-align: center;
         }
-        .subject-name:hover {
-            background: rgba(255,255,255,0.4);
-        }
+        .subject-name:hover { background: rgba(255,255,255,0.4); }
         .mark-distribution {
             display: flex;
             gap: 5px;
@@ -413,6 +360,17 @@
             border: none;
             border-radius: 8px;
         }
+        .mcq-toggle {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 9px;
+            background: #ffecb3;
+            padding: 2px 6px;
+            border-radius: 15px;
+            margin-top: 2px;
+        }
+        .mcq-toggle input { width: 12px; height: 12px; margin: 0; cursor: pointer; }
         .written-input, .mcq-input {
             width: 50px;
             text-align: center;
@@ -449,10 +407,6 @@
             border-radius: 6px;
             text-align: center;
         }
-        .stu-name-input:focus {
-            border: 1px solid #2e7d32;
-            background: #f1f8e9;
-        }
         .roll-input {
             width: 50px;
             text-align: center;
@@ -479,12 +433,6 @@
             cursor: pointer;
             justify-content: center;
         }
-        .optional-checkbox input {
-            width: 11px;
-            height: 11px;
-            margin: 0;
-            cursor: pointer;
-        }
         .info-note { background: #e1f5fe; padding: 6px 12px; border-radius: 16px; margin: 10px 20px; font-size: 12px; color: #01579b; display: inline-block; }
         .gpa-rule-box {
             background: #fff3e0;
@@ -500,11 +448,6 @@
             gap: 8px;
             margin-left: 12px;
         }
-        .copy-section select {
-            padding: 4px 8px;
-            font-size: 11px;
-        }
-        
         .exam-item {
             display: inline-flex;
             align-items: center;
@@ -514,20 +457,13 @@
             border-radius: 20px;
             margin-left: 5px;
         }
-        .exam-item button {
-            padding: 2px 6px;
-            font-size: 10px;
-            background: rgba(0,0,0,0.3);
-        }
-        
         .loading {
             text-align: center;
             padding: 20px;
             color: #2e7d32;
             font-size: 16px;
         }
-        
-        /* প্রিন্ট স্টাইল */
+         /* প্রিন্ট স্টাইল */
         @media print {
             @page {
                 size: A4 landscape;
@@ -651,14 +587,15 @@
                 border: none !important;
                 background: transparent !important;
                 padding: 0 !important;
-                font-size: 6px !important;
+                font-size: 13px !important;
             }
             
             .roll-input {
+                font-weight: bold;
                 border: none !important;
                 background: transparent !important;
                 padding: 0 !important;
-                font-size: 6px !important;
+                font-size: 7px !important;
             }
             
             .cell-total, .cell-pct, .cell-gpa, .cell-res, .cell-pos {
@@ -679,7 +616,7 @@
         }
     </style>
 </head>
-<body id="mainBody">
+<body>
 <div class="container">
     <div class="excel-header">
         <div style="text-align: center;"><div class="bismillah">বিসমিল্লাহির রাহমানির রাহিম</div></div>
@@ -689,7 +626,7 @@
                 <div><p style="margin:0; font-weight:bold; font-size:14px;">সৃজনশীল প্রতিভার অন্বেষণে..........</p>
                 <div class="main-title-box"><h1>GLORIOUS</h1><span>Education Care</span></div></div>
             </div>
-            <div class="header-right-address"><i class="fas fa-map-marker-alt"></i> ফরিদুল হক চৌধুরী মার্কেট (২য় তলা), পেকুয়া।<br>📞 ০১৮৬৮-৬৫৩৭২২</div>
+            <div class="header-right-address"><i class="fas fa-map-marker-alt"></i> ফরিদুল হক চৌধুরী মার্কেট (২য় তলা), পেকুয়া。<br>📞 ০১৮৬৮-৬৫৩৭২২</div>
         </div>
     </div>
     <div class="info-bar">
@@ -701,54 +638,36 @@
     </div>
     
     <div class="gpa-rule-box">
-        <i class="fas fa-calculator"></i> <strong>GPA গণনার নিয়ম (SSC):</strong><br>
-        • প্রতিটি বিষয়ে Written 33% <strong>এবং</strong> MCQ 33% - দুই অংশেই পাস করতে হবে<br>
-        • GPA নির্ধারণ: 80%+ = A+ (5.00), 70-79% = A (4.00), 60-69% = A- (3.50), 50-59% = B (3.00), 40-49% = C (2.00), 33-39% = D (1.00)<br>
-        • <strong>৪র্থ বিষয়ের Bonus = (৪র্থ বিষয়ের GPA - 2.00)</strong><br>
-        • চূড়ান্ত GPA = (৮টি সাধারণ বিষয়ের GPA এর যোগফল + Bonus) ÷ 8<br>
-        • সর্বোচ্চ GPA 5.00, কোনো সাধারণ বিষয়ে ফেল করলে সামগ্রিক ফলাফল Fail
+        <i class="fas fa-calculator"></i> <strong>GPA গণনার নিয়ম (SSC - Dynamic Subjects):</strong><br>
+        • প্রতিটি বিষয়ে Written (যদি থাকে) এবং MCQ (যদি থাকে) - উভয় অংশে 33% পাস করতে হবে।<br>
+        • <strong>GPA সূত্র:</strong> (সকল সাধারণ বিষয়ের GPA যোগফল + (৪র্থ বিষয়ের GPA - 2.00)) ÷ (সাধারণ বিষয়ের সংখ্যা)<br>
+        • ৪র্থ বিষয় Bonus: (৪র্থ বিষয়ের GPA - 2.00) [নেগেটিভ হলে 0 ধরা হয়]<br>
+        • কোনো সাধারণ বিষয়ে ফেল করলে সামগ্রিক ফলাফল Fail<br>
+        • <strong>MCQ অপশন:</strong> প্রতিটি সাবজেক্টে MCQ থাকবে কিনা সেটা এডমিন সিদ্ধান্ত নিতে পারেন
     </div>
     
     <div id="studentLoginSection" class="student-login-section">
-        <h3><i class="fas fa-user-graduate"></i> 👨‍🎓 Student Login (SSC Special Batch)</h3>
-        <p style="color:#2e7d32;">রোল নম্বর, নাম, পরীক্ষা ও গ্রুপ দিয়ে লগইন করুন</p>
+        <h3><i class="fas fa-user-graduate"></i> 👨‍🎓 Student Login</h3>
         <div class="login-group">
-            <input type="number" id="studentRoll" class="student-login-input" placeholder="Roll Number / রোল নম্বর">
-            <input type="text" id="studentName" class="student-login-input" placeholder="Full Name (max 25 character)" maxlength="25">
-            <select id="studentExam" class="student-login-input" style="width:180px;">
-                <option value="">-- পরীক্ষা সিলেক্ট করুন --</option>
-            </select>
-            <select id="studentGroup" class="student-login-input" style="width:140px;">
-                <option value="Science">বিজ্ঞান</option>
-                <option value="Commerce">বাণিজ্য</option>
-                <option value="Arts">মানবিক</option>
-            </select>
+            <input type="number" id="studentRoll" placeholder="Roll Number">
+            <input type="text" id="studentName" placeholder="Full Name" maxlength="25">
+            <select id="studentExam"></select>
+            <select id="studentGroup"><option value="Science">বিজ্ঞান</option><option value="Commerce">বাণিজ্য</option><option value="Arts">মানবিক</option></select>
         </div>
-        <button class="student-login-btn" onclick="studentLogin()"><i class="fas fa-sign-in-alt"></i> বিস্তারিত ফলাফল দেখুন</button>
+        <button class="student-login-btn" onclick="studentLogin()">বিস্তারিত ফলাফল দেখুন</button>
     </div>
     
-    <div id="studentInfoCard" class="student-info-card">
-        <div class="student-result-header">
-            <h3><i class="fas fa-id-card"></i> 📋 SSC ফলাফল (৪র্থ বিষয়ের নিয়ম)</h3>
-            <button class="logout-student-btn" onclick="studentLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
-        </div>
+    <div id="studentInfoCard" class="student-info-card" style="display:none">
+        <div class="student-result-header"><h3>📋 SSC ফলাফল</h3><button class="logout-student-btn" onclick="studentLogout()">Logout</button></div>
         <div id="studentOwnResult"></div>
     </div>
-    <div id="topHoldersBox">
-        <div class="top-title"><i class="fas fa-trophy"></i> 🏆 মেধা তালিকা (Top 10)</div>
-        <div class="top-list-container" id="topList"></div>
-    </div>
+    <div id="topHoldersBox"><div class="top-title">🏆 মেধা তালিকা (Top 10)</div><div class="top-list-container" id="topList"></div></div>
     
     <div class="controls-panel" id="adminControlsPanel">
         <select id="cSel" onchange="changeClass()"><option selected>SSC Special Batch</option></select>
-        <select id="gSel" onchange="changeGroup()">
-            <option value="Science">বিজ্ঞান</option>
-            <option value="Commerce">বাণিজ্য</option>
-            <option value="Arts">মানবিক</option>
-        </select>
+        <select id="gSel" onchange="changeGroup()"><option value="Science">বিজ্ঞান</option><option value="Commerce">বাণিজ্য</option><option value="Arts">মানবিক</option></select>
         <select id="eSel" onchange="updateInfo()"></select>
         <div class="copy-section admin-only">
-            <span style="font-size:12px;"><i class="fas fa-copy"></i> থেকে কপি:</span>
             <select id="copyExamSelect"></select>
             <button class="btn-copy" onclick="copyStudentsFromExam()"><i class="fas fa-paste"></i> ছাত্র কপি করুন</button>
         </div>
@@ -760,25 +679,18 @@
             <label><input type="checkbox" id="chkPos" checked> Rank</label>
         </div>
         <div class="admin-only">
-            <input type="text" id="examInp" placeholder="New Exam" style="width:100px">
-            <button class="btn-add" onclick="addExam()">+Exam</button>
-            <input type="text" id="subInp" placeholder="Subject" style="width:80px">
-            <button class="btn-add" onclick="addSub()">+Sub</button>
-            <input type="text" id="nameInp" placeholder="Student Name" style="width:130px" maxlength="25">
-            <button class="btn-add" onclick="addStu()">+Student</button>
+            <input type="text" id="examInp" placeholder="New Exam" style="width:100px"><button class="btn-add" onclick="addExam()">+Exam</button>
+            <input type="text" id="subInp" placeholder="Subject" style="width:80px"><button class="btn-add" onclick="addSub()">+Sub</button>
+            <input type="text" id="nameInp" placeholder="Student Name" maxlength="25"><button class="btn-add" onclick="addStu()">+Student</button>
             <button class="btn-add" onclick="saveToCloud()">Save</button>
             <button class="btn-reset" onclick="resetCurrentPageData()"><i class="fas fa-trash-alt"></i> Page Reset</button>
         </div>
     </div>
-    
     <div class="table-wrap" id="resultTableWrap">
         <div id="loadingMsg" class="loading" style="display:none;">লোড হচ্ছে...</div>
-        <table id="resTable">
-            <thead><tr id="hRow"></tr></thead>
-            <tbody id="tBody"></tbody>
-        </table>
+        <table id="resTable"><thead><tr id="hRow"></tr></thead><tbody id="tBody"></tbody></table>
     </div>
-    <div class="footer"><p><i class="fas fa-copyright"></i> 2026 GLORIOUS Education Care | SSC Special Batch (Complete GPA Rules)</p></div>
+    <div class="footer"><p><i class="fas fa-copyright"></i> 2026 GLORIOUS Education Care | Dynamic GPA System</p></div>
 </div>
 
 <script>
@@ -791,54 +703,61 @@
     
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
+    
+    // Global state
     let subjects = [], students = [], rolls = [], writtenMarks = {}, mcqMarks = {};
-    let writtenFullMarks = {}, mcqFullMarks = {};
+    let writtenFullMarks = {}, mcqFullMarks = {}, subjectHasMcq = {};
     let examsList = [], isAdmin = false, loggedInStudent = null;
     let studentOptional = {};
-    let currentDataLoaded = false;
     
-    // নাম ২৫ অক্ষরে কাটার ফাংশন
-    function limitNameLength(name) {
-        if(name && name.length > 25) {
-            return name.substring(0, 25);
-        }
-        return name || '';
-    }
+    // Helper functions
+    function limitNameLength(n) { return n && n.length > 25 ? n.substring(0, 25) : (n || ''); }
     
-    function getGPAFromPercent(percent) {
-        if(percent >= 80) return 5.00;
-        if(percent >= 70) return 4.00;
-        if(percent >= 60) return 3.50;
-        if(percent >= 50) return 3.00;
-        if(percent >= 40) return 2.00;
-        if(percent >= 33) return 1.00;
+    function getGPAFromPercent(p) { 
+        if(p >= 80) return 5.00;
+        if(p >= 70) return 4.00;
+        if(p >= 60) return 3.50;
+        if(p >= 50) return 3.00;
+        if(p >= 40) return 2.00;
+        if(p >= 33) return 1.00;
         return 0.00;
     }
     
-    function getGrade(percent) { 
-        let g = getGPAFromPercent(percent); 
-        if(g >= 5.00) return 'A+'; 
-        if(g >= 4.00) return 'A'; 
-        if(g >= 3.50) return 'A-'; 
-        if(g >= 3.00) return 'B'; 
-        if(g >= 2.00) return 'C'; 
-        if(g >= 1.00) return 'D'; 
-        return 'F'; 
+    function getGrade(p) { 
+        let g = getGPAFromPercent(p); 
+        if(g >= 5.00) return 'A+'; if(g >= 4.00) return 'A'; if(g >= 3.50) return 'A-'; 
+        if(g >= 3.00) return 'B'; if(g >= 2.00) return 'C'; if(g >= 1.00) return 'D'; return 'F'; 
     }
     
     function isSubjectPass(written, mcq, subIdx) {
-        let writtenFull = writtenFullMarks[subIdx] || 70;
-        let mcqFull = mcqFullMarks[subIdx] || 30;
-        return (written >= writtenFull * 0.33 && mcq >= mcqFull * 0.33);
+        let wFull = writtenFullMarks[subIdx] || 70;
+        let hasMcq = subjectHasMcq[subIdx] === true;
+        if(!hasMcq) return written >= wFull * 0.33;
+        let mFull = mcqFullMarks[subIdx] || 30;
+        return (written >= wFull * 0.33 && mcq >= mFull * 0.33);
     }
     
-    function changeClass() { 
-        loadExamsForClass(document.getElementById('cSel').value, document.getElementById('gSel').value); 
+    function getSubjectTotalAndFull(sIdx, subIdx) {
+        let w = parseFloat(writtenMarks[`${sIdx}_${subIdx}`]) || 0;
+        let m = parseFloat(mcqMarks[`${sIdx}_${subIdx}`]) || 0;
+        let wFull = writtenFullMarks[subIdx] || 70;
+        let mFull = mcqFullMarks[subIdx] || 30;
+        let hasMcq = subjectHasMcq[subIdx] === true;
+        let total = w + (hasMcq ? m : 0);
+        let full = wFull + (hasMcq ? mFull : 0);
+        return { total, full, written: w, mcq: m, wFull, mFull, hasMcq };
     }
     
-    function changeGroup() { 
-        loadExamsForClass(document.getElementById('cSel').value, document.getElementById('gSel').value); 
+    // Firebase operations
+    function getPath(examName = null) { 
+        let c = document.getElementById('cSel').value; 
+        let e = examName || document.getElementById('eSel').value; 
+        let g = document.getElementById('gSel').value; 
+        return `results/${c}_${g}_${e}`.replace(/\s+/g, '_'); 
     }
+    
+    function changeClass() { loadExamsForClass(document.getElementById('cSel').value, document.getElementById('gSel').value); }
+    function changeGroup() { loadExamsForClass(document.getElementById('cSel').value, document.getElementById('gSel').value); }
     
     function loadExamsForClass(className, group) {
         document.getElementById('loadingMsg').style.display = 'block';
@@ -849,73 +768,56 @@
                 document.getElementById('eSel').value = examsList[0]; 
                 updateInfo(); 
             } else { 
-                subjects = []; students = []; rolls = []; writtenMarks = {}; mcqMarks = {}; writtenFullMarks = {}; mcqFullMarks = {}; studentOptional = {}; 
+                subjects = []; students = []; rolls = []; writtenMarks = {}; mcqMarks = {}; 
+                writtenFullMarks = {}; mcqFullMarks = {}; subjectHasMcq = {}; studentOptional = {}; 
                 render(); 
                 document.getElementById('loadingMsg').style.display = 'none';
             }
-        }).catch(err => {
-            console.error("Error loading exams:", err);
-            document.getElementById('loadingMsg').style.display = 'none';
-            alert("ডাটা লোড করতে সমস্যা হয়েছে!");
-        });
+        }).catch(() => { document.getElementById('loadingMsg').style.display = 'none'; alert("ডাটা লোড করতে সমস্যা!"); });
     }
     
     function updateExamDropdowns() {
         let eSel = document.getElementById('eSel');
         let copySelect = document.getElementById('copyExamSelect');
         let studentExamSel = document.getElementById('studentExam');
-        
-        let examOptions = '';
-        for(let i = 0; i < examsList.length; i++) {
-            examOptions += `<option value="${examsList[i]}">${examsList[i]}</option>`;
-        }
+        let examOptions = examsList.map(e => `<option value="${e}">${e}</option>`).join('');
         eSel.innerHTML = examOptions;
-        
-        let examContainer = eSel.parentElement;
-        let existingControls = examContainer.querySelector('.exam-item');
-        if(existingControls) existingControls.remove();
-        
-        let controlsSpan = document.createElement('span');
-        controlsSpan.className = 'exam-item admin-only';
-        controlsSpan.innerHTML = `
-            <button class="btn-edit" onclick="editSelectedExam()" style="padding:2px 8px; font-size:11px;"><i class="fas fa-edit"></i></button>
-            <button class="btn-remove" onclick="removeSelectedExam()" style="padding:2px 8px; font-size:11px;"><i class="fas fa-trash"></i></button>
-        `;
-        examContainer.appendChild(controlsSpan);
-        
         copySelect.innerHTML = '<option value="">-- সিলেক্ট করুন --</option>' + examsList.map(e => `<option value="${e}">${e}</option>`).join('');
         studentExamSel.innerHTML = '<option value="">-- পরীক্ষা সিলেক্ট করুন --</option>' + examsList.map(e => `<option value="${e}">${e}</option>`).join('');
         
-        if(isAdmin) {
-            let adminOnlyElements = document.querySelectorAll('.admin-only');
-            adminOnlyElements.forEach(el => el.style.display = 'inline-flex');
-        }
+        let container = eSel.parentElement;
+        let old = container.querySelector('.exam-item');
+        if(old) old.remove();
+        let span = document.createElement('span');
+        span.className = 'exam-item admin-only';
+        span.innerHTML = `<button class="btn-edit" onclick="editSelectedExam()"><i class="fas fa-edit"></i></button>
+                         <button class="btn-remove" onclick="removeSelectedExam()"><i class="fas fa-trash"></i></button>`;
+        container.appendChild(span);
+        
+        if(isAdmin) document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'inline-flex');
     }
     
     function editSelectedExam() {
         if(!isAdmin) return;
-        let oldName = document.getElementById('eSel').value;
-        if(!oldName) { alert("কোন পরীক্ষা সিলেক্ট করা হয়নি!"); return; }
-        let newName = prompt("পরীক্ষার নতুন নাম লিখুন:", oldName);
-        if(newName && newName.trim() !== "" && newName !== oldName) {
-            let c = document.getElementById('cSel').value;
-            let g = document.getElementById('gSel').value;
-            let oldPath = `results/${c}_${g}_${oldName}`.replace(/\s+/g, '_');
+        let old = document.getElementById('eSel').value;
+        let newName = prompt("পরীক্ষার নতুন নাম লিখুন:", old);
+        if(newName && newName !== old) {
+            let c = document.getElementById('cSel').value, g = document.getElementById('gSel').value;
+            let oldPath = `results/${c}_${g}_${old}`.replace(/\s+/g, '_');
             let newPath = `results/${c}_${g}_${newName}`.replace(/\s+/g, '_');
-            
             db.ref(oldPath).once('value', (snap) => {
                 let data = snap.val();
                 if(data) {
                     db.ref(newPath).set(data).then(() => {
                         db.ref(oldPath).remove().then(() => {
-                            let index = examsList.indexOf(oldName);
-                            if(index !== -1) {
-                                examsList[index] = newName;
+                            let idx = examsList.indexOf(old);
+                            if(idx !== -1) {
+                                examsList[idx] = newName;
                                 db.ref(`exams_list_per_class/${c}_${g}`).set(examsList).then(() => {
                                     updateExamDropdowns();
                                     document.getElementById('eSel').value = newName;
                                     updateInfo();
-                                    alert("পরীক্ষার নাম পরিবর্তন করা হয়েছে!");
+                                    alert("পরীক্ষার নাম পরিবর্তিত হয়েছে!");
                                 });
                             }
                         });
@@ -927,16 +829,14 @@
     
     function removeSelectedExam() {
         if(!isAdmin) return;
-        let examName = document.getElementById('eSel').value;
-        if(!examName) { alert("কোন পরীক্ষা সিলেক্ট করা হয়নি!"); return; }
-        if(confirm(`"${examName}" পরীক্ষাটি মুছে ফেলতে চান? সমস্ত ডাটা মুছে যাবে!`)) {
-            let c = document.getElementById('cSel').value;
-            let g = document.getElementById('gSel').value;
-            let path = `results/${c}_${g}_${examName}`.replace(/\s+/g, '_');
+        let exam = document.getElementById('eSel').value;
+        if(confirm(`"${exam}" পরীক্ষাটি মুছে ফেলতে চান?`)) {
+            let c = document.getElementById('cSel').value, g = document.getElementById('gSel').value;
+            let path = `results/${c}_${g}_${exam}`.replace(/\s+/g, '_');
             db.ref(path).remove().then(() => {
-                let index = examsList.indexOf(examName);
-                if(index !== -1) {
-                    examsList.splice(index, 1);
+                let idx = examsList.indexOf(exam);
+                if(idx !== -1) {
+                    examsList.splice(idx, 1);
                     db.ref(`exams_list_per_class/${c}_${g}`).set(examsList).then(() => {
                         updateExamDropdowns();
                         if(examsList.length) {
@@ -953,571 +853,449 @@
     }
     
     function updateInfo() {
-        let grp = document.getElementById('gSel').value, exam = document.getElementById('eSel').value, cls = document.getElementById('cSel').value;
-        document.getElementById('vClass').innerText = cls;
-        document.getElementById('vGroup').innerText = grp;
-        document.getElementById('vExam').innerText = exam || '-';
-        
-        if(exam) {
-            document.getElementById('loadingMsg').style.display = 'block';
-            currentDataLoaded = false;
-            db.ref(getPath()).once('value', (snap) => { 
-                let d = snap.val() || {}; 
-                subjects = d.subjects || []; 
-                students = (d.students || []).map(s => limitNameLength(s));
-                rolls = d.rolls || [];
-                writtenMarks = d.writtenMarks || {}; 
-                mcqMarks = d.mcqMarks || {}; 
-                writtenFullMarks = d.writtenFullMarks || {};
-                mcqFullMarks = d.mcqFullMarks || {};
-                studentOptional = d.studentOptional || {}; 
-                currentDataLoaded = true;
-                render(); 
-                document.getElementById('loadingMsg').style.display = 'none';
-            }).catch(err => {
-                console.error("Error loading data:", err);
-                document.getElementById('loadingMsg').style.display = 'none';
-                alert("ডাটা লোড করতে সমস্যা হয়েছে!");
-            });
-        }
+        let exam = document.getElementById('eSel').value;
+        if(!exam) return;
+        document.getElementById('loadingMsg').style.display = 'block';
+        db.ref(getPath()).once('value', (snap) => {
+            let d = snap.val() || {};
+            subjects = d.subjects || [];
+            students = (d.students || []).map(s => limitNameLength(s));
+            rolls = d.rolls || [];
+            writtenMarks = d.writtenMarks || {};
+            mcqMarks = d.mcqMarks || {};
+            writtenFullMarks = d.writtenFullMarks || {};
+            mcqFullMarks = d.mcqFullMarks || {};
+            subjectHasMcq = d.subjectHasMcq || {};
+            studentOptional = d.studentOptional || {};
+            render();
+            document.getElementById('loadingMsg').style.display = 'none';
+        }).catch(() => { document.getElementById('loadingMsg').style.display = 'none'; alert("ডাটা লোড করতে সমস্যা!"); });
     }
     
-    function getPath(examName=null) { 
-        let c = document.getElementById('cSel').value, 
-            e = examName || document.getElementById('eSel').value, 
-            g = document.getElementById('gSel').value; 
-        return `results/${c}_${g}_${e}`.replace(/\s+/g, '_'); 
-    }
-    
-    function toggleOptional(studentIdx, subIdx) {
-        if(!isAdmin) return;
-        let key = `${studentIdx}_${subIdx}`;
-        studentOptional[key] = !studentOptional[key];
-        render();
-    }
-    
-    function editSubjectName(subIdx) {
-        if(!isAdmin) return;
-        let newName = prompt("সাবজেক্টের নতুন নাম লিখুন:", subjects[subIdx]);
-        if(newName && newName.trim() !== "") { subjects[subIdx] = newName.trim(); render(); }
-    }
-    
-    function updateWrittenFull(subIdx, value) {
-        if(!isAdmin) return;
-        let val = parseFloat(value);
-        writtenFullMarks[subIdx] = (val > 0) ? val : 70;
-        render();
-    }
-    
-    function updateMcqFull(subIdx, value) {
-        if(!isAdmin) return;
-        let val = parseFloat(value);
-        mcqFullMarks[subIdx] = (val > 0) ? val : 30;
-        render();
-    }
-    
-    function updateStudentRoll(sIdx, value) {
-        if(!isAdmin) return;
-        rolls[sIdx] = parseInt(value) || (sIdx + 1);
-        render();
-    }
-    
-    function updateStudentName(sIdx, value) {
-        if(!isAdmin) return;
-        let limitedName = limitNameLength(value);
-        students[sIdx] = limitedName;
-        render();
-    }
+    // Admin edit functions
+    function toggleSubjectMcq(subIdx) { if(!isAdmin) return; subjectHasMcq[subIdx] = !subjectHasMcq[subIdx]; render(); }
+    function toggleOptional(sIdx, subIdx) { if(!isAdmin) return; let key = `${sIdx}_${subIdx}`; studentOptional[key] = !studentOptional[key]; render(); }
+    function editSubjectName(i) { if(!isAdmin) return; let n = prompt("সাবজেক্টের নাম:", subjects[i]); if(n) { subjects[i] = n.trim(); render(); } }
+    function updateWrittenFull(i, v) { if(!isAdmin) return; writtenFullMarks[i] = parseFloat(v) || 70; render(); }
+    function updateMcqFull(i, v) { if(!isAdmin) return; mcqFullMarks[i] = parseFloat(v) || 30; render(); }
+    function updateStudentRoll(i, v) { if(!isAdmin) return; rolls[i] = parseInt(v) || (i + 1); render(); }
+    function updateStudentName(i, v) { if(!isAdmin) return; students[i] = limitNameLength(v); render(); }
     
     function copyStudentsFromExam() {
         if(!isAdmin) return;
-        let sourceExam = document.getElementById('copyExamSelect').value;
-        let currentExam = document.getElementById('eSel').value;
-        if(!sourceExam) { alert("কোন পরীক্ষা সিলেক্ট করুন!"); return; }
-        if(sourceExam === currentExam) { alert("বর্তমান পরীক্ষা থেকে কপি করা যাবে না!"); return; }
-        let c = document.getElementById('cSel').value;
-        let g = document.getElementById('gSel').value;
-        let sourcePath = `results/${c}_${g}_${sourceExam}`.replace(/\s+/g, '_');
-        let targetPath = getPath();
-        
-        document.getElementById('loadingMsg').style.display = 'block';
-        db.ref(sourcePath).once('value', (snap) => {
-            let sourceData = snap.val() || {};
-            let sourceStudents = (sourceData.students || []).map(s => limitNameLength(s));
-            let sourceRolls = sourceData.rolls || [];
-            if(sourceStudents.length === 0) { 
-                alert("সোর্স পরীক্ষায় কোনো ছাত্র নেই!"); 
-                document.getElementById('loadingMsg').style.display = 'none';
-                return; 
-            }
-            if(confirm(`${sourceStudents.length} জন ছাত্রকে বর্তমান পরীক্ষায় কপি করতে চান?`)) {
-                db.ref(targetPath).once('value', (targetSnap) => {
-                    let targetData = targetSnap.val() || {};
-                    targetData.students = [...sourceStudents];
-                    targetData.rolls = [...sourceRolls];
-                    if(subjects.length === 0 && sourceData.subjects) {
-                        targetData.subjects = sourceData.subjects;
-                        targetData.writtenFullMarks = sourceData.writtenFullMarks || {};
-                        targetData.mcqFullMarks = sourceData.mcqFullMarks || {};
-                        subjects = sourceData.subjects;
-                        writtenFullMarks = sourceData.writtenFullMarks || {};
-                        mcqFullMarks = sourceData.mcqFullMarks || {};
+        let src = document.getElementById('copyExamSelect').value;
+        let cur = document.getElementById('eSel').value;
+        if(!src) { alert("কোন পরীক্ষা সিলেক্ট করুন!"); return; }
+        if(src === cur) { alert("বর্তমান পরীক্ষা থেকে কপি করা যাবে না!"); return; }
+        let c = document.getElementById('cSel').value, g = document.getElementById('gSel').value;
+        let srcPath = `results/${c}_${g}_${src}`.replace(/\s+/g, '_');
+        db.ref(srcPath).once('value', (snap) => {
+            let data = snap.val() || {};
+            let stu = data.students || [];
+            let rl = data.rolls || [];
+            if(!stu.length) { alert("সোর্স পরীক্ষায় কোনো ছাত্র নেই!"); return; }
+            if(confirm(`${stu.length} জন ছাত্র কপি করবেন?`)) {
+                db.ref(getPath()).once('value', (targetSnap) => {
+                    let td = targetSnap.val() || {};
+                    td.students = [...stu];
+                    td.rolls = [...rl];
+                    if(!subjects.length && data.subjects) {
+                        td.subjects = data.subjects;
+                        td.writtenFullMarks = data.writtenFullMarks || {};
+                        td.mcqFullMarks = data.mcqFullMarks || {};
+                        td.subjectHasMcq = data.subjectHasMcq || {};
+                        subjects = data.subjects;
+                        writtenFullMarks = data.writtenFullMarks || {};
+                        mcqFullMarks = data.mcqFullMarks || {};
+                        subjectHasMcq = data.subjectHasMcq || {};
                     }
-                    let newMarks = {};
-                    for(let i = 0; i < sourceStudents.length; i++) {
-                        for(let j = 0; j < subjects.length; j++) { newMarks[`${i}_${j}`] = 0; }
+                    let nm = {};
+                    for(let i = 0; i < stu.length; i++) {
+                        for(let j = 0; j < subjects.length; j++) {
+                            nm[`${i}_${j}`] = 0;
+                        }
                     }
-                    targetData.writtenMarks = newMarks;
-                    targetData.mcqMarks = newMarks;
-                    targetData.studentOptional = {};
-                    db.ref(targetPath).set(targetData).then(() => {
-                        students = sourceStudents;
-                        rolls = sourceRolls;
-                        writtenMarks = newMarks;
-                        mcqMarks = newMarks;
+                    td.writtenMarks = nm;
+                    td.mcqMarks = nm;
+                    td.studentOptional = {};
+                    db.ref(getPath()).set(td).then(() => {
+                        students = stu;
+                        rolls = rl;
+                        writtenMarks = nm;
+                        mcqMarks = nm;
                         studentOptional = {};
                         render();
-                        document.getElementById('loadingMsg').style.display = 'none';
-                        alert(`${sourceStudents.length} জন ছাত্র সফলভাবে কপি করা হয়েছে!`);
+                        alert("কপি সম্পন্ন হয়েছে!");
                     });
                 });
-            } else {
-                document.getElementById('loadingMsg').style.display = 'none';
             }
         });
     }
     
     function resetCurrentPageData() {
-        if(!isAdmin) {
-            alert("শুধুমাত্র এডমিন এই কাজ করতে পারবেন!");
-            return;
-        }
-        
-        let confirmReset = confirm("⚠️ সতর্কতা: বর্তমান পরীক্ষার সব ডাটা রিসেট হয়ে যাবে!\n\nসব ছাত্র, সাবজেক্ট, মার্কস মুছে যাবে।\n\nআপনি কি নিশ্চিত?");
-        
-        if(confirmReset) {
-            let finalConfirm = prompt("নিশ্চিত করতে 'RESET' টাইপ করুন:");
-            if(finalConfirm === "RESET") {
-                let currentExam = document.getElementById('eSel').value;
-                let currentGroup = document.getElementById('gSel').value;
-                let currentClass = document.getElementById('cSel').value;
-                let path = `results/${currentClass}_${currentGroup}_${currentExam}`.replace(/\s+/g, '_');
-                
-                document.getElementById('loadingMsg').style.display = 'block';
+        if(!isAdmin) { alert("শুধুমাত্র এডমিন এই কাজ করতে পারবেন!"); return; }
+        if(confirm("⚠️ সতর্কতা: বর্তমান পরীক্ষার সব ডাটা রিসেট হয়ে যাবে!\nআপনি কি নিশ্চিত?")) {
+            let confirmText = prompt("নিশ্চিত করতে 'RESET' টাইপ করুন:");
+            if(confirmText === "RESET") {
+                let path = getPath();
                 db.ref(path).remove().then(() => {
-                    subjects = [];
-                    students = [];
-                    rolls = [];
-                    writtenMarks = {};
-                    mcqMarks = {};
-                    writtenFullMarks = {};
-                    mcqFullMarks = {};
-                    studentOptional = {};
-                    
+                    subjects = []; students = []; rolls = []; writtenMarks = {}; mcqMarks = {};
+                    writtenFullMarks = {}; mcqFullMarks = {}; subjectHasMcq = {}; studentOptional = {};
                     render();
-                    document.getElementById('loadingMsg').style.display = 'none';
                     alert("✅ বর্তমান পরীক্ষার সব ডাটা রিসেট করা হয়েছে!");
-                }).catch((error) => {
-                    document.getElementById('loadingMsg').style.display = 'none';
-                    alert("রিসেট করতে সমস্যা হয়েছে: " + error.message);
-                });
-            } else {
-                alert("রিসেট বাতিল করা হয়েছে। সঠিকভাবে 'RESET' টাইপ করুন।");
-            }
+                }).catch(() => alert("রিসেট করতে সমস্যা হয়েছে!"));
+            } else { alert("রিসেট বাতিল করা হয়েছে।"); }
         }
     }
     
-    function studentLogin() {
-        let roll = parseInt(document.getElementById('studentRoll').value);
-        let name = document.getElementById('studentName').value.trim();
-        let selectedExam = document.getElementById('studentExam').value;
-        let selectedGroup = document.getElementById('studentGroup').value;
-        let selectedClass = "SSC Special Batch";
-        
-        if(!roll || !name || !selectedExam) { 
-            alert("রোল নম্বর, নাম এবং পরীক্ষা নির্বাচন করুন!"); 
-            return; 
+    function saveToCloud() {
+        if(isAdmin) {
+            db.ref(getPath()).set({
+                subjects, students, rolls, writtenMarks, mcqMarks,
+                writtenFullMarks, mcqFullMarks, subjectHasMcq, studentOptional
+            }).then(() => alert("ডেটা সেভ হয়েছে!")).catch(() => alert("সেভ করতে সমস্যা হয়েছে!"));
         }
+    }
+    
+    // Render main table
+    function render() {
+        if(loggedInStudent) { document.getElementById('resultTableWrap').style.display = 'none'; return; }
+        document.getElementById('resultTableWrap').style.display = 'block';
         
-        let loginLoading = document.createElement('div');
-        loginLoading.className = 'loading';
-        loginLoading.innerHTML = 'ফলাফল আনতে অপেক্ষা করুন...';
-        document.getElementById('studentLoginSection').appendChild(loginLoading);
+        let head = `<th style="width:45px;">Roll</th><th style="width:150px;">Student Name</th>`;
+        subjects.forEach((s, i) => {
+            let wFull = writtenFullMarks[i] || 70;
+            let mFull = mcqFullMarks[i] || 30;
+            let hasMcq = subjectHasMcq[i] === true;
+            head += `<th class="subject-cell"><div class="subject-header">
+                <span class="subject-name" ondblclick="editSubjectName(${i})" title="ডাবল ক্লিক করে নাম এডিট করুন">${s}</span>
+                <div class="mark-distribution">
+                    <span>✍️ <input type="number" value="${wFull}" onchange="updateWrittenFull(${i}, this.value)" ${isAdmin ? '' : 'disabled'}></span>
+                    ${hasMcq ? `<span>📝 <input type="number" value="${mFull}" onchange="updateMcqFull(${i}, this.value)" ${isAdmin ? '' : 'disabled'}></span>` : '<span style="opacity:0.5;">📝 MCQ নেই</span>'}
+                </div>
+                <div class="mcq-toggle admin-only">
+                    <input type="checkbox" ${hasMcq ? 'checked' : ''} onchange="toggleSubjectMcq(${i})"> <span>MCQ থাকবে</span>
+                </div>
+                <div class="pass-mark-indicator" style="font-size:8px; color:#ffeb3b;">পাস: W${Math.round(wFull * 0.33)}${hasMcq ? `|M${Math.round(mFull * 0.33)}` : ''}</div>
+                <span class="btn-del" onclick="delSub(${i})">✖</span>
+            </div></th>`;
+        });
+        head += `<th class="cell-total">Total</th><th class="cell-pct">%</th><th class="cell-gpa">GPA</th><th class="cell-res">Result</th><th class="cell-pos">Rank</th>`;
+        document.getElementById('hRow').innerHTML = head;
         
-        let path = `results/${selectedClass}_${selectedGroup}_${selectedExam}`.replace(/\s+/g, '_');
-        db.ref(path).once('value', (examSnap) => {
-            loginLoading.remove();
-            let data = examSnap.val() || {};
-            let studentsList = data.students || [];
-            let rollsList = data.rolls || [];
-            let subjectsList = data.subjects || [];
-            
-            if(studentsList.length === 0) {
-                alert(`"${selectedExam}" পরীক্ষায় এখনো কোনো ছাত্র ডাটা নেই!`);
-                return;
+        let body = '';
+        for(let s = 0; s < students.length; s++) {
+            let name = limitNameLength(students[s] || '');
+            let roll = rolls[s] || (s + 1);
+            body += `<tr>
+                <td><input type="number" class="roll-input" value="${roll}" oninput="updateStudentRoll(${s}, this.value)" ${isAdmin ? '' : 'disabled'}></td>
+                <td><input type="text" class="stu-name-input" value="${name}" maxlength="25" oninput="updateStudentName(${s}, this.value)" ${isAdmin ? '' : 'disabled'}><span class="btn-del" onclick="delStu(${s})">✖</span></td>`;
+            for(let sub = 0; sub < subjects.length; sub++) {
+                let wKey = `${s}_${sub}`;
+                let wVal = writtenMarks[wKey] || 0;
+                let mVal = mcqMarks[wKey] || 0;
+                let wFull = writtenFullMarks[sub] || 70;
+                let mFull = mcqFullMarks[sub] || 30;
+                let hasMcq = subjectHasMcq[sub] === true;
+                let writtenPass = wVal >= wFull * 0.33;
+                let mcqPass = hasMcq ? (mVal >= mFull * 0.33) : true;
+                let isOpt = studentOptional[wKey] === true;
+                body += `<td>
+                    <div style="display:flex; gap:3px; justify-content:center; flex-wrap:wrap;">
+                        <input type="number" class="written-input" value="${wVal}" 
+                            oninput="let max=${wFull}; if(this.value>max) this.value=max; writtenMarks['${wKey}']=this.value; calc()" 
+                            ${isAdmin ? '' : 'disabled'} style="${!writtenPass && wVal > 0 ? 'border-color:#d32f2f; background:#ffebee;' : ''}">
+                        ${hasMcq ? `<input type="number" class="mcq-input" value="${mVal}" 
+                            oninput="let max=${mFull}; if(this.value>max) this.value=max; mcqMarks['${wKey}']=this.value; calc()" 
+                            ${isAdmin ? '' : 'disabled'} style="${!mcqPass && mVal > 0 ? 'border-color:#d32f2f; background:#ffebee;' : ''}">` : '<span style="font-size:10px;">(শুধু লিখিত)</span>'}
+                    </div>
+                    <div class="optional-checkbox">
+                        <input type="checkbox" ${isOpt ? 'checked' : ''} onchange="toggleOptional(${s}, ${sub})" ${isAdmin ? '' : 'disabled'}> <span>৪র্থ</span>
+                    </div>
+                    <span class="total-mark-display">মোট: ${wVal + (hasMcq ? mVal : 0)}</span>
+                </td>`;
             }
+            body += `<td class="r-total">0</td><td class="r-pct">0%</td><td class="r-gpa">-</td><td class="r-res">-</td><td class="r-pos">-</td></tr>`;
+        }
+        document.getElementById('tBody').innerHTML = body;
+        calc();
+        toggleCols();
+    }
+    
+    // Calculate GPA with new formula: (Sum of normal subjects GPA + (Optional GPA - 2)) ÷ Number of normal subjects
+    function calc() {
+        let rows = document.querySelectorAll('#tBody tr');
+        let allData = [];
+        for(let s = 0; s < rows.length; s++) {
+            let row = rows[s];
+            let totalObtained = 0, totalFull = 0;
+            let normalGPAs = [];
+            let optionalBonus = 0;
+            let hasFail = false;
             
-            let studentIdx = -1;
-            for(let i = 0; i < studentsList.length; i++) {
-                if(rollsList[i] === roll && studentsList[i] === name) { 
-                    studentIdx = i; 
-                    break; 
+            for(let sub = 0; sub < subjects.length; sub++) {
+                let { total, full, written, mcq, hasMcq } = getSubjectTotalAndFull(s, sub);
+                totalObtained += total;
+                totalFull += full;
+                let percent = full ? (total / full) * 100 : 0;
+                let gpa = getGPAFromPercent(percent);
+                let pass = isSubjectPass(written, mcq, sub);
+                if(!pass) hasFail = true;
+                
+                let isOptional = studentOptional[`${s}_${sub}`] === true;
+                if(isOptional && gpa > 0) {
+                    optionalBonus += Math.max(0, gpa - 2.00);
+                } else {
+                    normalGPAs.push(gpa);
                 }
             }
             
-            if(studentIdx === -1) {
-                alert(`রোল ${roll} এবং নাম "${name}" এর জন্য "${selectedExam}" পরীক্ষায় কোনো ফলাফল পাওয়া যায়নি!\n\nনিশ্চিত করুন যে রোল ও নাম সঠিক আছে।`);
-                return;
-            }
-            
-            let writtenData = data.writtenMarks || {};
-            let mcqData = data.mcqMarks || {};
-            let writtenFull = data.writtenFullMarks || {};
-            let mcqFull = data.mcqFullMarks || {};
-            let optData = data.studentOptional || {};
-            let subjectMarks = [];
-            let totalObtained = 0, totalFull = 0, optionalBonusTotal = 0;
-            let hasFail = false;
-            
-            subjectsList.forEach((sub, idx) => {
-                let written = parseFloat(writtenData[`${studentIdx}_${idx}`]) || 0;
-                let mcq = parseFloat(mcqData[`${studentIdx}_${idx}`]) || 0;
-                let wFull = writtenFull[idx] || 70;
-                let mFull = mcqFull[idx] || 30;
-                let obt = written + mcq;
-                let full = wFull + mFull;
-                totalObtained += obt; 
-                totalFull += full;
-                let percent = (obt / full) * 100;
-                let gpa = getGPAFromPercent(percent);
-                let isOptional = optData[`${studentIdx}_${idx}`] === true;
-                let subjectPass = (written >= wFull * 0.33 && mcq >= mFull * 0.33);
-                if(!subjectPass) hasFail = true;
-                if(isOptional && gpa > 0) optionalBonusTotal += Math.max(0, gpa - 2.00);
-                subjectMarks.push({ 
-                    name: sub, written, mcq, wFull, mFull, 
-                    obtained: obt, full, percent: Math.round(percent), 
-                    isOptional, subjectPass 
-                });
-            });
-            
-            let percentOverall = totalFull ? (totalObtained / totalFull) * 100 : 0;
-            let rawGPA = getGPAFromPercent(percentOverall);
-            let finalGPA = rawGPA + optionalBonusTotal;
-            if(finalGPA > 5) finalGPA = 5.00;
+            let totalPercent = totalFull ? (totalObtained / totalFull) * 100 : 0;
+            let sumNormal = normalGPAs.reduce((a, b) => a + b, 0);
+            let finalGPA = (sumNormal + optionalBonus) / (normalGPAs.length || 1);
+            finalGPA = Math.min(5.00, finalGPA);
             if(hasFail) finalGPA = 0.00;
             
-            let examData = [{ 
-                examName: selectedExam, 
-                subjects: subjectMarks, 
-                total: totalObtained, 
-                fullMark: totalFull, 
-                percent: Math.round(percentOverall), 
-                gpa: finalGPA.toFixed(2), 
-                grade: getGrade(percentOverall), 
-                result: hasFail ? 'Fail' : 'Pass', 
-                optionalBonus: optionalBonusTotal 
-            }];
-            
-            loggedInStudent = { roll, name, class: selectedClass, group: selectedGroup };
-            displayDetailedResults(examData);
-        }).catch(err => {
-            loginLoading.remove();
-            console.error("Login error:", err);
-            alert("ফলাফল আনতে সমস্যা হয়েছে! নেটওয়ার্ক চেক করুন।");
+            row.querySelector('.r-total').innerText = `${totalObtained}/${totalFull}`;
+            row.querySelector('.r-pct').innerText = Math.round(totalPercent) + '%';
+            row.querySelector('.r-gpa').innerHTML = `<span class="gpa-badge">${finalGPA.toFixed(2)} (${getGrade(totalPercent)})</span>`;
+            row.querySelector('.r-res').innerHTML = hasFail ? '<span class="status-badge fail">Fail</span>' : '<span class="status-badge pass">Pass</span>';
+            allData.push({ sIdx: s, total: totalObtained, name: students[s], hasFail });
+        }
+        
+        let sorted = [...allData].sort((a, b) => b.total - a.total);
+        allData.forEach(d => {
+            let rank = sorted.findIndex(x => x.total === d.total) + 1;
+            rows[d.sIdx].querySelector('.r-pos').innerHTML = `<span style="font-weight:800">${rank}</span>`;
         });
+        
+        let top = allData.filter(d => !d.hasFail && d.total > 0).sort((a, b) => b.total - a.total).slice(0, 10);
+        if(top.length) {
+            document.getElementById('topHoldersBox').style.display = 'block';
+            let items = top.map((r, i) => {
+                let medal = i < 3 ? ['🥇 1st', '🥈 2nd', '🥉 3rd'][i] : `${i + 1}th`;
+                return `<div class="rank-item"><span>${medal}</span><span><strong>${limitNameLength(r.name || '').substring(0, 20)}</strong> (${r.total})</span></div>`;
+            });
+            let mid = Math.ceil(items.length / 2);
+            document.getElementById('topList').innerHTML = `<div class="merit-column">${items.slice(0, mid).join('')}</div><div class="merit-column">${items.slice(mid).join('')}</div>`;
+        } else {
+            document.getElementById('topHoldersBox').style.display = 'none';
+        }
     }
     
-    function displayDetailedResults(examsData) {
-        document.getElementById('studentLoginSection').style.display = 'none';
-        document.getElementById('studentInfoCard').style.display = 'block';
-        document.getElementById('adminControlsPanel').style.display = 'none';
-        document.getElementById('resultTableWrap').style.display = 'none';
-        document.getElementById('topHoldersBox').style.display = 'none';
+    function toggleCols() {
+        let t = document.getElementById('chkTotal').checked;
+        let p = document.getElementById('chkPct').checked;
+        let g = document.getElementById('chkGPA').checked;
+        let r = document.getElementById('chkRes').checked;
+        let s = document.getElementById('chkPos').checked;
+        document.querySelectorAll('.cell-total').forEach(el => el.style.display = t ? '' : 'none');
+        document.querySelectorAll('.cell-pct').forEach(el => el.style.display = p ? '' : 'none');
+        document.querySelectorAll('.cell-gpa').forEach(el => el.style.display = g ? '' : 'none');
+        document.querySelectorAll('.cell-res').forEach(el => el.style.display = r ? '' : 'none');
+        document.querySelectorAll('.cell-pos').forEach(el => el.style.display = s ? '' : 'none');
+    }
+    
+    // Student login
+    function studentLogin() {
+        let roll = parseInt(document.getElementById('studentRoll').value);
+        let name = document.getElementById('studentName').value.trim();
+        let exam = document.getElementById('studentExam').value;
+        let grp = document.getElementById('studentGroup').value;
         
-        let html = `<div style="background:white; border-radius:20px; padding:20px;">
-            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin-bottom:25px; background:#e8f5e9; border-radius:16px; padding:15px;">
-                <p><strong><i class="fas fa-user"></i> নাম:</strong> ${loggedInStudent.name}</p>
-                <p><strong><i class="fas fa-sort-numeric-down"></i> রোল:</strong> ${loggedInStudent.roll}</p>
-                <p><strong><i class="fas fa-graduation-cap"></i> শ্রেণি:</strong> ${loggedInStudent.class}</p>
-                <p><strong><i class="fas fa-layer-group"></i> গ্রুপ:</strong> ${loggedInStudent.group}</p>
-            </div>`;
+        if(!roll || !name || !exam) { alert("সব তথ্য দিন!"); return; }
+        
+        let path = `results/SSC Special Batch_${grp}_${exam}`.replace(/\s+/g, '_');
+        db.ref(path).once('value', (snap) => {
+            let d = snap.val() || {};
+            let stu = d.students || [];
+            let rl = d.rolls || [];
+            let subs = d.subjects || [];
             
-        examsData.forEach(exam => {
-            html += `<div class="exam-card">
-                <div class="exam-title">📚 ${exam.examName} ${exam.optionalBonus > 0 ? '<span style="background:#ffd966;padding:2px 8px;border-radius:20px;">+৪র্থ বোনাস</span>' : ''}</div>
+            let idx = -1;
+            for(let i = 0; i < stu.length; i++) {
+                if(rl[i] === roll && stu[i] === name) { idx = i; break; }
+            }
+            if(idx === -1) { alert("রোল ও নাম মেলেনি!"); return; }
+            
+            let wFulls = d.writtenFullMarks || {};
+            let mFulls = d.mcqFullMarks || {};
+            let hasMcq = d.subjectHasMcq || {};
+            let opt = d.studentOptional || {};
+            let wMarks = d.writtenMarks || {};
+            let mMarks = d.mcqMarks || {};
+            
+            let subjectsData = [];
+            let totalObt = 0, totalFull = 0;
+            let normalGPAs = [];
+            let optionalBonus = 0;
+            let fail = false;
+            
+            for(let i = 0; i < subs.length; i++) {
+                let w = parseFloat(wMarks[`${idx}_${i}`]) || 0;
+                let m = parseFloat(mMarks[`${idx}_${i}`]) || 0;
+                let wF = wFulls[i] || 70;
+                let mF = mFulls[i] || 30;
+                let hasM = hasMcq[i] === true;
+                let obt = w + (hasM ? m : 0);
+                let full = wF + (hasM ? mF : 0);
+                let pct = full ? (obt / full) * 100 : 0;
+                let gpa = getGPAFromPercent(pct);
+                let pass = (w >= wF * 0.33) && (!hasM || m >= mF * 0.33);
+                if(!pass) fail = true;
+                
+                let isOpt = opt[`${idx}_${i}`] === true;
+                if(isOpt && gpa > 0) {
+                    optionalBonus += Math.max(0, gpa - 2.00);
+                } else {
+                    normalGPAs.push(gpa);
+                }
+                
+                totalObt += obt;
+                totalFull += full;
+                subjectsData.push({
+                    name: subs[i], written: w, mcq: m, wFull: wF, mFull: mF,
+                    hasMcq: hasM, obtained: obt, full, percent: Math.round(pct),
+                    subjectPass: pass, isOptional: isOpt
+                });
+            }
+            
+            let sumNormal = normalGPAs.reduce((a, b) => a + b, 0);
+            let finalGPA = (sumNormal + optionalBonus) / (normalGPAs.length || 1);
+            finalGPA = Math.min(5.00, finalGPA);
+            if(fail) finalGPA = 0.00;
+            let overallPercent = totalFull ? (totalObt / totalFull) * 100 : 0;
+            
+            let html = `<div class="exam-card">
+                <div class="exam-title">📘 ${exam}</div>
                 <table class="subject-table">
                     <thead>
-                        <tr><th>#</th><th>বিষয়</th><th>Written</th><th>MCQ</th><th>মোট</th><th>৪র্থ?</th><th>ফলাফল</th></tr>
+                        <tr><th>#</th><th>বিষয়</th><th>Written</th>${subjectsData[0]?.hasMcq ? '<th>MCQ</th>' : ''}<th>মোট</th><th>৪র্থ?</th><th>ফলাফল</th></tr>
                     </thead>
                     <tbody>`;
-            exam.subjects.forEach((sub, idx) => {
-                let writtenPass = sub.written >= sub.wFull * 0.33;
-                let mcqPass = sub.mcq >= sub.mFull * 0.33;
+            subjectsData.forEach((sub, idx) => {
+                let wPass = sub.written >= sub.wFull * 0.33;
+                let mPass = !sub.hasMcq || sub.mcq >= sub.mFull * 0.33;
                 html += `<tr>
-                    <td>${idx+1}</td>
+                    <td>${idx + 1}</td>
                     <td style="text-align:left">${sub.name}</td>
-                    <td>${sub.written}/${sub.wFull} ${!writtenPass && sub.written > 0 ? '⚠️' : ''}</td>
-                    <td>${sub.mcq}/${sub.mFull} ${!mcqPass && sub.mcq > 0 ? '⚠️' : ''}</td>
+                    <td>${sub.written}/${sub.wFull} ${!wPass && sub.written > 0 ? '⚠️' : ''}</td>
+                    ${sub.hasMcq ? `<td>${sub.mcq}/${sub.mFull} ${!mPass && sub.mcq > 0 ? '⚠️' : ''}</td>` : ''}
                     <td><strong>${sub.obtained}/${sub.full}</strong> (${sub.percent}%)</td>
-                    <td>${sub.isOptional ? '✅ হ্যাঁ' : '❌ না'}</td>
+                    <td>${sub.isOptional ? '✅' : '❌'}</td>
                     <td><span class="status-badge ${sub.subjectPass ? 'pass' : 'fail'}">${sub.subjectPass ? 'পাস' : 'ফেল'}</span></td>
                 </tr>`;
             });
             html += `</tbody>
                 </table>
                 <div class="exam-summary">
-                    <div class="summary-item"><span>📊 মোট:</span><span>${exam.total}/${exam.fullMark}</span></div>
-                    <div class="summary-item"><span>📈 শতকরা:</span><span>${exam.percent}%</span></div>
-                    <div class="summary-item"><span>⭐ GPA (৪র্থ নিয়ম):</span><span class="gpa-badge-sm">${exam.gpa} (${exam.grade})</span></div>
-                    <div class="summary-item"><span>🎯 ফলাফল:</span><span class="status-badge ${exam.result === 'Pass' ? 'pass' : 'fail'}">${exam.result}</span></div>
-                    ${exam.optionalBonus > 0 ? `<div class="summary-item"><span>✨ ৪র্থ বোনাস:</span><span>+${exam.optionalBonus.toFixed(2)}</span></div>` : ''}
+                    <div class="summary-item"><span>📊 মোট:</span> ${totalObt}/${totalFull}</div>
+                    <div class="summary-item"><span>📈 শতকরা:</span> ${Math.round(overallPercent)}%</div>
+                    <div class="summary-item"><span>⭐ GPA:</span> <span class="gpa-badge-sm">${finalGPA.toFixed(2)} (${getGrade(overallPercent)})</span></div>
+                    <div class="summary-item"><span>🎯 ফলাফল:</span> <span class="status-badge ${fail ? 'fail' : 'pass'}">${fail ? 'Fail' : 'Pass'}</span></div>
+                    ${optionalBonus > 0 ? `<div class="summary-item"><span>✨ বোনাস:</span> +${optionalBonus.toFixed(2)}</div>` : ''}
                 </div>
             </div>`;
-        });
-        
-        html += `<div class="info-note">
-            <i class="fas fa-calculator"></i> <strong>GPA গণনার নিয়ম:</strong><br>
-            • প্রতিটি বিষয়ে Written 33% এবং MCQ 33% - দুই অংশেই পাস করতে হবে<br>
-            • ৪র্থ বিষয়ের Bonus = (৪র্থ বিষয়ের GPA - 2.00)<br>
-            • চূড়ান্ত GPA = (৮টি সাধারণ বিষয়ের GPA এর যোগফল + Bonus) ÷ 8<br>
-            • সর্বোচ্চ GPA 5.00, কোনো সাধারণ বিষয়ে ফেল করলে ফলাফল Fail
-        </div>`;
-        
-        document.getElementById('studentOwnResult').innerHTML = html;
+            
+            document.getElementById('studentOwnResult').innerHTML = html;
+            document.getElementById('studentLoginSection').style.display = 'none';
+            document.getElementById('studentInfoCard').style.display = 'block';
+            document.getElementById('adminControlsPanel').style.display = 'none';
+            document.getElementById('resultTableWrap').style.display = 'none';
+            document.getElementById('topHoldersBox').style.display = 'none';
+            loggedInStudent = { roll, name };
+        }).catch(() => alert("ফলাফল আনতে সমস্যা হয়েছে!"));
     }
     
-    function studentLogout() { 
-        loggedInStudent = null; 
-        document.getElementById('studentLoginSection').style.display = 'block'; 
-        document.getElementById('studentInfoCard').style.display = 'none'; 
-        document.getElementById('adminControlsPanel').style.display = 'flex'; 
-        document.getElementById('resultTableWrap').style.display = 'block'; 
-        document.getElementById('topHoldersBox').style.display = 'block'; 
-        render(); 
-    }
-    
-    function toggleAdmin() { 
-        if(!isAdmin) { 
-            let pass = prompt("এডমিন পাসওয়ার্ড দিন:"); 
-            if(pass === "#$t") { 
-                isAdmin = true; 
-                document.body.classList.add('is-admin'); 
-                document.getElementById('loginBtn').innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout Admin'; 
-                if(loggedInStudent) studentLogout(); 
-                updateExamDropdowns();
-            } else if(pass !== null) alert("ভুল পাসওয়ার্ড!"); 
-        } else { 
-            isAdmin = false; 
-            document.body.classList.remove('is-admin'); 
-            document.getElementById('loginBtn').innerHTML = '<i class="fas fa-lock"></i> Admin Login'; 
-            render(); 
-        } 
-    }
-    
-    function addExam() { 
-        if(!isAdmin) return; 
-        let v = document.getElementById('examInp').value.trim(); 
-        if(v && !examsList.includes(v)) { 
-            let c = document.getElementById('cSel').value, g = document.getElementById('gSel').value; 
-            db.ref(`exams_list_per_class/${c}_${g}`).once('value', (snap) => { 
-                let list = snap.val() || []; 
-                list.push(v); 
-                db.ref(`exams_list_per_class/${c}_${g}`).set(list).then(() => { 
-                    examsList = list; 
-                    updateExamDropdowns();
-                    document.getElementById('eSel').value = v; 
-                    document.getElementById('examInp').value = ''; 
-                    updateInfo(); 
-                }); 
-            }); 
-        } 
-    }
-    
-    function saveToCloud() { 
-        if(isAdmin) {
-            document.getElementById('loadingMsg').style.display = 'block';
-            db.ref(getPath()).set({ 
-                subjects, students, rolls, writtenMarks, mcqMarks, 
-                writtenFullMarks, mcqFullMarks, studentOptional 
-            }).then(() => {
-                document.getElementById('loadingMsg').style.display = 'none';
-                alert("ডেটা সেভ হয়েছে!");
-            }).catch(err => {
-                document.getElementById('loadingMsg').style.display = 'none';
-                alert("সেভ করতে সমস্যা হয়েছে!");
-            });
-        } 
-    }
-    
-    function render() {
-        if(loggedInStudent) { 
-            document.getElementById('resultTableWrap').style.display = 'none'; 
-            return; 
-        }
+    function studentLogout() {
+        loggedInStudent = null;
+        document.getElementById('studentLoginSection').style.display = 'block';
+        document.getElementById('studentInfoCard').style.display = 'none';
+        document.getElementById('adminControlsPanel').style.display = 'flex';
         document.getElementById('resultTableWrap').style.display = 'block';
-        
-        let headHtml = `<th style="width:45px;">রোল</th><th style="width:150px;">ছাত্রের নাম (25)</th>`;
-        
-        subjects.forEach((s, i) => {
-            let wFull = writtenFullMarks[i] || 70;
-            let mFull = mcqFullMarks[i] || 30;
-            headHtml += `<th class="subject-cell"><div class="subject-header">
-                <span class="subject-name" ondblclick="editSubjectName(${i})" title="ডাবল ক্লিক করে নাম এডিট করুন">${s}</span>
-                <div class="mark-distribution">
-                    <span>✍️ <input type="number" value="${wFull}" onchange="updateWrittenFull(${i}, this.value)" ${isAdmin ? '' : 'disabled'} style="width:38px"></span>
-                    <span>📝 <input type="number" value="${mFull}" onchange="updateMcqFull(${i}, this.value)" ${isAdmin ? '' : 'disabled'} style="width:38px"></span>
-                </div>
-                <div class="pass-mark-indicator" style="font-size:8px; color:#ffeb3b;">পাস: W${Math.round(wFull * 0.33)}|M${Math.round(mFull * 0.33)}</div>
-                <span class="btn-del" onclick="delSub(${i})">✖</span>
-            </div></th>`;
-        });
-        
-        headHtml += `<th class="cell-total">Total</th><th class="cell-pct">%</th><th class="cell-gpa">GPA<br>(4th)</th><th class="cell-res">Result</th><th class="cell-pos">Rank</th>`;
-        document.getElementById('hRow').innerHTML = headHtml;
-        
-        let bodyHtml = '';
-        for(let sIdx = 0; sIdx < students.length; sIdx++) {
-            let name = limitNameLength(students[sIdx] || '');
-            let roll = rolls[sIdx] || (sIdx + 1);
-            
-            bodyHtml += `<tr>
-                <td><input type="number" class="roll-input" value="${roll}" oninput="updateStudentRoll(${sIdx}, this.value)" ${isAdmin ? '' : 'disabled'}></td>
-                <td style="width:150px;">
-                    <input type="text" class="stu-name-input" value="${name}" maxlength="25" oninput="updateStudentName(${sIdx}, this.value)" ${isAdmin ? '' : 'disabled'}>
-                    <span class="btn-del" onclick="delStu(${sIdx})">✖</span>
-                </td>`;
-            
-            for(let subIdx = 0; subIdx < subjects.length; subIdx++) {
-                let wKey = `${sIdx}_${subIdx}`;
-                let writtenVal = writtenMarks[wKey] || 0;
-                let mcqVal = mcqMarks[wKey] || 0;
-                let wFull = writtenFullMarks[subIdx] || 70;
-                let mFull = mcqFullMarks[subIdx] || 30;
-                let writtenPass = writtenVal >= wFull * 0.33;
-                let mcqPass = mcqVal >= mFull * 0.33;
-                let isOptional = studentOptional[wKey] === true;
-                
-                bodyHtml += `<td style="min-width:120px">
-                    <div style="display:flex; gap:3px; justify-content:center; flex-wrap:wrap;">
-                        <input type="number" class="written-input" value="${writtenVal}" 
-                            oninput="let max=${wFull}; if(this.value>max) this.value=max; writtenMarks['${wKey}']=this.value; calc()" 
-                            ${isAdmin ? '' : 'disabled'} style="${!writtenPass && writtenVal > 0 ? 'border-color:#d32f2f; background:#ffebee;' : ''}">
-                        <input type="number" class="mcq-input" value="${mcqVal}" 
-                            oninput="let max=${mFull}; if(this.value>max) this.value=max; mcqMarks['${wKey}']=this.value; calc()" 
-                            ${isAdmin ? '' : 'disabled'} style="${!mcqPass && mcqVal > 0 ? 'border-color:#d32f2f; background:#ffebee;' : ''}">
-                    </div>
-                    <div class="optional-checkbox" onclick="event.stopPropagation()">
-                        <input type="checkbox" ${isOptional ? 'checked' : ''} onchange="toggleOptional(${sIdx}, ${subIdx})" ${isAdmin ? '' : 'disabled'}> 
-                        <span>৪র্থ</span>
-                    </div>
-                    <span class="total-mark-display">মোট: ${parseFloat(writtenVal) + parseFloat(mcqVal)}</span>
-                </td>`;
-            }
-            
-            bodyHtml += `<td class="r-total">0</td><td class="r-pct">0%</td><td class="r-gpa">-</td><td class="r-res">-</td><td class="r-pos">-</td></tr>`;
+        document.getElementById('topHoldersBox').style.display = 'block';
+        render();
+    }
+    
+    function toggleAdmin() {
+        if(!isAdmin) {
+            let pass = prompt("এডমিন পাসওয়ার্ড দিন:");
+            if(pass === "#$t") {
+                isAdmin = true;
+                document.body.classList.add('is-admin');
+                document.getElementById('loginBtn').innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout Admin';
+                if(loggedInStudent) studentLogout();
+                updateExamDropdowns();
+                render();
+            } else if(pass !== null) alert("ভুল পাসওয়ার্ড!");
+        } else {
+            isAdmin = false;
+            document.body.classList.remove('is-admin');
+            document.getElementById('loginBtn').innerHTML = '<i class="fas fa-lock"></i> Admin Login';
+            render();
         }
-        
-        document.getElementById('tBody').innerHTML = bodyHtml;
-        calc(); 
-        toggleCols();
     }
     
-    function calc() {
-        let rows = document.querySelectorAll('#tBody tr');
-        let allData = [];
-        for(let sIdx = 0; sIdx < rows.length; sIdx++) {
-            let row = rows[sIdx];
-            let totalMarks = 0, totalFull = 0, subGPAs = [], hasFail = false, optionalBonus = 0;
-            for(let subIdx = 0; subIdx < subjects.length; subIdx++) {
-                let written = parseFloat(writtenMarks[`${sIdx}_${subIdx}`]) || 0;
-                let mcq = parseFloat(mcqMarks[`${sIdx}_${subIdx}`]) || 0;
-                let wFull = writtenFullMarks[subIdx] || 70;
-                let mFull = mcqFullMarks[subIdx] || 30;
-                let obt = written + mcq, full = wFull + mFull;
-                totalMarks += obt; totalFull += full;
-                let percent = (obt / full) * 100;
-                let gpa = getGPAFromPercent(percent);
-                let subjectPass = isSubjectPass(written, mcq, subIdx);
-                if(!subjectPass) hasFail = true;
-                let isOptional = studentOptional[`${sIdx}_${subIdx}`] === true;
-                if(isOptional && gpa > 0) { optionalBonus = Math.max(0, gpa - 2.00); }
-                else subGPAs.push(gpa);
-            }
-            let avgPoints = subGPAs.reduce((a, b) => a + b, 0) + optionalBonus;
-            let finalGPA = subGPAs.length ? avgPoints / subGPAs.length : 0;
-            finalGPA = Math.min(5.00, finalGPA);
-            if(hasFail) finalGPA = 0.00;
-            let percentTotal = totalFull ? (totalMarks / totalFull) * 100 : 0;
-            row.querySelector('.r-total').innerText = totalMarks + '/' + totalFull;
-            row.querySelector('.r-pct').innerText = Math.round(percentTotal) + '%';
-            row.querySelector('.r-gpa').innerHTML = `<span class="gpa-badge">${finalGPA.toFixed(2)} (${getGrade(percentTotal)})</span>`;
-            row.querySelector('.r-res').innerHTML = hasFail ? '<span class="status-badge fail">Fail</span>' : '<span class="status-badge pass">Pass</span>';
-            allData.push({ sIdx, total: totalMarks, name: students[sIdx], hasFail });
+    // CRUD operations
+    function addExam() {
+        if(!isAdmin) return;
+        let v = document.getElementById('examInp').value.trim();
+        if(v && !examsList.includes(v)) {
+            let c = document.getElementById('cSel').value;
+            let g = document.getElementById('gSel').value;
+            db.ref(`exams_list_per_class/${c}_${g}`).once('value', (snap) => {
+                let list = snap.val() || [];
+                list.push(v);
+                db.ref(`exams_list_per_class/${c}_${g}`).set(list).then(() => {
+                    examsList = list;
+                    updateExamDropdowns();
+                    document.getElementById('eSel').value = v;
+                    document.getElementById('examInp').value = '';
+                    updateInfo();
+                });
+            });
         }
-        let sorted = [...allData].sort((a, b) => b.total - a.total);
-        allData.forEach(d => { let rank = sorted.findIndex(x => x.total === d.total) + 1; rows[d.sIdx].querySelector('.r-pos').innerHTML = `<span style="font-weight:800">${rank}</span>`; });
-        let topPassed = allData.filter(d => !d.hasFail && d.total > 0).sort((a, b) => b.total - a.total).slice(0, 10);
-        if(topPassed.length) {
-            document.getElementById('topHoldersBox').style.display = 'block';
-            let medals = ['🥇 1st', '🥈 2nd', '🥉 3rd'];
-            let items = topPassed.map((r, i) => { let medal = i < 3 ? medals[i] : `${i + 1}th`; return `<div class="rank-item"><span>${medal}</span><span><strong>${limitNameLength(r.name || '').substring(0, 20)}</strong> (${r.total})</span></div>`; });
-            let mid = Math.ceil(items.length / 2);
-            document.getElementById('topList').innerHTML = `<div class="merit-column">${items.slice(0, mid).join('')}</div><div class="merit-column">${items.slice(mid).join('')}</div>`;
-        } else { document.getElementById('topHoldersBox').style.display = 'none'; }
     }
     
-    function toggleCols() { 
-        let t = document.getElementById('chkTotal').checked, p = document.getElementById('chkPct').checked, g = document.getElementById('chkGPA').checked, r = document.getElementById('chkRes').checked, s = document.getElementById('chkPos').checked; 
-        document.querySelectorAll('.cell-total').forEach(el => el.style.display = t ? '' : 'none'); 
-        document.querySelectorAll('.cell-pct').forEach(el => el.style.display = p ? '' : 'none'); 
-        document.querySelectorAll('.cell-gpa').forEach(el => el.style.display = g ? '' : 'none'); 
-        document.querySelectorAll('.cell-res').forEach(el => el.style.display = r ? '' : 'none'); 
-        document.querySelectorAll('.cell-pos').forEach(el => el.style.display = s ? '' : 'none'); 
+    function addSub() {
+        if(isAdmin) {
+            let v = document.getElementById('subInp').value.trim();
+            if(v) {
+                subjects.push(v);
+                render();
+                document.getElementById('subInp').value = '';
+            }
+        }
     }
     
-    function addSub() { 
-        if(isAdmin) { 
-            let v = document.getElementById('subInp').value; 
-            if(v) { 
-                subjects.push(v); 
-                render(); 
-                document.getElementById('subInp').value = ''; 
-            } 
-        } 
+    function addStu() {
+        if(isAdmin) {
+            let v = document.getElementById('nameInp').value.trim();
+            if(v) {
+                students.push(limitNameLength(v));
+                rolls.push(students.length);
+                render();
+                document.getElementById('nameInp').value = '';
+            }
+        }
     }
     
-    function addStu() { 
-        if(isAdmin) { 
-            let v = document.getElementById('nameInp').value.trim(); 
-            if(v) { 
-                let shortName = limitNameLength(v);
-                students.push(shortName); 
-                rolls.push(students.length); 
-                render(); 
-                document.getElementById('nameInp').value = ''; 
-            } 
-        } 
+    function delSub(i) {
+        if(isAdmin && confirm("সাবজেক্ট ডিলিট করবেন?")) {
+            subjects.splice(i, 1);
+            render();
+        }
     }
     
-    function delSub(i) { 
-        if(isAdmin && confirm("সাবজেক্ট ডিলিট করবেন?")) { 
-            subjects.splice(i, 1); 
-            render(); 
-        } 
+    function delStu(i) {
+        if(isAdmin && confirm("ছাত্র ডিলিট করবেন?")) {
+            students.splice(i, 1);
+            rolls.splice(i, 1);
+            render();
+        }
     }
     
-    function delStu(i) { 
-        if(isAdmin && confirm("ছাত্র ডিলিট করবেন?")) { 
-            students.splice(i, 1); 
-            rolls.splice(i, 1); 
-            render(); 
-        } 
-    }
-    
-    window.onload = () => { 
-        changeClass(); 
-    };
+    window.onload = () => { changeClass(); };
 </script>
 </body>
 </html>
