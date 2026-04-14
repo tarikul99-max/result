@@ -18,7 +18,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 1600px;
+            max-width: 100%;
             width: 100%;
             margin: auto;
             background: #fff;
@@ -155,7 +155,7 @@
             background: white;
             border-radius: 20px;
             margin-bottom: 25px;
-            overflow: hidden;
+            overflow-x: auto;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             border: 1px solid #c8e6c9;
         }
@@ -278,23 +278,99 @@
         .btn-add { background: #2e7d32; color: white; }
         .btn-print { background: #1b5e20; color: white; }
         .btn-login { background: #37474f; color: white; }
-        .btn-remove { background: #d32f2f; color: white; }
         .btn-copy { background: #0288d1; color: white; }
         .btn-reset { background: #d32f2f; color: white; }
-        .btn-edit { background: #ff9800; color: white; }
         .admin-only { display: none; }
         .is-admin .admin-only { display: inline-flex; }
-        .table-wrap { padding: 20px; overflow-x: auto; background: #ffffff; }
-        table { width: 100%; border-collapse: collapse; font-size: 12px; border-radius: 16px; overflow: hidden; }
-        th, td { border: 1px solid #c8e6c9; padding: 8px 6px; text-align: center; vertical-align: middle; }
-        th { background: linear-gradient(95deg, #2e7d32, #388e3c); color: white; font-weight: 700; padding: 10px 6px; font-size: 12px; }
+        .table-wrap { 
+            padding: 20px; 
+            overflow-x: auto !important; 
+            background: #ffffff;
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            font-size: 12px; 
+            border-radius: 16px; 
+            overflow: hidden;
+            min-width: 600px;
+        }
+        th, td { 
+            border: 1px solid #c8e6c9; 
+            padding: 8px 6px; 
+            text-align: center; 
+            vertical-align: middle;
+        }
+        th { 
+            background: linear-gradient(95deg, #2e7d32, #388e3c); 
+            color: white; 
+            font-weight: 700; 
+            padding: 10px 6px; 
+            font-size: 12px;
+        }
+        .cell-total, .cell-pct, .cell-gpa, .cell-res, .cell-pos {
+            white-space: nowrap;
+        }
+        
+        /* Student name column widened */
+        .stu-name-input { 
+            width: 100%; 
+            background: transparent; 
+            font-weight: 600; 
+            padding: 6px 8px; 
+            outline: none; 
+            max-width: 260px !important; 
+            min-width: 200px !important;
+            width: 220px !important;
+            font-size: 12px; 
+            border: 1px dashed #81c784;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .exam-type-selector {
+            font-size: 10px;
+            padding: 3px 6px;
+            margin-top: 4px;
+            border-radius: 12px;
+            background: rgba(233, 235, 229, 0.675);
+            color: rgba(19, 18, 18, 0.554);
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        
+        @media print {
+            @page { size: A4 landscape; margin: 5mm 4mm; }
+            body { background: white; padding: 0; margin: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .container { box-shadow: none; border-radius: 0; overflow: visible !important; background: white; max-width: 100%; margin: 0; padding: 0; }
+            .table-wrap { overflow: visible !important; padding: 0 !important; }
+            table { min-width: 100% !important; width: 100% !important; table-layout: auto !important; }
+            .controls-panel, .student-login-section, .btn-login, .admin-only, .optional-checkbox, .btn-del, .copy-section, #loginBtn, .logout-student-btn, .show-hide-box, .mark-distribution input, .auto-save-toast, .student-info-card, .exam-type-selector {
+                display: none !important;
+            }
+            #resultTableWrap { display: block !important; overflow: visible !important; }
+            #topHoldersBox { display: block !important; }
+            .cell-total, .cell-pct, .cell-gpa, .cell-res, .cell-pos { display: table-cell !important; }
+            th, td { padding: 4px 3px !important; font-size: 9px !important; }
+            .stu-name-input { font-size: 10px !important; padding: 3px !important; min-width: 180px !important; width: 180px !important; border: 1px solid #aaa !important; }
+            .excel-header, .info-bar, th, .main-title-box, .footer { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .subject-name-input { font-size: 9px !important; padding: 2px !important; }
+            .written-input, .mcq-input { width: 35px !important; font-size: 9px !important; }
+            .total-mark-display { font-size: 8px !important; }
+            .gpa-badge, .status-badge { font-size: 8px !important; padding: 2px 4px !important; }
+            tr { page-break-inside: avoid; }
+            thead { display: table-header-group; }
+        }
+        
         .subject-header {
             display: flex;
             flex-direction: column;
             gap: 4px;
             align-items: center;
-            min-width: 100px;
-            max-width: 140px;
+            min-width: 90px;
             word-break: break-word;
         }
         .subject-name-input {
@@ -302,7 +378,7 @@
             background: rgba(255,255,255,0.2);
             padding: 4px 6px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 11px;
             text-align: center;
             border: none;
             color: white;
@@ -320,7 +396,7 @@
             justify-content: center;
         }
         .mark-distribution input {
-            width: 38px;
+            width: 35px;
             padding: 2px;
             font-size: 9px;
             text-align: center;
@@ -328,41 +404,17 @@
             border: none;
             border-radius: 8px;
         }
-        .exam-type-toggle {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 9px;
-            background: #e8eaf6;
-            padding: 2px 6px;
-            border-radius: 15px;
-            margin-top: 2px;
-        }
-        .exam-type-toggle select {
-            width: 75px;
-            padding: 2px;
-            font-size: 8px;
-            border-radius: 10px;
-            background: white;
-        }
         .written-input, .mcq-input {
-            width: 50px;
+            width: 45px;
             text-align: center;
             border: 1px solid #c8e6c9;
             border-radius: 6px;
             padding: 4px;
             font-size: 11px;
             font-weight: bold;
-            transition: all 0.05s linear;
-        }
-        .written-input:focus, .mcq-input:focus {
-            border-color: #2e7d32;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(46,125,50,0.2);
-            background: #fff9c4;
         }
         .total-mark-display {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: bold;
             background: #e8f5e9;
             display: inline-block;
@@ -371,35 +423,22 @@
             margin-top: 3px;
         }
         .subject-total-badge {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: bold;
             background: #ffecb3;
             display: inline-block;
-            padding: 2px 6px;
+            padding: 2px 5px;
             border-radius: 12px;
             margin-top: 4px;
             color: #e65100;
         }
-        .stu-name-input { 
-            width: 100%; 
-            background: transparent; 
-            font-weight: 600; 
-            padding: 4px; 
-            outline: none; 
-            max-width: 200px; 
-            min-width: 140px;
-            font-size: 11px; 
-            border: 1px dashed #81c784;
-            border-radius: 6px;
-            text-align: center;
-        }
         .roll-input {
-            width: 50px;
+            width: 55px;
             text-align: center;
             font-weight: bold;
             border: 1px solid #c8e6c9;
             border-radius: 6px;
-            padding: 4px 2px;
+            padding: 5px 3px;
             background: #f5f5f5;
             font-size: 12px;
         }
@@ -412,32 +451,12 @@
             display: flex;
             align-items: center;
             gap: 3px;
-            font-size: 9px;
+            font-size: 8px;
             background: #ffecb3;
-            padding: 2px 6px;
+            padding: 2px 5px;
             border-radius: 15px;
             cursor: pointer;
             justify-content: center;
-        }
-        .gpa-rule-box {
-            background: #fff3e0;
-            padding: 8px 12px;
-            margin: 10px 20px;
-            border-radius: 14px;
-            border-left: 4px solid #ff9800;
-            font-size: 12px;
-        }
-        .copy-section {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-left: 12px;
-        }
-        .loading {
-            text-align: center;
-            padding: 20px;
-            color: #2e7d32;
-            font-size: 16px;
         }
         .auto-save-toast {
             position: fixed;
@@ -453,20 +472,12 @@
             transition: opacity 0.3s;
             pointer-events: none;
         }
-        @media print {
-            @page { size: A4 landscape; margin: 6mm 4mm; }
-            .controls-panel, .student-login-section, .info-bar button, .btn-print, .btn-login, .admin-only, 
-            .optional-checkbox, .btn-del, .gpa-rule-box, .copy-section, #loginBtn, .logout-student-btn,
-            .show-hide-box, .mark-distribution, .exam-type-toggle, .auto-save-toast {
-                display: none !important;
-            }
-            .student-info-card { display: block !important; }
-            .table-wrap { overflow: visible !important; }
-            th, td { border: 1px solid #000 !important; }
-        }
         @media (max-width: 768px) {
             body { padding: 10px; }
-            .written-input, .mcq-input { width: 40px; }
+            .written-input, .mcq-input { width: 38px; font-size: 10px; }
+            .subject-header { min-width: 70px; }
+            th, td { padding: 4px 3px; font-size: 10px; }
+            .stu-name-input { min-width: 150px !important; width: 150px !important; font-size: 11px; }
         }
     </style>
 </head>
@@ -491,15 +502,11 @@
         <button class="btn-print" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
     </div>
     
-    <div class="gpa-rule-box">
-        <i class="fas fa-calculator"></i> <strong>নম্বর দিন সাথে সাথে ফলাফল দেখুন</strong> | 33% পাস মার্ক | ৪র্থ বোনাস GPA 2.00 এর উপরে
-    </div>
-    
     <div id="studentLoginSection" class="student-login-section">
         <h3><i class="fas fa-user-graduate"></i> 👨‍🎓 Student Login</h3>
         <div class="login-group">
             <input type="number" id="studentRoll" placeholder="Roll Number">
-            <input type="text" id="studentName" placeholder="Full Name" maxlength="28">
+            <input type="text" id="studentName" placeholder="Full Name" maxlength="35" style="min-width:200px;">
             <select id="studentExam"></select>
             <select id="studentGroup"><option value="Science">বিজ্ঞান</option><option value="Commerce">বাণিজ্য</option><option value="Arts">মানবিক</option></select>
         </div>
@@ -530,7 +537,7 @@
         <div class="admin-only">
             <input type="text" id="examInp" placeholder="New Exam" style="width:100px"><button class="btn-add" onclick="addExam()">+Exam</button>
             <input type="text" id="subInp" placeholder="Subject" style="width:80px"><button class="btn-add" onclick="addSub()">+Sub</button>
-            <input type="text" id="nameInp" placeholder="Student Name" maxlength="28"><button class="btn-add" onclick="addStu()">+Student</button>
+            <input type="text" id="nameInp" placeholder="Student Name" maxlength="35" style="min-width:180px"><button class="btn-add" onclick="addStu()">+Student</button>
             <button class="btn-add" onclick="saveToCloud()">Save</button>
             <button class="btn-reset" onclick="resetCurrentPageData()"><i class="fas fa-trash-alt"></i> Reset</button>
         </div>
@@ -560,10 +567,9 @@
     let writtenFullMarks = {}, mcqFullMarks = {}, subjectExamType = {}, studentOptional = {};
     let examsList = [], isAdmin = false, loggedInStudent = null;
     let saveTimer = null;
-    let updatePending = false;
     
     function showToast() { let t = document.getElementById('autoSaveToast'); t.style.opacity = '1'; setTimeout(() => t.style.opacity = '0', 1200); }
-    function limitName(n) { return n && n.length > 28 ? n.substring(0,28) : (n||''); }
+    function limitName(n) { return n && n.length > 35 ? n.substring(0,35) : (n||''); }
     function getGPA(p) { if(p>=80) return 5.00; if(p>=70) return 4.00; if(p>=60) return 3.50; if(p>=50) return 3.00; if(p>=40) return 2.00; if(p>=33) return 1.00; return 0.00; }
     function getGrade(p) { let g=getGPA(p); if(g>=5) return 'A+'; if(g>=4) return 'A'; if(g>=3.5) return 'A-'; if(g>=3) return 'B'; if(g>=2) return 'C'; if(g>=1) return 'D'; return 'F'; }
     function isSubPass(w,m,idx) { let t=subjectExamType[idx]||'both', wF=writtenFullMarks[idx]||70, mF=mcqFullMarks[idx]||30; if(t==='written') return w>=wF*0.33; if(t==='mcq') return m>=mF*0.33; return (w>=wF*0.33 && m>=mF*0.33); }
@@ -607,28 +613,17 @@
         }).catch(()=>{ document.getElementById('loadingMsg').style.display='none'; alert("ডাটা লোড ব্যর্থ"); });
     }
     
-    // DIRECT DOM UPDATE WITHOUT FULL RE-RENDER FOR MARKS - STABLE!
+    function updateExamType(sub, type) {
+        if(!isAdmin) return;
+        subjectExamType[sub] = type;
+        render();
+        autoSave();
+    }
+    
     function updateWrittenMark(s,sub,val) { if(!isAdmin) return; let max=writtenFullMarks[sub]||70; let v=Math.min(parseFloat(val)||0, max); writtenMarks[`${s}_${sub}`]=v; updateSingleCellDisplay(s,sub); calcAndRank(); autoSave(); }
     function updateMcqMark(s,sub,val) { if(!isAdmin) return; let max=mcqFullMarks[sub]||30; let v=Math.min(parseFloat(val)||0, max); mcqMarks[`${s}_${sub}`]=v; updateSingleCellDisplay(s,sub); calcAndRank(); autoSave(); }
     
-    function updateSingleCellDisplay(s,sub) {
-        let row = document.querySelector(`#tBody tr:nth-child(${s+1})`);
-        if(!row) return;
-        let cell = row.cells[sub+2];
-        if(!cell) return;
-        let wVal=+(writtenMarks[`${s}_${sub}`]||0), mVal=+(mcqMarks[`${s}_${sub}`]||0);
-        let wF=writtenFullMarks[sub]||70, mF=mcqFullMarks[sub]||30, type=subjectExamType[sub]||'both';
-        let subTotal = type==='written'?wVal:(type==='mcq'?mVal:wVal+mVal);
-        let subFull = type==='written'?wF:(type==='mcq'?mF:wF+mF);
-        let totalDiv = cell.querySelector('.total-mark-display');
-        if(totalDiv) totalDiv.innerText = `প্রাপ্ত: ${subTotal}/${subFull}`;
-        let writtenPass = wVal >= wF * 0.33;
-        let mcqPass = mVal >= mF * 0.33;
-        let wInput = cell.querySelector('.written-input');
-        let mInput = cell.querySelector('.mcq-input');
-        if(wInput) wInput.style.backgroundColor = (!writtenPass && wVal > 0) ? '#ffebee' : '';
-        if(mInput) mInput.style.backgroundColor = (!mcqPass && mVal > 0) ? '#ffebee' : '';
-    }
+    function updateSingleCellDisplay(s,sub) { let row = document.querySelector(`#tBody tr:nth-child(${s+1})`); if(!row) return; let cell = row.cells[sub+2]; if(!cell) return; let wVal=+(writtenMarks[`${s}_${sub}`]||0), mVal=+(mcqMarks[`${s}_${sub}`]||0); let wF=writtenFullMarks[sub]||70, mF=mcqFullMarks[sub]||30, type=subjectExamType[sub]||'both'; let subTotal = type==='written'?wVal:(type==='mcq'?mVal:wVal+mVal); let subFull = type==='written'?wF:(type==='mcq'?mF:wF+mF); let totalDiv = cell.querySelector('.total-mark-display'); if(totalDiv) totalDiv.innerText = `প্রাপ্ত: ${subTotal}/${subFull}`; }
     
     function calcAndRank() {
         let rows = document.querySelectorAll('#tBody tr');
@@ -650,18 +645,18 @@
             let avg = (normalGPA.reduce((a,b)=>a+b,0)+bonus)/(normalGPA.length||1);
             let finalGPA = hasFail? 0 : Math.min(5.00, avg);
             let totalPercent = totalFull? (totalObt/totalFull)*100 : 0;
-            row.querySelector('.r-total').innerText = `${totalObt}/${totalFull}`;
-            row.querySelector('.r-pct').innerText = Math.round(totalPercent)+'%';
-            row.querySelector('.r-gpa').innerHTML = `<span class="gpa-badge">${finalGPA.toFixed(2)} (${getGrade(totalPercent)})</span>`;
-            row.querySelector('.r-res').innerHTML = hasFail ? '<span class="status-badge fail">Fail</span>' : '<span class="status-badge pass">Pass</span>';
+            if(row.querySelector('.r-total')) row.querySelector('.r-total').innerText = `${totalObt}/${totalFull}`;
+            if(row.querySelector('.r-pct')) row.querySelector('.r-pct').innerText = Math.round(totalPercent)+'%';
+            if(row.querySelector('.r-gpa')) row.querySelector('.r-gpa').innerHTML = `<span class="gpa-badge">${finalGPA.toFixed(2)} (${getGrade(totalPercent)})</span>`;
+            if(row.querySelector('.r-res')) row.querySelector('.r-res').innerHTML = hasFail ? '<span class="status-badge fail">ফেল</span>' : '<span class="status-badge pass">পাস</span>';
             allData.push({idx:s, total:totalObt, hasFail, name:students[s]||''});
         }
         let sorted = [...allData].sort((a,b)=>b.total - a.total);
-        allData.forEach(d=>{ let rank = sorted.findIndex(x=>x.total===d.total)+1; rows[d.idx].querySelector('.r-pos').innerHTML = `<span style="font-weight:800">${rank}</span>`; });
+        allData.forEach(d=>{ let rank = sorted.findIndex(x=>x.total===d.total)+1; let row = rows[d.idx]; if(row && row.querySelector('.r-pos')) row.querySelector('.r-pos').innerHTML = `<span style="font-weight:800; background:#ffecb3; padding:4px 8px; border-radius:20px; display:inline-block;">${rank}</span>`; });
         let top = allData.filter(d=>!d.hasFail && d.total>0).sort((a,b)=>b.total - a.total).slice(0,10);
         if(top.length) {
             document.getElementById('topHoldersBox').style.display='block';
-            let items = top.map((r,i)=>{ let medal = i<3? ['🥇 1st','🥈 2nd','🥉 3rd'][i] : `${i+1}th`; return `<div class="rank-item"><span>${medal}</span><span><strong>${limitName(r.name).substring(0,25)}</strong> (${r.total})</span></div>`; });
+            let items = top.map((r,i)=>{ let medal = i<3? ['🥇 1st','🥈 2nd','🥉 3rd'][i] : `${i+1}th`; return `<div class="rank-item"><span>${medal}</span><span><strong>${limitName(r.name).substring(0,30)}</strong> (${r.total})</span></div>`; });
             let mid = Math.ceil(items.length/2);
             document.getElementById('topList').innerHTML = `<div class="merit-column">${items.slice(0,mid).join('')}</div><div class="merit-column">${items.slice(mid).join('')}</div>`;
         } else document.getElementById('topHoldersBox').style.display='none';
@@ -670,36 +665,65 @@
     function render() {
         if(loggedInStudent) { document.getElementById('resultTableWrap').style.display='none'; return; }
         document.getElementById('resultTableWrap').style.display='block';
-        let head = `<th style="width:45px;">Roll</th><th style="width:150px;">Student Name</th>`;
-        subjects.forEach((s,i)=>{
-            let wF=writtenFullMarks[i]||70, mF=mcqFullMarks[i]||30, type=subjectExamType[i]||'both', totalFull=(type==='written'?wF:(type==='mcq'?mF:wF+mF));
+        
+        // Build header - each subject gets ONE combined column with appropriate inputs
+        let head = `<th style="width:60px;">Roll</th><th style="min-width:220px; width:auto;">Student Name</th>`;
+        
+        for(let i=0; i<subjects.length; i++) {
+            let s = subjects[i];
+            let wF=writtenFullMarks[i]||70, mF=mcqFullMarks[i]||30, type=subjectExamType[i]||'both';
+            let totalFull = (type==='written'?wF : (type==='mcq'?mF : wF+mF));
+            
             head += `<th><div class="subject-header">
                 <textarea class="subject-name-input" rows="2" onblur="editSubjectName(${i}, this.value)" ${isAdmin?'':'disabled'}>${s.replace(/</g,'&lt;')}</textarea>
-                <div class="mark-distribution">${type!=='mcq'?`<span>✍️ <input type="number" value="${wF}" onchange="updateWrittenFull(${i}, this.value)" ${isAdmin?'':'disabled'}></span>`:''}${type!=='written'?`<span>📝 <input type="number" value="${mF}" onchange="updateMcqFull(${i}, this.value)" ${isAdmin?'':'disabled'}></span>`:''}</div>
-                <div class="exam-type-toggle admin-only"><select onchange="changeExamType(${i}, this.value)"><option value="written" ${type==='written'?'selected':''}>শুধু লিখিত</option><option value="mcq" ${type==='mcq'?'selected':''}>শুধু MCQ</option><option value="both" ${type==='both'?'selected':''}>লিখিত+MCQ</option></select></div>
-                <div class="subject-total-badge">মোট: ${totalFull}</div><span class="btn-del" onclick="delSub(${i})">✖</span>
+                <div class="mark-distribution">`;
+            if(type !== 'mcq') head += `<span>✍️ <input type="number" value="${wF}" onchange="updateWrittenFull(${i}, this.value)" ${isAdmin?'':'disabled'} style="width:40px;"></span>`;
+            if(type !== 'written') head += `<span>📝 <input type="number" value="${mF}" onchange="updateMcqFull(${i}, this.value)" ${isAdmin?'':'disabled'} style="width:40px;"></span>`;
+            head += `</div>
+                <select class="exam-type-selector" onchange="updateExamType(${i}, this.value)" ${isAdmin?'':'disabled'}>
+                    <option value="both" ${type==='both'?'selected':''}>Both (Written+MCQ)</option>
+                    <option value="written" ${type==='written'?'selected':''}>শুধু Written</option>
+                    <option value="mcq" ${type==='mcq'?'selected':''}>শুধু MCQ</option>
+                </select>
+                <div class="subject-total-badge">মোট: ${totalFull}</div>
+                <span class="btn-del" onclick="delSub(${i})">✖</span>
             </div></th>`;
-        });
-        head += `<th class="cell-total">Total</th><th class="cell-pct">%</th><th class="cell-gpa">GPA</th><th class="cell-res">Result</th><th class="cell-pos">Rank</th>`;
+        }
+        head += `<th class="cell-total" style="background:#1b5e20; color:white;">মোট</th><th class="cell-pct" style="background:#1b5e20; color:white;">%</th><th class="cell-gpa" style="background:#1b5e20; color:white;">GPA</th><th class="cell-res" style="background:#1b5e20; color:white;">ফলাফল</th><th class="cell-pos" style="background:#1b5e20; color:white;">মেধা</th>`;
         document.getElementById('hRow').innerHTML = head;
+        
         let body = '';
         for(let s=0; s<students.length; s++) {
             let name=limitName(students[s]||''), roll=rolls[s]||(s+1);
             body += `<tr>`;
             body += `<td><input type="number" class="roll-input" value="${roll}" onchange="updateStudentRoll(${s}, this.value)" ${isAdmin?'':'disabled'}></td>`;
-            body += `<td><input type="text" class="stu-name-input" value="${name}" maxlength="28" onchange="updateStudentName(${s}, this.value)" ${isAdmin?'':'disabled'}><span class="btn-del" onclick="delStu(${s})">✖</span></td>`;
+            body += `<td><input type="text" class="stu-name-input" value="${name}" maxlength="35" placeholder="ছাত্রের পুরো নাম" onchange="updateStudentName(${s}, this.value)" ${isAdmin?'':'disabled'}><span class="btn-del" onclick="delStu(${s})">✖</span></td>`;
+            
             for(let sub=0; sub<subjects.length; sub++) {
                 let wVal=+(writtenMarks[`${s}_${sub}`]||0), mVal=+(mcqMarks[`${s}_${sub}`]||0);
                 let wF=writtenFullMarks[sub]||70, mF=mcqFullMarks[sub]||30, type=subjectExamType[sub]||'both';
-                let subTotal = type==='written'?wVal:(type==='mcq'?mVal:wVal+mVal);
-                let subFull = type==='written'?wF:(type==='mcq'?mF:wF+mF);
+                let subTotal = type==='written'?wVal : (type==='mcq'?mVal : wVal+mVal);
+                let subFull = type==='written'?wF : (type==='mcq'?mF : wF+mF);
                 let isOpt = !!studentOptional[`${s}_${sub}`];
-                body += `<td><div style="display:flex; gap:3px; justify-content:center; flex-wrap:wrap;">
-                    ${type!=='mcq'?`<input type="number" class="written-input" value="${wVal}" oninput="updateWrittenMark(${s}, ${sub}, this.value)" ${isAdmin?'':'disabled'}>`:''}
-                    ${type!=='written'?`<input type="number" class="mcq-input" value="${mVal}" oninput="updateMcqMark(${s}, ${sub}, this.value)" ${isAdmin?'':'disabled'}>`:''}
-                </div>
-                <div class="optional-checkbox" onclick="toggleOptional(${s}, ${sub})"><input type="checkbox" ${isOpt?'checked':''} ${isAdmin?'':'disabled'} onclick="event.stopPropagation()"> <span>৪র্থ</span></div>
-                <div class="total-mark-display">প্রাপ্ত: ${subTotal}/${subFull}</div></td>`;
+                
+                // Build input fields based on exam type - ONLY show what's needed
+                let inputsHtml = '';
+                if(type === 'written') {
+                    inputsHtml = `<input type="number" class="written-input" value="${wVal}" oninput="updateWrittenMark(${s}, ${sub}, this.value)" ${isAdmin?'':'disabled'} placeholder="Written" style="width:60px;">`;
+                } else if(type === 'mcq') {
+                    inputsHtml = `<input type="number" class="mcq-input" value="${mVal}" oninput="updateMcqMark(${s}, ${sub}, this.value)" ${isAdmin?'':'disabled'} placeholder="MCQ" style="width:60px;">`;
+                } else {
+                    inputsHtml = `<div style="display:flex; gap:3px; justify-content:center; flex-wrap:wrap;">
+                        <input type="number" class="written-input" value="${wVal}" oninput="updateWrittenMark(${s}, ${sub}, this.value)" ${isAdmin?'':'disabled'} placeholder="Written" style="width:50px;">
+                        <input type="number" class="mcq-input" value="${mVal}" oninput="updateMcqMark(${s}, ${sub}, this.value)" ${isAdmin?'':'disabled'} placeholder="MCQ" style="width:50px;">
+                    </div>`;
+                }
+                
+                body += `<td>
+                    ${inputsHtml}
+                    <div class="optional-checkbox" onclick="toggleOptional(${s}, ${sub})"><input type="checkbox" ${isOpt?'checked':''} ${isAdmin?'':'disabled'} onclick="event.stopPropagation()"> <span>৪র্থ</span></div>
+                    <div class="total-mark-display">প্রাপ্ত: ${subTotal}/${subFull}</div>
+                </td>`;
             }
             body += `<td class="r-total">-</td><td class="r-pct">-</td><td class="r-gpa">-</td><td class="r-res">-</td><td class="r-pos">-</td></tr>`;
         }
@@ -708,75 +732,35 @@
         toggleCols();
     }
     
-    function toggleCols() { let t=chkTotal.checked, p=chkPct.checked, g=chkGPA.checked, r=chkRes.checked, s=chkPos.checked; document.querySelectorAll('.cell-total').forEach(el=>el.style.display=t?'': 'none'); document.querySelectorAll('.cell-pct').forEach(el=>el.style.display=p?'': 'none'); document.querySelectorAll('.cell-gpa').forEach(el=>el.style.display=g?'': 'none'); document.querySelectorAll('.cell-res').forEach(el=>el.style.display=r?'': 'none'); document.querySelectorAll('.cell-pos').forEach(el=>el.style.display=s?'': 'none'); }
+    function toggleCols() { 
+        let t=document.getElementById('chkTotal').checked, p=document.getElementById('chkPct').checked, 
+            g=document.getElementById('chkGPA').checked, r=document.getElementById('chkRes').checked, 
+            s=document.getElementById('chkPos').checked;
+        document.querySelectorAll('.cell-total').forEach(el=>el.style.display=t?'':'none'); 
+        document.querySelectorAll('.cell-pct').forEach(el=>el.style.display=p?'':'none'); 
+        document.querySelectorAll('.cell-gpa').forEach(el=>el.style.display=g?'':'none'); 
+        document.querySelectorAll('.cell-res').forEach(el=>el.style.display=r?'':'none'); 
+        document.querySelectorAll('.cell-pos').forEach(el=>el.style.display=s?'':'none');
+    }
     
     function updateStudentRoll(i,v) { if(!isAdmin) return; rolls[i]=parseInt(v)||(i+1); render(); autoSave(); }
     function updateStudentName(i,v) { if(!isAdmin) return; students[i]=limitName(v); render(); autoSave(); }
     function editSubjectName(i,v) { if(!isAdmin) return; if(v.trim()) subjects[i]=v.trim(); render(); autoSave(); }
     function updateWrittenFull(i,v) { if(!isAdmin) return; writtenFullMarks[i]=parseFloat(v)||70; render(); autoSave(); }
     function updateMcqFull(i,v) { if(!isAdmin) return; mcqFullMarks[i]=parseFloat(v)||30; render(); autoSave(); }
-    function changeExamType(i,val) { if(!isAdmin) return; subjectExamType[i]=val; render(); autoSave(); }
     function toggleOptional(s,sub) { if(!isAdmin) return; let key=`${s}_${sub}`; studentOptional[key]=!studentOptional[key]; render(); autoSave(); }
     function addSub() { if(isAdmin && document.getElementById('subInp').value.trim()) { subjects.push(document.getElementById('subInp').value.trim()); render(); autoSave(); document.getElementById('subInp').value=''; } }
     function addStu() { if(isAdmin && document.getElementById('nameInp').value.trim()) { students.push(limitName(document.getElementById('nameInp').value.trim())); rolls.push(students.length); render(); autoSave(); document.getElementById('nameInp').value=''; } }
     function delSub(i) { if(isAdmin && confirm("সাবজেক্ট মুছবেন?")) { subjects.splice(i,1); render(); autoSave(); } }
     function delStu(i) { if(isAdmin && confirm("ছাত্র মুছবেন?")) { students.splice(i,1); rolls.splice(i,1); render(); autoSave(); } }
     function saveToCloud() { if(isAdmin) { db.ref(getPath()).set({ subjects, students, rolls, writtenMarks, mcqMarks, writtenFullMarks, mcqFullMarks, subjectExamType, studentOptional }).then(()=>alert("সংরক্ষিত!")); } }
-    
-    function copyStudentsFromExam() {
-        if(!isAdmin) return;
-        let src=document.getElementById('copyExamSelect').value, cur=document.getElementById('eSel').value;
-        if(!src) return alert("সোর্স সিলেক্ট করুন");
-        if(src===cur) return alert("বর্তমান পরীক্ষা থেকে কপি করা যাবে না");
-        let c=document.getElementById('cSel').value, g=document.getElementById('gSel').value;
-        db.ref(`results/${c}_${g}_${src}`.replace(/\s+/g,'_')).once('value', snap=>{
-            let data=snap.val()||{}, stu=data.students||[], rl=data.rolls||[];
-            if(!stu.length) return alert("ছাত্র নেই");
-            if(confirm(`${stu.length} জন ছাত্র কপি করবেন?`)) {
-                db.ref(getPath()).once('value', tSnap=>{
-                    let td=tSnap.val()||{};
-                    td.students=[...stu]; td.rolls=[...rl];
-                    if(!subjects.length && data.subjects) { td.subjects=data.subjects; td.writtenFullMarks=data.writtenFullMarks||{}; td.mcqFullMarks=data.mcqFullMarks||{}; td.subjectExamType=data.subjectExamType||{}; subjects=data.subjects; writtenFullMarks=data.writtenFullMarks||{}; mcqFullMarks=data.mcqFullMarks||{}; subjectExamType=data.subjectExamType||{}; }
-                    let nm={}; for(let i=0;i<stu.length;i++) for(let j=0;j<subjects.length;j++) nm[`${i}_${j}`]=0;
-                    td.writtenMarks=nm; td.mcqMarks=nm; td.studentOptional={};
-                    db.ref(getPath()).set(td).then(()=>{ students=stu; rolls=rl; writtenMarks=nm; mcqMarks=nm; studentOptional={}; render(); alert("কপি সম্পন্ন"); });
-                });
-            }
-        });
-    }
-    
+    function copyStudentsFromExam() { if(!isAdmin) return; let src=document.getElementById('copyExamSelect').value, cur=document.getElementById('eSel').value; if(!src) return alert("সোর্স সিলেক্ট করুন"); if(src===cur) return alert("বর্তমান পরীক্ষা থেকে কপি করা যাবে না"); let c=document.getElementById('cSel').value, g=document.getElementById('gSel').value; db.ref(`results/${c}_${g}_${src}`.replace(/\s+/g,'_')).once('value', snap=>{ let data=snap.val()||{}, stu=data.students||[], rl=data.rolls||[]; if(!stu.length) return alert("ছাত্র নেই"); if(confirm(`${stu.length} জন ছাত্র কপি করবেন?`)) { db.ref(getPath()).once('value', tSnap=>{ let td=tSnap.val()||{}; td.students=[...stu]; td.rolls=[...rl]; if(!subjects.length && data.subjects) { td.subjects=data.subjects; td.writtenFullMarks=data.writtenFullMarks||{}; td.mcqFullMarks=data.mcqFullMarks||{}; td.subjectExamType=data.subjectExamType||{}; subjects=data.subjects; writtenFullMarks=data.writtenFullMarks||{}; mcqFullMarks=data.mcqFullMarks||{}; subjectExamType=data.subjectExamType||{}; } let nm={}; for(let i=0;i<stu.length;i++) for(let j=0;j<subjects.length;j++) nm[`${i}_${j}`]=0; td.writtenMarks=nm; td.mcqMarks=nm; td.studentOptional={}; db.ref(getPath()).set(td).then(()=>{ students=stu; rolls=rl; writtenMarks=nm; mcqMarks=nm; studentOptional={}; render(); alert("কপি সম্পন্ন"); }); }); } }); }
     function resetCurrentPageData() { if(!isAdmin) return; if(confirm("সব ডাটা রিসেট করবেন? 'RESET' টাইপ করুন")) { let cnf=prompt("নিশ্চিত করতে 'RESET' লিখুন"); if(cnf==="RESET") db.ref(getPath()).remove().then(()=>{ subjects=[]; students=[]; rolls=[]; writtenMarks={}; mcqMarks={}; render(); alert("রিসেট সম্পন্ন"); }); } }
     function addExam() { if(!isAdmin) return; let v=document.getElementById('examInp').value.trim(); if(v && !examsList.includes(v)) { let c=document.getElementById('cSel').value, g=document.getElementById('gSel').value; db.ref(`exams_list_per_class/${c}_${g}`).once('value', snap=>{ let list=snap.val()||[]; list.push(v); db.ref(`exams_list_per_class/${c}_${g}`).set(list).then(()=>{ examsList=list; updateExamDropdowns(); document.getElementById('eSel').value=v; updateInfo(); document.getElementById('examInp').value=''; }); }); } }
-    function updateExamDropdowns() { let eSel=document.getElementById('eSel'), copySel=document.getElementById('copyExamSelect'), stuExam=document.getElementById('studentExam'); let opts=examsList.map(e=>`<option value="${e}">${e}</option>`).join(''); eSel.innerHTML=opts; copySel.innerHTML='<option value="">-- সিলেক্ট --</option>'+examsList.map(e=>`<option value="${e}">${e}</option>`).join(''); stuExam.innerHTML='<option value="">-- পরীক্ষা --</option>'+opts; if(isAdmin) document.querySelectorAll('.admin-only').forEach(el=>el.style.display='inline-flex'); }
-    
-    function studentLogin() {
-        let roll=parseInt(document.getElementById('studentRoll').value), name=document.getElementById('studentName').value.trim(), exam=document.getElementById('studentExam').value, grp=document.getElementById('studentGroup').value;
-        if(!roll||!name||!exam) return alert("সব তথ্য দিন");
-        let path=`results/SSC Special Batch_${grp}_${exam}`.replace(/\s+/g,'_');
-        db.ref(path).once('value', snap=>{
-            let d=snap.val()||{}, stu=d.students||[], rl=d.rolls||[], subs=d.subjects||[];
-            let idx=-1; for(let i=0;i<stu.length;i++) if(rl[i]===roll && stu[i]===name) { idx=i; break; }
-            if(idx===-1) return alert("রোল ও নাম মেলেনি!");
-            let wMarks=d.writtenMarks||{}, mMarks=d.mcqMarks||{}, wFulls=d.writtenFullMarks||{}, mFulls=d.mcqFullMarks||{}, examType=d.subjectExamType||{}, opt=d.studentOptional||{};
-            let totalObt=0, totalFull=0, normalGPA=[], bonus=0, fail=false, subDetails=[];
-            for(let i=0;i<subs.length;i++){ let w=+(wMarks[`${idx}_${i}`]||0), m=+(mMarks[`${idx}_${i}`]||0), wF=wFulls[i]||70, mF=mFulls[i]||30, type=examType[i]||'both', obt=type==='written'?w:(type==='mcq'?m:w+m), full=type==='written'?wF:(type==='mcq'?mF:wF+mF), pct=full?(obt/full)*100:0, gpa=getGPA(pct), pass=false; if(type==='written') pass=w>=wF*0.33; else if(type==='mcq') pass=m>=mF*0.33; else pass=(w>=wF*0.33 && m>=mF*0.33); if(!pass) fail=true; let isOpt=!!opt[`${idx}_${i}`]; if(isOpt && gpa>0) bonus+=Math.max(0,gpa-2); else normalGPA.push(gpa); totalObt+=obt; totalFull+=full; subDetails.push({ name:subs[i], written:w, mcq:m, wFull:wF, mFull:mF, type, obtained:obt, full, percent:Math.round(pct), pass, isOpt }); }
-            let avg=(normalGPA.reduce((a,b)=>a+b,0)+bonus)/(normalGPA.length||1); let finalGPA=fail?0:Math.min(5,avg); let overallPct=totalFull?(totalObt/totalFull)*100:0;
-            let html=`<div class="exam-card"><div class="exam-title">📘 ${exam}</div><table class="subject-table"><thead><tr><th>#</th><th>বিষয়</th>${subDetails.some(s=>s.type!=='mcq')?'<th>Written</th>':''}${subDetails.some(s=>s.type!=='written')?'<th>MCQ</th>':''}<th>মোট</th><th>৪র্থ?</th><th>ফলাফল</th></tr></thead><tbody>`;
-            subDetails.forEach((sub,idx)=>{ html+=`<tr><td>${idx+1}</td><td style="text-align:left">${sub.name}</td>${sub.type!=='mcq'?`<td>${sub.written}/${sub.wFull}</td>`:''}${sub.type!=='written'?`<td>${sub.mcq}/${sub.mFull}</td>`:''}<td><strong>${sub.obtained}/${sub.full}</strong> (${sub.percent}%)</td><td>${sub.isOpt?'✅':'❌'}</td><td><span class="status-badge ${sub.pass?'pass':'fail'}">${sub.pass?'পাস':'ফেল'}</span></td></tr>`; });
-            html+=`</tbody></table><div class="exam-summary"><div>📊 মোট: ${totalObt}/${totalFull}</div><div>📈 শতকরা: ${Math.round(overallPct)}%</div><div>⭐ GPA: <span class="gpa-badge-sm">${finalGPA.toFixed(2)} (${getGrade(overallPct)})</span></div><div>🎯 ফলাফল: <span class="status-badge ${fail?'fail':'pass'}">${fail?'Fail':'Pass'}</span></div></div></div>`;
-            document.getElementById('studentOwnResult').innerHTML=html;
-            document.getElementById('studentLoginSection').style.display='none';
-            document.getElementById('studentInfoCard').style.display='block';
-            document.getElementById('adminControlsPanel').style.display='none';
-            document.getElementById('resultTableWrap').style.display='none';
-            document.getElementById('topHoldersBox').style.display='none';
-            loggedInStudent={roll,name};
-        }).catch(()=>alert("ফলাফল আনতে সমস্যা হয়েছে!"));
-    }
-    
+    function updateExamDropdowns() { let eSel=document.getElementById('eSel'), copySel=document.getElementById('copyExamSelect'), stuExam=document.getElementById('studentExam'); let opts=examsList.map(e=>`<option value="${e}">${e}</option>`).join(''); eSel.innerHTML=opts; copySel.innerHTML='<option value="">-- সিলেক্ট --</option>'+examsList.map(e=>`<option value="${e}">${e}</option>`).join(''); stuExam.innerHTML='<option value="">-- পরীক্ষা --</option>'+opts; }
+    function studentLogin() { let roll=parseInt(document.getElementById('studentRoll').value), name=document.getElementById('studentName').value.trim(), exam=document.getElementById('studentExam').value, grp=document.getElementById('studentGroup').value; if(!roll||!name||!exam) return alert("সব তথ্য দিন"); let path=`results/SSC Special Batch_${grp}_${exam}`.replace(/\s+/g,'_'); db.ref(path).once('value', snap=>{ let d=snap.val()||{}, stu=d.students||[], rl=d.rolls||[], subs=d.subjects||[]; let idx=-1; for(let i=0;i<stu.length;i++) if(rl[i]===roll && stu[i]===name) { idx=i; break; } if(idx===-1) return alert("রোল ও নাম মেলেনি!"); let wMarks=d.writtenMarks||{}, mMarks=d.mcqMarks||{}, wFulls=d.writtenFullMarks||{}, mFulls=d.mcqFullMarks||{}, examType=d.subjectExamType||{}, opt=d.studentOptional||{}; let totalObt=0, totalFull=0, normalGPA=[], bonus=0, fail=false, subDetails=[]; for(let i=0;i<subs.length;i++){ let w=+(wMarks[`${idx}_${i}`]||0), m=+(mMarks[`${idx}_${i}`]||0), wF=wFulls[i]||70, mF=mFulls[i]||30, type=examType[i]||'both', obt=type==='written'?w:(type==='mcq'?m:w+m), full=type==='written'?wF:(type==='mcq'?mF:wF+mF), pct=full?(obt/full)*100:0, gpa=getGPA(pct), pass=false; if(type==='written') pass=w>=wF*0.33; else if(type==='mcq') pass=m>=mF*0.33; else pass=(w>=wF*0.33 && m>=mF*0.33); if(!pass) fail=true; let isOpt=!!opt[`${idx}_${i}`]; if(isOpt && gpa>0) bonus+=Math.max(0,gpa-2); else normalGPA.push(gpa); totalObt+=obt; totalFull+=full; subDetails.push({ name:subs[i], written:w, mcq:m, wFull:wF, mFull:mF, type, obtained:obt, full, percent:Math.round(pct), pass, isOpt }); } let avg=(normalGPA.reduce((a,b)=>a+b,0)+bonus)/(normalGPA.length||1); let finalGPA=fail?0:Math.min(5,avg); let overallPct=totalFull?(totalObt/totalFull)*100:0; let html=`<div class="exam-card"><div class="exam-title">📘 ${exam}</div><table class="subject-table"><thead><tr><th>#</th><th>বিষয়</th>${subDetails.some(s=>s.type!=='mcq')?'<th>Written</th>':''}${subDetails.some(s=>s.type!=='written')?'<th>MCQ</th>':''}<th>মোট</th><th>৪র্থ?</th><th>ফলাফল</th></tr></thead><tbody>`; subDetails.forEach((sub,idx)=>{ html+=`<tr><td>${idx+1}</td><td style="text-align:left">${sub.name}</td>${sub.type!=='mcq'?`<td>${sub.written}/${sub.wFull}</td>`:''}${sub.type!=='written'?`<td>${sub.mcq}/${sub.mFull}</td>`:''}<td><strong>${sub.obtained}/${sub.full}</strong> (${sub.percent}%)</td><td>${sub.isOpt?'✅':'❌'}</td><td><span class="status-badge ${sub.pass?'pass':'fail'}">${sub.pass?'পাস':'ফেল'}</span></td></tr>`; }); html+=`</tbody></table><div class="exam-summary"><div>📊 মোট: ${totalObt}/${totalFull}</div><div>📈 শতকরা: ${Math.round(overallPct)}%</div><div>⭐ GPA: <span class="gpa-badge-sm">${finalGPA.toFixed(2)} (${getGrade(overallPct)})</span></div><div>🎯 ফলাফল: <span class="status-badge ${fail?'fail':'pass'}">${fail?'Fail':'Pass'}</span></div></div></div>`; document.getElementById('studentOwnResult').innerHTML=html; document.getElementById('studentLoginSection').style.display='none'; document.getElementById('studentInfoCard').style.display='block'; document.getElementById('adminControlsPanel').style.display='none'; document.getElementById('resultTableWrap').style.display='none'; document.getElementById('topHoldersBox').style.display='none'; loggedInStudent={roll,name}; }).catch(()=>alert("ফলাফল আনতে সমস্যা হয়েছে!")); }
     function studentLogout() { loggedInStudent=null; document.getElementById('studentLoginSection').style.display='block'; document.getElementById('studentInfoCard').style.display='none'; document.getElementById('adminControlsPanel').style.display='flex'; document.getElementById('resultTableWrap').style.display='block'; document.getElementById('topHoldersBox').style.display='block'; render(); }
     function toggleAdmin() { if(!isAdmin) { let p=prompt("এডমিন পাসওয়ার্ড দিন:"); if(p==="#$t") { isAdmin=true; document.body.classList.add('is-admin'); document.getElementById('loginBtn').innerHTML='<i class="fas fa-sign-out-alt"></i> Logout Admin'; if(loggedInStudent) studentLogout(); updateExamDropdowns(); render(); } else if(p!==null) alert("ভুল পাসওয়ার্ড!"); } else { isAdmin=false; document.body.classList.remove('is-admin'); document.getElementById('loginBtn').innerHTML='<i class="fas fa-lock"></i> Admin Login'; render(); } }
-    
     window.onload = () => { changeClass(); document.getElementById('chkTotal').addEventListener('change',toggleCols); document.getElementById('chkPct').addEventListener('change',toggleCols); document.getElementById('chkGPA').addEventListener('change',toggleCols); document.getElementById('chkRes').addEventListener('change',toggleCols); document.getElementById('chkPos').addEventListener('change',toggleCols); };
 </script>
 </body>
