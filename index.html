@@ -2,310 +2,220 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Mastermind Academy | পেশাদার স্কুল ওয়েবসাইট</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>মাস্টারমাইন্ড অ্যাকাডেমি</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="bg-slideshow" id="bgSlideshow">
+    <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format');"></div>
+    <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format');"></div>
+    <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2032&auto=format');"></div>
+    <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=2070&auto=format');"></div>
+</div>
 
-<!-- ==================== HEADER ==================== -->
-<header>
-    <div class="container">
+<div id="loginScreen" class="login-screen">
+    <div class="login-card">
+        <div align="center">
+                <img src="mastermined.jpg" alt="Logo" style="height:40px; width:40px; object-fit:contain; border-radius:12px;">
+        </div>
+        <h3> মাস্টারমাইন্ড অ্যাকাডেমি</h3>
+        <form id="loginForm">
+            <select id="loginRole">
+                <option value="student">👨‍🎓 ছাত্র/ছাত্রী লগইন</option>
+                <option value="teacher">👨‍🏫 শিক্ষক লগইন</option>
+                <option value="admin">⚙️ পরিচালক</option>
+            </select>
+            <input type="text" id="loginId" placeholder="আইডি (ID)" required>
+            <input type="password" id="loginPassword" placeholder="পাসওয়ার্ড" required>
+            <button type="submit"><i class="fas fa-arrow-right-to-bracket"></i> প্রবেশ করুন</button>
+        </form>
+        <p style="margin-top:12px; font-size:11px; color:#e69b00;"><strong>পাসওয়ার্ড ভুলে গেলে অফিসে যোগাযোগ করুন।</strong></p>
+    </div>
+</div>
+
+<div id="appContainer" class="app-container">
+    <div class="navbar">
         <div class="logo-area">
-            <div class="logo-icon">
-                <i class="fas fa-graduation-cap"></i>
+                <img src="mastermined.jpg" alt="Logo" style="height:40px; width:40px; object-fit:contain; border-radius:12px;">
+            <span>মাস্টারমাইন্ড অ্যাকাডেমি</span></div>
+        <div class="user-area"><span id="userNameDisplay"></span> (<span id="roleDisplay"></span>)
+            <div class="dropdown"><button class="menu-btn" id="menuToggle"><i class="fas fa-bars"></i></button>
+                <div class="dropdown-content" id="dropdownMenu">
+                    <a id="menuDashboard"><i class="fas fa-chalkboard-user"></i> ড্যাশবোর্ড</a>
+                    <a id="menuClassManager" style="display:none;"><i class="fas fa-school"></i> ক্লাস ম্যানেজার</a>
+                    <a id="menuTeachers" style="display:none;"><i class="fas fa-chalkboard"></i> শিক্ষক ব্যবস্থাপনা</a>
+                    <a id="menuAttendance"><i class="fas fa-calendar-check"></i> অ্যাটেন্ডেন্স</a>
+                    <a id="menuFeedback" style="display:none;"><i class="fas fa-comment-dots"></i> ফিডব্যাক</a>
+                    <a id="menuRoutineManager" style="display:none;"><i class="fas fa-calendar-alt"></i> রুটিন ম্যানেজার</a>
+                    <a id="menuSocialFeed"><i class="fas fa-users-viewfinder"></i> সোশ্যাল কানেক্টিভিটি</a>
+                    <a id="menuStudentFeedback" style="display: none;"><i class="fas fa-star-of-life"></i> শিক্ষকদের মতামত দিন</a>
+                    <a id="menuLogout"><i class="fas fa-sign-out-alt"></i> লগআউট</a>
+                </div>
             </div>
-            <h1 class="logo-text">Mastermind <span>Academy</span></h1>
         </div>
-        <nav>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="active-nav">হোম</a></li>
-                <li><a href="#about">পরিচিতি</a></li>
-                <li><a href="#academics">একাডেমিক</a></li>
-                <li><a href="#admission">ভর্তি</a></li>
-                <li><a href="#result">রেজাল্ট</a></li>
-                <li><a href="#contact">যোগাযোগ</a></li>
-            </ul>
-            <div class="burger" id="burger">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
     </div>
-</header>
 
-<!-- ==================== HERO SECTION ==================== -->
-<section id="home" class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h2>স্বাগতম Mastermind Academy-এ</h2>
-        <p>উন্নত শিক্ষা, আধুনিক প্রযুক্তি ও নৈতিক মূল্যবোধ</p>
-        <div class="hero-buttons">
-            <a href="#admission" class="btn-primary">ভর্তি তথ্য জানুন</a>
-            <a href="#result" class="btn-secondary">রেজাল্ট দেখুন</a>
+    <div class="content">
+        <div id="dashboardPanel" class="panel active-panel">
+            <div class="dashboard-header">
+                <h2><i class="fas fa-chalkboard-user"></i> আমাদের শিক্ষকবৃন্দ</h2>
+                <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-orange" id="viewResultBtn"><i class="fas fa-file-alt" ></i> ফলাফল দেখুন</button>
+                    <button class="btn btn-blue" id="aboutUsBtn"><i class="fas fa-info-circle"></i> সম্পর্কে</button>
+                    <button class="btn btn-green" id="viewRoutineBtn"><i class="fas fa-calendar-week"></i> রুটিন দেখুন</button>
+                </div>
+            </div>
+            <div id="studentClassInfo" class="student-info-card" style="display: none;">
+                <h3><i class="fas fa-user-graduate"></i> আমার তথ্য</h3>
+                <p><strong>নাম:</strong> <span id="studentNameDisplay"></span></p>
+                <p><strong>ক্লাস:</strong> <span id="studentClassDisplay"></span></p>
+                <p><strong>আইডি:</strong> <span id="studentIdDisplay"></span></p>
+            </div>
+            <div id="todayTomorrowRoutine"></div>
+            <div id="teachersGrid" class="teacher-grid"></div>
         </div>
-    </div>
-    <div class="hero-wave">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#f4f9ff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
-    </div>
-</section>
-
-<!-- ==================== NOTICE BOARD ==================== -->
-<section class="notice">
-    <div class="container">
-        <div class="notice-header">
-            <i class="fas fa-bullhorn"></i>
-            <h2>গুরুত্বপূর্ণ নোটিশ</h2>
+        
+        <div id="studentPanel" class="panel">
+            <h2><i class="fas fa-comment-dots"></i> শিক্ষকদের মতামত দিন</h2>
+            <div id="studentFeedbackArea"></div>
         </div>
-        <div class="notice-scroll" id="noticeScroll">
-            <div class="notice-item">📢 ২০২৬ শিক্ষাবর্ষের ভর্তি শুরু হয়েছে। ৩০ জুনের মধ্যে আবেদন করুন।</div>
-            <div class="notice-item">🎓 বার্ষিক ক্রীড়া প্রতিযোগিতা ২০ ডিসেম্বর।</div>
-            <div class="notice-item">💻 অনলাইন ক্লাসের রুটিন ওয়েবসাইটে আপলোড করা হয়েছে।</div>
-            <div class="notice-item">🏆 এসএসসি পরীক্ষায় ১০০% পাস ও ১৫ জন জিপিএ-৫ অর্জন।</div>
+        
+        <div id="teacherPanel" class="panel">
+            <h2><i class="fas fa-chalkboard"></i> শিক্ষক ড্যাশবোর্ড</h2>
+            <div id="teacherProfileArea"></div>
+            <div id="teacherAssignedClasses"></div>
+            <div id="teacherClassStudents"></div>
         </div>
-    </div>
-</section>
-
-<!-- ==================== ABOUT US ==================== -->
-<section id="about" class="about">
-    <div class="container">
-        <h2 class="section-title">স্কুল পরিচিতি</h2>
-        <div class="about-grid">
-            <div class="about-text">
-                <h3>Mastermind Academy-এর দর্শন</h3>
-                <p><strong>প্রতিষ্ঠা:</strong> ২০০৫ সালে প্রতিষ্ঠিত, Mastermind Academy ঢাকার অন্যতম শ্রেষ্ঠ শিক্ষাপ্রতিষ্ঠান।</p>
-                <p><strong>মিশন:</strong> শিক্ষার্থীদের জ্ঞান, দক্ষতা ও নৈতিক মূল্যবোধে গড়ে তোলা। আধুনিক প্রযুক্তি ও উদ্ভাবনী শিক্ষা পদ্ধতির মাধ্যমে বিশ্বমানের শিক্ষা নিশ্চিত করা।</p>
-                <p><strong>অর্জন:</strong> ২০২০ ও ২০২২ সালে সেরা স্কুল অ্যাওয়ার্ডপ্রাপ্ত। শতভাগ পাসের পাশাপাশি জিপিএ-৫ প্রাপ্তির হারে শীর্ষে।</p>
-                
-                <h3><i class="fas fa-building"></i> সুবিধাসমূহ</h3>
-                <ul class="facilities-list">
-                    <li><i class="fas fa-microscope"></i> আধুনিক বিজ্ঞান ল্যাব</li>
-                    <li><i class="fas fa-laptop-code"></i> কম্পিউটার ল্যাব (AI & Robotics)</li>
-                    <li><i class="fas fa-book"></i> ডিজিটাল লাইব্রেরি (১০,০০০+ বই)</li>
-                    <li><i class="fas fa-futbol"></i> ক্রীড়া মাঠ ও সুইমিং পুল</li>
-                    <li><i class="fas fa-bus"></i> নিরাপদ পরিবহন ব্যবস্থা</li>
-                    <li><i class="fas fa-shield-alt"></i> ২৪/৭ সিসি ক্যামেরা নজরদারি</li>
-                </ul>
+        
+        <div id="adminTeachersPanel" class="panel">
+            <h2><i class="fas fa-user-plus"></i> শিক্ষক তৈরি করুন</h2>
+            <div style="background:#f7fafc; padding:16px; border-radius:28px; margin-bottom:20px;">
+                <div style="text-align:center;">
+                    <img id="teacherImagePreview" class="image-preview" src="https://ui-avatars.com/api/?background=1e7b4a&color=fff&name=শিক্ষক">
+                    <label class="file-input-label"><i class="fas fa-camera"></i> ছবি <input type="file" id="teacherImageInput" accept="image/*" style="display:none;"></label>
+                </div>
+                <input type="text" id="newTeacherName" placeholder="পূর্ণ নাম">
+                <input type="text" id="newTeacherId" placeholder="শিক্ষক আইডি">
+                <input type="text" id="newTeacherPass" placeholder="পাসওয়ার্ড">
+                <div id="classCheckboxes"></div>
+                <button class="btn btn-green" id="createTeacherBtn">শিক্ষক তৈরি করুন</button>
             </div>
-            <div class="about-stats">
-                <div class="stat-card">
-                    <div class="stat-number" data-count="20">0</div>
-                    <div class="stat-label">বছরের অভিজ্ঞতা</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-count="2500">0</div>
-                    <div class="stat-label">শিক্ষার্থী</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-count="150">0</div>
-                    <div class="stat-label">শিক্ষক</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-count="100">0</div>
-                    <div class="stat-label">পাসের হার (%)</div>
-                </div>
-            </div>
+            <h3>📋 শিক্ষকবৃন্দ</h3>
+            <div class="table-responsive"><div id="teachersTable"></div></div>
         </div>
-    </div>
-</section>
-
-<!-- ==================== ACADEMIC INFO ==================== -->
-<section id="academics" class="academics">
-    <div class="container">
-        <h2 class="section-title">একাডেমিক তথ্য</h2>
-        <div class="academic-grid">
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-chalkboard-user"></i></div>
-                <h3>পাঠ্যক্রম</h3>
-                <p>জাতীয় শিক্ষাক্রম (NCTB) ও ক্যামব্রিজ আন্তর্জাতিক (IGCSE)</p>
-                <button class="card-btn" onclick="showCurriculumDetails()">বিস্তারিত</button>
+        
+        <div id="adminClassPanel" class="panel">
+            <h2>ক্লাস ম্যানেজার</h2>
+            <div id="classButtons" class="class-buttons-container"></div>
+            <div style="background:#f9f5ed; padding:16px; border-radius:28px; margin-top:20px;">
+                <h3>➕ ছাত্র/ছাত্রী যোগ করুন - <span id="selectedClassName">ক্লাস নির্বাচন করুন</span></h3>
+                <div style="text-align:center;">
+                    <img id="studentImagePreview" class="image-preview" src="https://ui-avatars.com/api/?background=0a3b2e&color=fff&name=ছাত্র">
+                    <label class="file-input-label"><i class="fas fa-camera"></i> ছবি <input type="file" id="studentImageInput" accept="image/*" style="display:none;"></label>
+                </div>
+                <input type="text" id="cousinName" placeholder="নাম *">
+                <input type="text" id="cousinId" placeholder="আইডি *">
+                <input type="text" id="cousinPass" placeholder="পাসওয়ার্ড *">
+                <input type="tel" id="cousinGuardianPhone" placeholder="অভিভাবকের মোবাইল (+8801XXXXXXXXX)">
+                <button class="btn btn-blue" id="addCousinBtn">যোগ করুন</button>
             </div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-layer-group"></i></div>
-                <h3>শ্রেণি বিভাগ</h3>
-                <p>প্লে গ্রুপ থেকে দ্বাদশ শ্রেণি পর্যন্ত</p>
-                <p><small>বিজ্ঞান | বাণিজ্য | মানবিক</small></p>
-            </div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-calendar-alt"></i></div>
-                <h3>একাডেমিক ক্যালেন্ডার</h3>
-                <p>২০২৬ শিক্ষাবর্ষের ক্যালেন্ডার</p>
-                <a href="#" class="download-link" onclick="downloadPDF('calendar')"><i class="fas fa-download"></i> ডাউনলোড</a>
-            </div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-clock"></i></div>
-                <h3>ক্লাস রুটিন</h3>
-                <p>শ্রেণি ভিত্তিক রুটিন</p>
-                <a href="#" class="download-link" onclick="downloadPDF('routine')"><i class="fas fa-download"></i> ডাউনলোড</a>
-            </div>
+            <button class="btn btn-green" id="saveClassBtn">সব সংরক্ষণ করুন</button>
+            <div class="table-responsive"><div id="classStudentsTable"></div></div>
         </div>
-    </div>
-</section>
-
-<!-- ==================== ADMISSION SECTION ==================== -->
-<section id="admission" class="admission">
-    <div class="container">
-        <h2 class="section-title">ভর্তি সংক্রান্ত তথ্য</h2>
-        <div class="admission-flex">
-            <div class="admission-details">
-                <h3><i class="fas fa-info-circle"></i> ভর্তি প্রক্রিয়া</h3>
-                <div class="process-steps">
-                    <div class="step">১. অনলাইনে ফর্ম পূরণ করুন</div>
-                    <div class="step">২. ভর্তি পরীক্ষায় অংশ নিন (Play-UKG এর জন্য ইন্টারভিউ)</div>
-                    <div class="step">৩. ফলাফলের পর ফি পরিশোধ করে ভর্তি নিশ্চিত করুন</div>
-                </div>
-                
-                <h3><i class="fas fa-money-bill-wave"></i> ফি কাঠামো (মাসিক)</h3>
-                <div class="fee-table">
-                    <div class="fee-row"><span>প্লে-নার্সারি</span><span>৳ ২,৫০০</span></div>
-                    <div class="fee-row"><span>প্রাথমিক (১-৫)</span><span>৳ ৩,২০০</span></div>
-                    <div class="fee-row"><span>মাধ্যমিক (৬-১০)</span><span>৳ ৩,৮০০</span></div>
-                    <div class="fee-row"><span>উচ্চমাধ্যমিক (১১-১২)</span><span>৳ ৪,৫০০</span></div>
-                </div>
-                
-                <div class="scholarship">
-                    <i class="fas fa-trophy"></i>
-                    <p><strong>বৃত্তি:</strong> মেধাবী ও অর্থনৈতিকভাবে অস্বচ্ছল শিক্ষার্থীদের জন্য ৩০% পর্যন্ত বৃত্তি।</p>
-                </div>
+        
+        <div id="attendancePanel" class="panel">
+            <h2><i class="fas fa-calendar-alt"></i> অ্যাটেন্ডেন্স ব্যবস্থাপনা</h2>
+            <div id="studentHistorySection" class="attendance-card" style="display: none;">
+                <h3><i class="fas fa-user-graduate"></i> আমার উপস্থিতির ইতিহাস</h3>
+                <div class="attendance-summary" id="studentSummary"></div>
+                <div class="month-selector" id="studentMonthSelector"></div>
+                <div id="studentCalendarGrid"></div>
             </div>
-            
-            <div class="admission-form">
-                <h3><i class="fas fa-edit"></i> অনলাইন ভর্তি ফর্ম</h3>
-                <form id="admissionForm">
-                    <div class="form-group">
-                        <input type="text" id="studentName" placeholder="শিক্ষার্থীর নাম" required>
-                    </div>
-                    <div class="form-group">
-                        <select id="className" required>
-                            <option value="">শ্রেণি নির্বাচন করুন</option>
-                            <option>প্লে</option><option>নার্সারি</option>
-                            <option>১ম</option><option>২য়</option><option>৩য়</option>
-                            <option>৪র্থ</option><option>৫ম</option><option>৬ষ্ঠ</option>
-                            <option>৭ম</option><option>৮ম</option><option>৯ম</option>
-                            <option>১০ম</option><option>১১শ (বিজ্ঞান)</option>
-                            <option>১১শ (বাণিজ্য)</option><option>১১শ (মানবিক)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder="ইমেইল" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" id="phone" placeholder="মোবাইল নম্বর" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="parentName" placeholder="অভিভাবকের নাম">
-                    </div>
-                    <button type="submit" class="btn-submit">ফর্ম জমা দিন</button>
-                </form>
-                <div id="formMsg" class="form-message"></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ==================== RESULT SECTION ==================== -->
-<section id="result" class="result-section">
-    <div class="container">
-        <h2 class="section-title">পরীক্ষার ফলাফল</h2>
-        <div class="result-card">
-            <div class="result-search">
-                <h3><i class="fas fa-search"></i> রেজাল্ট চেক করুন</h3>
-                <div class="search-box">
-                    <select id="examType">
-                        <option value="ssc">এসএসসি পরীক্ষা ২০২৫</option>
-                        <option value="hsc">এইচএসসি পরীক্ষা ২০২৫</option>
-                        <option value="halfYearly">অর্ধবার্ষিক পরীক্ষা</option>
-                    </select>
-                    <input type="text" id="rollNo" placeholder="রোল নম্বর দিন" maxlength="10">
-                    <button id="checkResultBtn" class="btn-result">রেজাল্ট দেখুন</button>
-                </div>
-                <div id="resultDisplay" class="result-display"></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ==================== CONTACT SECTION ==================== -->
-<section id="contact" class="contact">
-    <div class="container">
-        <h2 class="section-title">যোগাযোগ করুন</h2>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h4>ঠিকানা</h4>
-                        <p>১২৩, গুলশান এভিনিউ, ঢাকা-১২১২</p>
+            <div id="teacherAttendanceSection" style="display: none;">
+                <div class="attendance-card">
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+                        <select id="attendanceClassSelect" style="flex:2; margin-bottom: 0;"></select>
+                        <input type="date" id="attendanceDate" style="flex:1; margin-bottom: 0;">
+                        <button class="btn btn-blue" id="loadStudentsBtn"><i class="fas fa-users"></i> ছাত্র/ছাত্র তালিকা দেখুন</button>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <div>
-                        <h4>ফোন</h4>
-                        <p>+৮৮০ ১৯৬৬-৫৫৪৪৩২</p>
-                        <p>+৮৮০ ২ ৯৮৭৬৫৪৩</p>
-                    </div>
+                <div id="studentAttendanceSection" class="attendance-card" style="display: none;">
+                    <h3><i class="fas fa-user-check"></i> উপস্থিতি দিন - <span id="selectedDateDisplay"></span></h3>
+                    <div id="studentAttendanceList" style="max-height: 400px; overflow-y: auto;"></div>
+                    <div style="margin-top: 16px; text-align: right;"><button class="btn btn-green" id="saveAttendanceBtn"><i class="fas fa-save"></i> উপস্থিতি সংরক্ষণ করুন</button></div>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h4>ইমেইল</h4>
-                        <p>info@mastermindacademy.edu.bd</p>
-                        <p>admission@mastermindacademy.edu.bd</p>
-                    </div>
-                </div>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                <div class="attendance-card">
+                    <h3><i class="fas fa-chart-line"></i> ক্লাসের মাসিক উপস্থিতির সারাংশ</h3>
+                    <div class="month-selector" id="classMonthSelector"></div>
+                    <div id="classMonthlyCalendar"></div>
                 </div>
             </div>
-            <div class="contact-map">
-                <iframe src="https://maps.google.com/maps?q=Gulshan%20Dhaka&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        
+        <div id="adminFeedbackPanel" class="panel">
+            <h2><i class="fas fa-archive"></i> সকল মতামত</h2>
+            <select id="feedbackClassFilter" style="margin-bottom:15px;"></select>
+            <div id="feedbackList"></div>
+        </div>
+        
+        <div id="adminRoutinePanel" class="panel">
+            <h2><i class="fas fa-calendar-edit"></i> রুটিন ম্যানেজার</h2>
+            <div id="routineEditArea"></div>
+            <button class="btn btn-green" id="saveAllRoutinesBtn"><i class="fas fa-save"></i> সব রুটিন সংরক্ষণ করুন</button>
+        </div>
+        
+        <div id="socialFeedPanel" class="panel">
+            <h2><i class="fas fa-comments"></i> সোশ্যাল কানেক্টিভিটি</h2>
+            <div style="background:#f9f5ed; padding:15px; border-radius:20px; margin-bottom:15px;">
+                <textarea id="feedCaption" rows="2" placeholder="আপনার মনের কথা লিখুন..." style="width:100%; border-radius:15px;"></textarea>
+                <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; align-items:center;">
+                    <label style="background:#eef2f5; padding:8px 15px; border-radius:30px; cursor:pointer;">
+                        <i class="fas fa-image"></i> নির্বাচন করুন
+                        <input type="file" id="feedImageInput" accept="image/*,video/*" multiple style="display:none;">
+                    </label>
+                    <div id="imagePreviewContainer" style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;"></div>
+                    <button onclick="window.publishPost()" class="btn btn-orange"><i class="fas fa-paper-plane"></i> পোস্ট করুন</button>
+                </div>
             </div>
+            <div id="socialFeedContainer" style="margin-top: 20px;"></div>
         </div>
     </div>
-</section>
+    <footer style="text-align:center; padding:16px; color:#666;">© মাস্টারমাইন্ড অ্যাকাডেমি</footer>
+</div>
 
-<!-- ==================== FOOTER ==================== -->
-<footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-about">
-                <h3>Mastermind Academy</h3>
-                <p>উন্নত শিক্ষা, আধুনিক প্রযুক্তি ও নৈতিক মূল্যবোধ</p>
-            </div>
-            <div class="footer-links">
-                <h4>দ্রুত লিংক</h4>
-                <ul>
-                    <li><a href="#home">হোম</a></li>
-                    <li><a href="#about">পরিচিতি</a></li>
-                    <li><a href="#admission">ভর্তি</a></li>
-                    <li><a href="#result">রেজাল্ট</a></li>
-                </ul>
-            </div>
-            <div class="footer-hours">
-                <h4>অফিস সময়</h4>
-                <p>সকাল ৯:০০টা - বিকাল ৫:০০টা</p>
-                <p>শুক্রবার ও শনিবার বন্ধ</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; ২০২৬ Mastermind Academy. সর্বস্বত্ব সংরক্ষিত।</p>
-        </div>
+<div id="resultModal" class="result-modal">
+    <div class="results-card">
+        <i class="fas fa-chart-simple" style="font-size:48px; color:#f5b042;"></i>
+        <h2 style="margin-top:15px;">📊 একাডেমিক ফলাফল</h2>
+        <p style="margin:15px 0; font-size:16px;">আপনার পরীক্ষার ফলাফল এখানে প্রকাশিত হবে।</p>
+        <button class="btn btn-orange" onclick="document.getElementById('resultModal').style.display='none'">বন্ধ করুন</button>
     </div>
-</footer>
+</div>
 
-<!-- Firebase SDK -->
+<div id="aboutModal" class="about-modal">
+    <div class="about-card">
+        <i class="fas fa-school" style="font-size:48px; color:#f5b042; display:block; text-align:center;"></i>
+        <h2 style="text-align:center;">মাস্টারমাইন্ড অ্যাকাডেমি</h2>
+        <p style="margin:15px 0;">আধুনিক শিক্ষাপ্রতিষ্ঠান যা মানসম্মত শিক্ষা ও প্রযুক্তিনির্ভর ক্লাসরুম ব্যবস্থাপনায় অনন্য।</p>
+        <p><strong>📍 ঠিকানা:</strong> পেকুয়া, কক্সবাজার</p>
+        <p><strong>📞 যোগাযোগ:</strong> 01623209091</p>
+        <button class="btn btn-orange" style="width:100%; margin-top:15px;" onclick="document.getElementById('aboutModal').style.display='none'">বন্ধ করুন</button>
+    </div>
+</div>
+
+<div id="routineModal" class="routine-modal">
+    <div class="routine-card">
+        <i class="fas fa-calendar-week" style="font-size:48px; color:#f5b042; display:block; text-align:center;"></i>
+        <h2 style="text-align:center;">📅 ক্লাস রুটিন</h2>
+        <div id="routineContent"></div>
+        <button class="btn btn-orange" onclick="document.getElementById('routineModal').style.display='none'">বন্ধ করুন</button>
+    </div>
+</div>
+
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-
 <script src="script.js"></script>
 </body>
 </html>
